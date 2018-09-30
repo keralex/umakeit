@@ -31,19 +31,20 @@
 }
 
 
+
 .botones{
-        width: 50%;
-        margin: 0 auto;
-        position: relative;
-        height: 300px;
-        display: block;
-        margin-top: 50px;
+    width: 50%;
+    margin: 0 auto;
+    position: relative;
+    height: 300px;
+    display: block;
+    margin-top: 50px;
 }
 .btn-dark{
-    background-color: #060504;
-    border-color: #060504;
+background-color: #060504;
+border-color: #060504;
 }
 .btn-dark:hover{
-    background-color:#343a40;
-    border-color: #343a40;
-}
+background-color:#343a40;
+border-color: #343a40;
+}   
