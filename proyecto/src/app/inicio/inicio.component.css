@@ -24,25 +24,27 @@
 
     text-align: center;
     color: #f8f9fa;
-    font-size: 100px;
+    font-size: 95px;
     padding: 2px;
     background-size: cover;
     padding: 1px;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 
 
 .botones{
-    width: 50%;
+    width: 40%;
     margin: 0 auto;
     position: relative;
     height: 300px;
     display: block;
     margin-top: 50px;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 .btn-dark{
 background-color: #060504;
-border-color: #060504;
+border-color: #060504;  
 }
 .btn-dark:hover{
 background-color:#343a40;
