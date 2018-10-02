@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './Components/inicio/inicio.component';
@@ -10,6 +9,8 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { NavigationComponent } from './navigation/navigation/navigation.component';
 import { NavigationRegistroComponent } from './navigation/navigation-registro/navigation-registro.component';
 import { RegistroComponent } from './Components/registro/registro.component';
+import { NavBarNavegationComponent } from './Components/nav-bar-navegation/nav-bar-navegation.component';
+import { HomeComponent } from './Components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { RegistroComponent } from './Components/registro/registro.component';
     NavbarComponent,
     NavigationComponent,
     NavigationRegistroComponent,
-    RegistroComponent
+    RegistroComponent,
+    NavBarNavegationComponent,
+    HomeComponent
 
   ],
   imports: [
