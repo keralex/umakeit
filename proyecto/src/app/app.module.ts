@@ -7,6 +7,9 @@ import { InicioComponent } from './Components/inicio/inicio.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { IniciosesionComponent } from './Components/iniciosesion/iniciosesion.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
+import { NavigationComponent } from './navigation/navigation/navigation.component';
+import { NavigationRegistroComponent } from './navigation/navigation-registro/navigation-registro.component';
+import { RegistroComponent } from './Components/registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
     InicioComponent,
     FooterComponent,
     IniciosesionComponent,
-    NavbarComponent
+    NavbarComponent,
+    NavigationComponent,
+    NavigationRegistroComponent,
+    RegistroComponent
 
   ],
   imports: [
