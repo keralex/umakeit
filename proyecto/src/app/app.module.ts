@@ -2,28 +2,28 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { InicioComponent } from './Components/inicio/inicio.component';
 import { FooterComponent } from './Components/footer/footer.component';
-import { IniciosesionComponent } from './Components/iniciosesion/iniciosesion.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { NavigationComponent } from './navigation/navigation/navigation.component';
 import { NavigationRegistroComponent } from './navigation/navigation-registro/navigation-registro.component';
-import { RegistroComponent } from './Components/registro/registro.component';
 import { NavBarNavegationComponent } from './Components/nav-bar-navegation/nav-bar-navegation.component';
 import { HomeComponent } from './Components/home/home.component';
+import { SignInComponent } from './Components/sign-in/sign-in.component';
+import { SignUpComponent } from './Components/sign-up/sign-up.component';
+import { LoginComponent } from './Components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InicioComponent,
     FooterComponent,
-    IniciosesionComponent,
     NavbarComponent,
     NavigationComponent,
     NavigationRegistroComponent,
-    RegistroComponent,
     NavBarNavegationComponent,
-    HomeComponent
+    HomeComponent,
+    SignInComponent,
+    SignUpComponent,
+    LoginComponent
 
   ],
   imports: [
