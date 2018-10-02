@@ -1,0 +1,28 @@
+.box{
+    height: 150px;
+    background-color: #060504; 
+    width: 100%;
+    justify-items: center;
+    
+    
+}
+.contenedor{
+    width: 900px;
+    margin: 0 auto;
+    position: relative;
+    
+   
+}
+.col{
+    color: #f8f9fa;
+    text-align: center;
+    padding: 10px;
+    height: 150px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.letras{
+    text-align: center;
+    font-size: 12px;
+    font-family: 'Noto Sans KR', sans-serif;
+}

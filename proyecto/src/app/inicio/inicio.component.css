@@ -1,0 +1,52 @@
+.principal{
+    height:700px;
+    background-repeat: no-repeat;    
+    width: 100%;
+    background-image: url("IMG/fondo1.jpg");
+    background-size: cover;
+    display:flex;    
+    align-items:center;
+    background-position: center center;
+    background-attachment: fixed;
+    
+    
+    
+}
+ .principal .saludo{
+    height: 400px;
+    margin: 0 auto;
+    width: 50%;   
+    justify-content: center;
+
+
+}
+.principal .titulo{
+
+    text-align: center;
+    color: #f8f9fa;
+    font-size: 95px;
+    padding: 2px;
+    background-size: cover;
+    padding: 1px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+
+.botones{
+    width: 40%;
+    margin: 0 auto;
+    position: relative;
+    height: 300px;
+    display: block;
+    margin-top: 50px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.btn-dark{
+background-color: #060504;
+border-color: #060504;  
+}
+.btn-dark:hover{
+background-color:#343a40;
+border-color: #343a40;
+}   
