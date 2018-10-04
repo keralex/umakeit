@@ -70,3 +70,29 @@ p.parrafo{
     padding-left: 10px;
     padding-right: 10px;
 }
+/*Tercera parte de la pagina*/
+
+.Menu{
+
+    height:600px;
+    width: 100%;
+    display:flex;   
+    align-items:center;
+    justify-content: center;
+}
+.Imagenes{
+    margin: 0 auto;
+
+}
+img{
+    margin: 0 auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    transition: .5s ease;
+  backface-visibility: hidden;
+
+}
+
+.imagen:hover{
+    opacity: 0.3;
+}
