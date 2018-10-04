@@ -1,17 +1,4 @@
-.principal{
-    height:700px;
-    background-repeat: no-repeat;    
-    width: 100%;
-    background-image: url("IMG/fondo1.jpg");
-    background-size: cover;
-    display:flex;    
-    align-items:center;
-    background-position: center center;
-    background-attachment: fixed;
-    justify-content: center;
-    
-}
- .principal .saludo{
+.principal .saludo{
     height: 400px;
     margin: 0 auto;
     width: 50%;   
@@ -19,7 +6,7 @@
 
 
 }
-.principal .titulo{
+.titulo{
 
     text-align: center;
     color: #f8f9fa;
@@ -33,7 +20,7 @@
 
 
 .botones{
-    width: 40%;
+    width: 60%;
     margin: 0 auto;
     position: relative;
     height: 300px;

@@ -1,16 +1,4 @@
-.box-principal{
-    height:670px;
-    background-repeat: no-repeat;    
-    width: 100%;
-    background-image: url("IMG/fondo1.jpg");
-    background-size: cover;
-    display:flex;    
-    align-items:center;
-    align-content: center;
-    background-position: center center;
-    background-attachment: fixed;     
-  
-}
+
 .box-black{
     height: 500px;
     width: 400px;

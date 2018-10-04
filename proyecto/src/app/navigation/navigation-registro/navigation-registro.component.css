@@ -1,0 +1,13 @@
+.principal{
+    height:650px;
+    background-repeat: no-repeat;    
+    width: 100%;
+    background-image: url("img/fondo1.jpg");
+    background-size: cover;
+    display:flex;    
+    align-items:center;
+    background-position: center center;
+    background-attachment: fixed;
+    justify-content: center;
+    
+}
