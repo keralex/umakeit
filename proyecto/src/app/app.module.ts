@@ -11,6 +11,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { SignInComponent } from './Components/sign-in/sign-in.component';
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
 import { LoginComponent } from './Components/login/login.component';
+import { NavigationMenuComponent } from './navigation/navigation-menu/navigation-menu.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LoginComponent } from './Components/login/login.component';
     HomeComponent,
     SignInComponent,
     SignUpComponent,
-    LoginComponent
+    LoginComponent,
+    NavigationMenuComponent
 
   ],
   imports: [
