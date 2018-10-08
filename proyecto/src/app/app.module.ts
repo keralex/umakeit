@@ -12,6 +12,9 @@ import { SignInComponent } from './Components/sign-in/sign-in.component';
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
 import { LoginComponent } from './Components/login/login.component';
 import { NavigationMenuComponent } from './navigation/navigation-menu/navigation-menu.component';
+import { ShoppingCarComponent } from './Components/shopping-car/shopping-car.component';
+import { MenuComponent } from './Components/menu/menu.component';
+import { VistaComidaComponent } from './Components/vista-comida/vista-comida.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { NavigationMenuComponent } from './navigation/navigation-menu/navigation
     SignInComponent,
     SignUpComponent,
     LoginComponent,
-    NavigationMenuComponent
+    NavigationMenuComponent,
+    ShoppingCarComponent,
+    MenuComponent,
+    VistaComidaComponent
 
   ],
   imports: [
