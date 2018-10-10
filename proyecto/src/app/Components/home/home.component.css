@@ -111,11 +111,12 @@ img{
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%)
   }
-  .text {
-    background-color: #4CAF50;
-    color: white;
-    font-size: 16px;
-    padding: 16px 32px;
-    margin: 0 auto;
+  /* cuartaparte */
+  .Preparalo{
+    background-image: url("../../../assets/IMG/Carrito.svg");
+    background-repeat:no-repeat;
+    background-position:right center;
+    background-size: 600px 600px;
+    height: 600px;
+    width: 100%;
   }
-  

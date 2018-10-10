@@ -1,0 +1,26 @@
+    
+    <h2>Pedidos</h2>
+    <div class="Tabla-Carro table-responsive">
+        <table class="table table-sm table-hover">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Usuario</th>
+              <th scope="col">Pedido</th>
+              <th scope="col">Estado</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>fulano</td>
+              <td>Roll sushi</td>
+              <td>Realizado</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>fulano</td>
+              <td>ramen</td>
+              <td>falta</td>
+            </tr>
+          </table>
+    </div>
+    <a class="btn btn-dark" [routerLink]="['/Admin/ModificarPedidos']" role="button">Modificar Estado</a>
+

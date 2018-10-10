@@ -15,6 +15,12 @@ import { NavigationMenuComponent } from './navigation/navigation-menu/navigation
 import { ShoppingCarComponent } from './Components/shopping-car/shopping-car.component';
 import { MenuComponent } from './Components/menu/menu.component';
 import { VistaComidaComponent } from './Components/vista-comida/vista-comida.component';
+import { NavigationAdminComponent } from './navigation/navigation-admin/navigation-admin.component';
+import { DisponibilidadTablaComponent } from './Components/disponibilidad-tabla/disponibilidad-tabla.component';
+import { DisponibilidadModificarComponent } from './Components/disponibilidad-modificar/disponibilidad-modificar.component';
+import { PedidosTablaComponent } from './Components/pedidos-tabla/pedidos-tabla.component';
+import { NavBarAdminComponent } from './Components/nav-bar-admin/nav-bar-admin.component';
+import { PedidosModificarComponent } from './Components/pedidos-modificar/pedidos-modificar.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +37,13 @@ import { VistaComidaComponent } from './Components/vista-comida/vista-comida.com
     NavigationMenuComponent,
     ShoppingCarComponent,
     MenuComponent,
-    VistaComidaComponent
+    VistaComidaComponent,
+    NavigationAdminComponent,
+    DisponibilidadTablaComponent,
+    DisponibilidadModificarComponent,
+    PedidosTablaComponent,
+    NavBarAdminComponent,
+    PedidosModificarComponent
 
   ],
   imports: [

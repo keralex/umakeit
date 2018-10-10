@@ -13,3 +13,11 @@ nav{
 .navbar-dark .navbar-nav .nav-link{
     color: #f8f9fa;
 }
+.Usuario{
+    float:right;
+    color: #f8f9fa;
+}
+.btn.dropdown-toggle{
+    background-color: black;
+    color: #f8f9fa;
+}

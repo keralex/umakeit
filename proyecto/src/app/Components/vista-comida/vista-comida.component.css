@@ -1,0 +1,72 @@
+.comida{
+    height: 700px;
+    width: 100%;
+}
+
+
+.center-box{
+    margin-top: 5%;
+    width: 100%;
+    display:flex;   
+    align-items:center;
+}
+/* 
+grid */
+
+.wrapper {
+    display: grid;
+    grid-gap: 25px;
+        grid-template-columns: 600px 250px;
+        background-color: #fff;
+        color: #444;
+        margin: 0 auto;
+    }
+
+    .box {
+        color: black;
+        padding: 10px;
+        border-radius: 15px;
+        border-style: solid;
+        border-width: 2px;
+    }
+
+    .a {
+        grid-column: 1;
+        height: 580px;
+    }
+    .b {
+        grid-column: 2 ;
+        height: 580px;
+    }
+    img{
+        margin-left: 15%;
+        margin-top: 5%;
+    }
+    .descripcion{
+        text-align: justify;
+        margin-top: 30px;
+    }
+    p{
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .btn-group{
+        padding-left: 20px;
+    }
+    .btn.btn-dark{
+        margin: 0 auto;
+    }
+    .AgregarCarrito{
+        width: 100%;
+        display:flex;   
+        align-items:center;
+        margin-top: 20%;
+    }
+    .Tabla-Precio{
+        margin-top: 20%;
+    }
+    .btn.btn-secondary{
+        width: 60px;
+        font-size: 12px;
+    }

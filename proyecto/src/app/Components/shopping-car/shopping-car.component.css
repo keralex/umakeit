@@ -1,0 +1,37 @@
+.box{
+    text-align: center;
+    border-right-style: solid;
+    border-right-width: 1px;
+    margin: 2px;
+ 
+}
+.titulo{
+    background-color: #f8f9fa;
+    color: black;
+}
+.titulo p{
+    margin: 5px;
+    padding: 2px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 12px;
+}
+img{
+    margin: 0 auto;
+}
+
+/* tablas */
+
+.box-tablas{
+    margin: 5px;
+    padding: 2px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 12px;
+}
+
+
+/* botonpaypal */
+.btn{
+    margin: 0 auto;
+}
