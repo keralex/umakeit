@@ -4,26 +4,28 @@
 /*primera parte*/
 .box-black{
     background-color: rgba(6, 5, 4, 0.7);
-    height:650px;
+    height:600px;
     width: 100%;
     display:flex;   
     align-items:center;
     justify-content: center;
+    /* background-image: url("../../../assets/IMG/Fondos/bordetitulo2blanco.svg"); */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 500px 800px;
 }
 .welcome{
-    height:650px;
+    height:600px;
     background-repeat: no-repeat;    
     width: 100%;
     background-image: url("img/fondo.jpg");
     background-size: cover;
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
     background-position: center center;    
+    text-align: center;
 }
 
-p{
-    text-align: center;
-    color: #f8f9fa;
-}
+
 p.titulo{
     font-size: 90px;
     color: #f8f9fa;
@@ -33,25 +35,39 @@ p.titulo{
 p.subtitulo{
     font-size: 60px;
     color: #f8f9fa;
-    font-family: 'Nanum Brush Script', cursive;   
+    font-family: 'Nanum Brush Script', cursive;  
+    text-align: center; 
 }
+
 /*Segunda parte de la pagina*/
 .AboutUs{
-    height:650px;
+    height:700px;
     width: 100%;
-    background-image: url("img/sushi-01.png");
+    background-image: url("../../../assets/IMG/Fondos/580b57fcd9996e24bc43c1f8.png");
     background-repeat:no-repeat;
     background-position:right center;
-    background-size: 600px 600px;
+    background-size: 650px 400px;
+    background-color: #f8f9fa;
+    color: #060504;
     
 
 }
 .box-left{
-    height: 650px;
-    width: 50%;
+    height: 700px;
+    width: 55%;
     display:flex;   
     align-items: center; 
-    
+    color: #060504;
+    text-align: center;
+    background-image: url("../../../assets/IMG/Fondos/bordefondo3negro.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 600px 600px;
+      
+}
+.box-center{
+    margin: 0 auto;
+    width: 70%;
 }
 .boton{
     margin: 0 auto;
@@ -59,10 +75,18 @@ p.subtitulo{
     align-items: center;
     align-content: center;
     height: 100px;
+    padding-top: 50px;
+
 }
 .btn{
     margin: 0 auto;
     width: 140px;
+}
+
+.btn-outline-dark:hover {
+    color: #fff;
+    background-color: #060504;
+    border-color: #060504;
 }
 p.titulo2{
     font-size: 60px;
@@ -71,7 +95,11 @@ p.titulo2{
 p.parrafo{
     padding-left: 10px;
     padding-right: 10px;
+    text-align: justify;
 }
+
+
+
 /*Tercera parte de la pagina*/
 
 .Menu{
@@ -113,10 +141,10 @@ img{
   }
   /* cuartaparte */
   .Preparalo{
-    background-image: url("../../../assets/IMG/Carrito.svg");
+    background-image: url("../../../assets/IMG/Fondos/Sushi-PNG-Image-52221.png"); 
     background-repeat:no-repeat;
-    background-position:right center;
-    background-size: 600px 600px;
+    background-position:left center;
+    background-size: 600px 300px;
     height: 600px;
     width: 100%;
   }

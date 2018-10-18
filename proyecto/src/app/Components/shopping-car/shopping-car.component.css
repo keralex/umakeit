@@ -3,31 +3,27 @@
     border-right-style: solid;
     border-right-width: 1px;
     margin: 2px;
+    border-color: #919191;
+    height: 100%;
+
  
 }
-.titulo{
-    background-color: #f8f9fa;
-    color: black;
-}
+
 .titulo p{
     margin: 5px;
     padding: 2px;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 12px;
+    font-size: 20px;
 }
 img{
     margin: 0 auto;
 }
 
 /* tablas */
-
-.box-tablas{
-    margin: 5px;
-    padding: 2px;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 12px;
+.table-dark{
+    background-color: #131313;
+}
+th.iva{
+    border-top: 2px solid #dee2e6;
 }
 
 

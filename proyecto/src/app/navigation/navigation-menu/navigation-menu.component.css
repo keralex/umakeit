@@ -9,6 +9,8 @@
   
   .wrapper {
     display: grid;
+    background-color: #060504;
+
 
   }
   
@@ -40,8 +42,8 @@
   }
   
   .wrapper > * {
-    background-color: #f8f9fa;
-    color: black;
+    background-color:#060504;
+    color: #f8f9fa;
     /* needed for the floated layout*/
     margin-bottom: 10px;
   }
