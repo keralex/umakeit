@@ -31,6 +31,7 @@ p.titulo{
     color: #f8f9fa;
     font-family: 'Noto Sans KR', sans-serif;
     margin-bottom: 0;
+    text-align: center;
 }
 p.subtitulo{
     font-size: 60px;
@@ -41,7 +42,7 @@ p.subtitulo{
 
 /*Segunda parte de la pagina*/
 .AboutUs{
-    height:700px;
+    height:600px;
     width: 100%;
     background-image: url("../../../assets/IMG/Fondos/580b57fcd9996e24bc43c1f8.png");
     background-repeat:no-repeat;
@@ -53,7 +54,7 @@ p.subtitulo{
 
 }
 .box-left{
-    height: 700px;
+    height: 600px;
     width: 55%;
     display:flex;   
     align-items: center; 
@@ -62,7 +63,7 @@ p.subtitulo{
     background-image: url("../../../assets/IMG/Fondos/bordefondo3negro.svg");
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: 600px 600px;
+    background-size: 550px 550px;
       
 }
 .box-center{
@@ -75,7 +76,7 @@ p.subtitulo{
     align-items: center;
     align-content: center;
     height: 100px;
-    padding-top: 50px;
+    padding-top: 25px;
 
 }
 .btn{
@@ -91,6 +92,7 @@ p.subtitulo{
 p.titulo2{
     font-size: 60px;
     margin: 0 auto;
+    text-align: center;
 }
 p.parrafo{
     padding-left: 10px;
@@ -100,51 +102,67 @@ p.parrafo{
 
 
 
-/*Tercera parte de la pagina*/
 
-.Menu{
+/* Tercera parte */
 
-    height:600px;
+
+  
+  .Preparalo{
+    background-image: url("../../../assets/IMG/Fondos/6050.jpg"); 
+    background-repeat:no-repeat;
+    background-position:top;
+    background-size: cover;
+    height: 500px;
+    width: 100%;
+    color: #f8f9fa;
+  }.box-black2{
+    background-color: rgba(6, 5, 4, 0.8);
+    height:500px;
     width: 100%;
     display:flex;   
     align-items:center;
     justify-content: center;
+    /* background-image: url("../../../assets/IMG/Fondos/bordetitulo2blanco.svg"); */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 500px 800px;
 }
+/*Cuarta parte*/
+.Menu{
 
-img{
-    margin: 0 auto;
-    margin-left: 10px;
-    margin-right: 10px;
-    transition: .5s ease;
-  backface-visibility: hidden;
-
-}
-.col-sm:hover .image {
-    opacity: 0.3;
-  }
-  
-  .col-sm:hover .middle {
-    opacity: 1;
-  }
-
-.imagen:hover{
-    opacity: 0.3;
-}
-.middle {
-    transition: .5s ease;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    left: 45%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%)
-  }
-  /* cuartaparte */
-  .Preparalo{
-    background-image: url("../../../assets/IMG/Fondos/Sushi-PNG-Image-52221.png"); 
-    background-repeat:no-repeat;
-    background-position:left center;
-    background-size: 600px 300px;
-    height: 600px;
+    height:700px;
     width: 100%;
+    display:flex;   
+    align-items:center;
+    justify-content: center;
+    
+}
+.Menu .titulo2{
+    color: #f8f9fa;
+    padding-bottom: 20px;
+}
+.card-title{
+    text-align: center;
+}
+.card-text{
+    text-align: justify;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgba(6, 5, 4, 0.8);
+    display:flex;   
+    align-items:center;
+    justify-content: center;
+  }
+
+  .card:hover .overlay{
+      opacity:1;
   }
