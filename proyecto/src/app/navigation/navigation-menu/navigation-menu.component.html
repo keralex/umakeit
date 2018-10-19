@@ -1,8 +1,8 @@
-<div class="wrapper">
-  <header class="header"><app-nav-bar-navegation></app-nav-bar-navegation></header>
-  <aside class="sidebar"><app-shopping-car></app-shopping-car></aside>
-  <article class="content">
-      <router-outlet></router-outlet>
-  </article>
-  <footer class="footer"><app-footer> </app-footer></footer>
+<header><app-nav-bar-navegation></app-nav-bar-navegation></header>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3"><app-shopping-car></app-shopping-car></div> 
+        <div class="col-sm-9"> <router-outlet></router-outlet></div>
+      </div>
 </div>
+<footer><app-footer></app-footer></footer>

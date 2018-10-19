@@ -1,12 +1,10 @@
-.box{
-    text-align: center;
-    border-right-style: solid;
-    border-right-width: 1px;
-    margin: 2px;
-    border-color: #919191;
-    height: 100%;
-
- 
+.container-fluid.box{
+    background-color:  #060504;
+    width: 100%;
+    padding-right: 0;
+    padding-left:0 ;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .titulo p{
@@ -22,9 +20,7 @@ img{
 .table-dark{
     background-color: #131313;
 }
-th.iva{
-    border-top: 2px solid #dee2e6;
-}
+
 
 
 /* botonpaypal */
