@@ -1,0 +1,13 @@
+.nav-link{
+    border-bottom-style: solid;
+    border-bottom-color: #272727;
+    border-width: 1px;
+
+}
+a {
+    color: #f8f9fa;
+    
+}
+.nav-link:hover {
+    background-color: #272727;
+}

@@ -75,9 +75,12 @@ p.subtitulo{
     display:flex;   
     align-items: center;
 }
-.img-fluid {
-    max-width: 650px;
-    max-height: 400px;
+.col-sm-6.box-right{
+ height: 300;
+}
+img {
+    max-width: 100%;
+    max-height: auto;
 }
 .box-center{
     margin: 0 auto;
