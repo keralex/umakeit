@@ -1,5 +1,8 @@
 <div class="container-fluid box">
- 
+ <div class="container-flui box-titulo">
+      <img src="../../../assets/IMG/icon-ecommerce-grey.png" alt="shoppingcart" height="50px" width="50px">
+      <p>My Shopping Cart</p>
+ </div>
   <div class="box-tablas">
     <div class="Tabla-Carro table-responsive">
         <table class="table table-sm table-hover table-dark">
@@ -13,12 +16,20 @@
           </thead>
             <tr>
               <td>Roll sushi</td>
-              <td>1</td>
+              <td class="cant">
+                  <button class="btn less" type="submit">-</button>
+                  1
+                  <button class="btn pluss" type="submit">+</button>
+              </td>
               <td>50</td>
             </tr>
             <tr>
               <td>Ramen</td>
-              <td>1</td>
+              <td class="cant">
+                <button class="btn less" type="submit">-</button>
+                1
+                <button class="btn pluss" type="submit">+</button>
+              </td>
               <td>94</td>
             </tr>
             <tr >
@@ -35,7 +46,9 @@
     </div>
  
     
+</div>  
+<div class="botonpaypal">
+ <div id="paypal-button"></div>
+      
 </div>
-
-<a class="btn btn-primary" href="#" role="button">botonpaypal</a>
 </div>
