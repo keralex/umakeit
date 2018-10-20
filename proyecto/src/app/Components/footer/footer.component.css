@@ -1,19 +1,13 @@
-.box{
-    height: 150px;
-    background-color: #060504; 
-    width: 100%;
-    justify-items: center;
-    
-    
+.container-fluid{
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #060504;
 }
 .contenedor{
-    width: 900px;
+    width: 80%;
     margin: 0 auto;
-    position: relative;
-    
-   
 }
-.col{
+.col-sm-4{
     color: #f8f9fa;
     text-align: center;
     padding: 10px;
