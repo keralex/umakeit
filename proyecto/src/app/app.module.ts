@@ -21,6 +21,7 @@ import { DisponibilidadModificarComponent } from './Components/disponibilidad-mo
 import { PedidosTablaComponent } from './Components/pedidos-tabla/pedidos-tabla.component';
 import { NavBarAdminComponent } from './Components/nav-bar-admin/nav-bar-admin.component';
 import { PedidosModificarComponent } from './Components/pedidos-modificar/pedidos-modificar.component';
+import { MenuCategoriasComponent } from './components/menu-categorias/menu-categorias.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { PedidosModificarComponent } from './Components/pedidos-modificar/pedido
     DisponibilidadModificarComponent,
     PedidosTablaComponent,
     NavBarAdminComponent,
-    PedidosModificarComponent
+    PedidosModificarComponent,
+    MenuCategoriasComponent
 
   ],
   imports: [

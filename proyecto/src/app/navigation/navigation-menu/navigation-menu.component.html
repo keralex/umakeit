@@ -1,8 +1,11 @@
-<header><app-nav-bar-navegation></app-nav-bar-navegation></header>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-3"><app-shopping-car></app-shopping-car></div> 
-        <div class="col-sm-9"> <router-outlet></router-outlet></div>
-      </div>
+<div class="VistaMenu">
+        <header><app-nav-bar-navegation></app-nav-bar-navegation></header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-2"> <app-menu-categorias></app-menu-categorias></div> 
+                <div class="col-sm-7"> <router-outlet></router-outlet></div>
+                <div class="col-sm-3"><app-shopping-car></app-shopping-car></div>
+              </div>
+        </div>
+        <footer><app-footer></app-footer></footer>
 </div>
-<footer><app-footer></app-footer></footer>

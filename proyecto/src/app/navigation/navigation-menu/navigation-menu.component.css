@@ -1,6 +1,11 @@
+
+.VistaMenu{
+  background-color:  #060504;
+}
 .col-sm-3{
   position: relative;
   width: 100%;
   min-height: 1px;
-  padding-left: 0;
+  padding-left: 15px;
+  padding-right: 0;
 }
