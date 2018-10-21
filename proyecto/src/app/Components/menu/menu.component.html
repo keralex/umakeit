@@ -1,13 +1,30 @@
-<div class="menu">
+<div class="container-fluid">
+
 <div class="box-imput">
-  <h1>Pidelo Ya!</h1> 
     <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <input type="text" class="form-control" placeholder="search for your favorite sushi here..." aria-label="Recipient's username" aria-describedby="button-addon2">
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+          <button class="btn btn-dark" type="button" id="button-addon2">search</button>
         </div>
       </div>
   </div>
 
 
+<div class="container-fluid menu">
+    <div class="container">
+        <div class="row">
+            <div class="card col-sm-4" *ngFor="let sushi of sushis">
+                <img class="card-img-top" src="{{sushi.img_url}}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{sushi.name}}</h5>
+                  <p class="precio">Price: {{sushi.price_unit}}.00$</p>
+                </div>
+          </div>
+        </div>
+      </div>
+
+
+        
+        
+      </div>
 </div>

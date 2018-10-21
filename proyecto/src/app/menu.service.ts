@@ -6,6 +6,10 @@ import { Injectable } from '@angular/core';
 export class MenuService {
 
   constructor() { }
+  getSushis(){
+    return this.Sushis;
+  }
+
 
   Sushis=[
     {
@@ -81,7 +85,25 @@ export class MenuService {
       "img_url":"../../../assets/IMG/sushi/maki/det2x_maki-crujiente.png"
     },
     {
-      "name":"Futomaki de langostino",
+      "name":"Maki pepino y queso",
+      "id":"801",
+      "type":"maki",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque,     porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/maki/det2x_maki-pepino-queso.png"
+    },  
+    {
+      "name":"Maki queso y cebolleta",
+      "id":"802",
+      "type":"maki",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque,     porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/maki/det2x_maki-queso-cebolleta.png"
+    }, 
+    {
+      "name":"Futomaki tempura de langostino",
       "id":"9",
       "type":"Futomaki",
       "price_unit":"5",
@@ -90,7 +112,25 @@ export class MenuService {
       "img_url":"../../../assets/IMG/sushi/futomaki/det1x_futomaki-de-tempura-de-langostino.png"
     },
     {
-      "name":"Futomaki de atun",
+      "name":"Futomaki crujiente tempurizado",
+      "id":"901",
+      "type":"Futomaki",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/futomaki/det2x_futomaki-crujiente-tempurizado.png"
+    },
+    {
+      "name":"Futomaki de atun spicy tempurizado",
+      "id":"1001",
+      "type":"Futomaki",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/futomaki/det2x_futomaki-de-atun-spicy-tempurizado.png"
+    },
+    {
+      "name":"Futomaki de atun crujiente",
       "id":"10",
       "type":"Futomaki",
       "price_unit":"5",
@@ -98,6 +138,7 @@ export class MenuService {
       "available":"si",
       "img_url":"../../../assets/IMG/sushi/futomaki/det2x_futomaki-de-atun-crujiente.png"
     },
+
     {
       "name":"Futomaki de cangrejo",
       "id":"11",
@@ -106,6 +147,15 @@ export class MenuService {
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
       "available":"si",
       "img_url":"../../../assets/IMG/sushi/futomaki/det2x_futomaki-de-cangrejo.png"
+    },
+    {
+      "name":"Futomaki de atun y aguacate",
+      "id":"1101",
+      "type":"Futomaki",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/futomaki/det2x_futomaki-de-atun-y-aguacate.png"
     },
     {
       "name":"Futomaki de pollo",
