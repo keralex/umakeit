@@ -158,7 +158,7 @@ export class MenuService {
       "img_url":"../../../assets/IMG/sushi/futomaki/det2x_futomaki-de-atun-y-aguacate.png"
     },
     {
-      "name":"Futomaki de pollo",
+      "name":"Futomaki de pollo teriyaki",
       "id":"12",
       "type":"Futomaki",
       "price_unit":"5",
@@ -167,13 +167,22 @@ export class MenuService {
       "img_url":"../../../assets/IMG/sushi/futomaki/det2x_futomaki-de-pollo-teriyaki.png"
     },
     {
-      "name":"Futomaki de salmon",
+      "name":"Futomaki de salmon tempurizado",
       "id":"13",
       "type":"Futomaki",
       "price_unit":"5",
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, orttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
       "available":"si",
       "img_url":"../../../assets/IMG/sushi/futomaki/det2x_futomaki-salmon-tempurizado.png"
+    },
+    {
+      "name":"Futomaki de salmon con queso",
+      "id":"1301",
+      "type":"Futomaki",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, orttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/futomaki/det2x_futomaki-salmon-con-queso.png"
     },
     {
       "name":"Futomaki de vegetales",
@@ -185,7 +194,7 @@ export class MenuService {
       "img_url":"../../../assets/IMG/sushi/futomaki/det2x_futomaki-vegetal.png"
     },
     {
-      "name":"Urami de atun",
+      "name":"Urami roll de atun",
       "id":"15",
       "type":"Urami",
       "price_unit":"5",
@@ -194,7 +203,7 @@ export class MenuService {
       "img_url":"../../../assets/IMG/sushi/urami/det2x_roll_tartar_atun.png"
     },
     {
-      "name":"Urami Ahumado",
+      "name":"Urami roll especial ahumado",
       "id":"16",
       "type":"Urami",
       "price_unit":"5",
@@ -203,7 +212,25 @@ export class MenuService {
       "img_url":"../../../assets/IMG/sushi/urami/det2x_roll-especial-ahumado.png"
     },
     {
-      "name":"Urami de langostino",
+      "name":"Urami roll salmon tataki",
+      "id":"1601",
+      "type":"Urami",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/urami/det2x_roll-salmon-tataki.png"
+    },
+    {
+      "name":"Urami roll surimi",
+      "id":"1602",
+      "type":"Urami",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/urami/det2x_roll-surimi.png"
+    },
+    {
+      "name":"Urami roll de langostino",
       "id":"17",
       "type":"Urami",
       "price_unit":"5",
@@ -212,7 +239,16 @@ export class MenuService {
       "img_url":"../../../assets/IMG/sushi/urami/det2x_roll-langostino-tempura-jamon.png"
     },
     {
-      "name":"Urami tataki",
+      "name":"Urami roll tempura atun spicy",
+      "id":"1701",
+      "type":"Urami",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/urami/det2x_roll-tempura-atun-spicy.png"
+    },
+    {
+      "name":"Urami roll tataki caramelizado",
       "id":"18",
       "type":"Urami",
       "price_unit":"5",
@@ -221,7 +257,7 @@ export class MenuService {
       "img_url":"../../../assets/IMG/sushi/urami/det2x_roll-tataki-caramelizado.png"
     },
     {
-      "name":"Urami de vegetales",
+      "name":"Urami roll de vegetales",
       "id":"19",
       "type":"Urami",
       "price_unit":"5",
@@ -230,7 +266,16 @@ export class MenuService {
       "img_url":"../../../assets/IMG/sushi/urami/det2x_roll-vegetal.png"
     },
     {
-      "name":"Urami gouda",
+      "name":"Urami roll de vegetales y queso",
+      "id":"1901",
+      "type":"Urami",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/urami/det2x_roll-vegetal-queso.png"
+    },
+    {
+      "name":"Urami roll gouda",
       "id":"20",
       "type":"Urami",
       "price_unit":"5",
@@ -239,13 +284,31 @@ export class MenuService {
       "img_url":"../../../assets/IMG/sushi/urami/det2x_uramaki-gouda.png"
     },
     {
-      "name":"Temaki de atun",
-      "id":"21",
+      "name":"Urami roll spicy aguacate",
+      "id":"2001",
       "type":"Urami",
       "price_unit":"5",
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
       "available":"si",
+      "img_url":"../../../assets/IMG/sushi/urami/det2x_uramaki-spicy-aguacate.png"
+    },
+    {
+      "name":"Temaki de atun",
+      "id":"21",
+      "type":"Temaki",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
       "img_url":"../../../assets/IMG/sushi/temaki/det2x_temaki_atun_aguacate.png"
+    },
+    {
+      "name":"Temaki de atun spicy",
+      "id":"2101",
+      "type":"Temaki",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/temaki/det2x_temaki_atun_spicy.png"
     },
     {
       "name":"Temaki de gamba",
@@ -258,6 +321,15 @@ export class MenuService {
     },
     {
       "name":"Temaki de salmon",
+      "id":"2301",
+      "type":"Temaki",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/temaki/det2x_temaki_salmon.png"
+    },
+    {
+      "name":"Temaki de salmon y aguacate",
       "id":"23",
       "type":"Temaki",
       "price_unit":"5",
@@ -327,6 +399,33 @@ export class MenuService {
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
       "available":"si",
       "img_url":"../../../assets/IMG/sushi/nigiri/det2x_nigiri_salmon.png"
+    },
+    {
+      "name":"Nigiri de salmon y aguacate",
+      "id":"3001",
+      "type":"Nigiri",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/nigiri/det2x_nigiri_salmon_aguacate.png"
+    },
+    {
+      "name":"Nigiri de salmon flameado",
+      "id":"3002",
+      "type":"Nigiri",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/nigiri/det2x_nigiri-de-salmon-flambeado.png"
+    },
+    {
+      "name":"Nigiri de salmon teriyaki",
+      "id":"3003",
+      "type":"Nigiri",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/nigiri/det2x_Nigiri-Salmon-teriyaki.png"
     },
     {
       "name":"Nigiri de salmon Ahumado",
