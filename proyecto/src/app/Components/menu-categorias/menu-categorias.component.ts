@@ -13,55 +13,53 @@ export class MenuCategoriasComponent implements OnInit {
   constructor(public menuService:MenuService, public router:Router) { }
 
   ngOnInit() {
-    console.log(this.foodType);
   }
   foodType1="Sushi";
   foodType2="Bandejas";
   foodType3="Entrantes";
-  foodType4="Entrantes";
+  foodType4="Postres";
   
   goToMenu(type){
     this.router.navigate([`/shopping/menu/${type}`]);
-     console.log(Id);
   }
 
 
  sushisTypes= [{
    "typeTittle":"Maki",
-   "type":"maki"
+   "type":"Maki"
 
  },
  {
   "typeTittle":"Futomaki",
-  "type":"futomaki"
+  "type":"Futomaki"
 },
 {
-  "typeTittle":"Sashimi"
-  "type":"sashimi"
+  "typeTittle":"Sashimi",
+  "type":"Sashimi"
 },
 {
   "typeTittle":"Tartar",
-  "type":"tartar"
+  "type":"Fartar"
 },
 {
   "typeTittle":"Nigiri",
-  "type":"nigiri"
+  "type":"Nigiri"
 },
 {
   "typeTittle":"Uramaki",
-  "type":"uramaki"
+  "type":"Uramaki"
 },
 {
   "typeTittle":"Temaki",
-  "type":"temaki"
+  "type":"Temaki"
 },
 {
   "typeTittle":"Gunkan",
-  "type":"gunkan"
+  "type":"Gunkan"
 },
 {
   "typeTittle":"Chirashi",
-  "type":"chirashi"
+  "type":"Chirashi"
 }]
 
 }

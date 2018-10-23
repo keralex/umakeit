@@ -11,11 +11,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
   sushis : Array<any>;
-  constructor(public menuService:MenuService, public router:Router,  private route:ActivatedRoute) { }
+  constructor(public menuService:MenuService, public router:Router,  private route:ActivatedRoute) { 
+    
+  }
 
   ngOnInit() {
-    this.sushis=this.menuService.getSushis();
-    
+    let aux=this.route.snapshot.paramMap.get('type');
+    this.sushis=this.menuService.getByType(aux);
+    console.log(aux,this.sushis);
   }
 
 }
