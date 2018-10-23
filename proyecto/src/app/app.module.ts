@@ -23,6 +23,8 @@ import { NavBarAdminComponent } from './Components/nav-bar-admin/nav-bar-admin.c
 import { PedidosModificarComponent } from './Components/pedidos-modificar/pedidos-modificar.component';
 import { MenuCategoriasComponent } from './components/menu-categorias/menu-categorias.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,8 +48,7 @@ import { MenuCategoriasComponent } from './components/menu-categorias/menu-categ
     NavBarAdminComponent,
     PedidosModificarComponent,
     MenuCategoriasComponent
-
-  ],
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule
