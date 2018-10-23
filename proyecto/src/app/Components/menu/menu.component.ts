@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from 'src/app/menu.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -11,10 +11,11 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
   sushis : Array<any>;
-  constructor(public menuService:MenuService, public router:Router) { }
+  constructor(public menuService:MenuService, public router:Router,  private route:ActivatedRoute) { }
 
   ngOnInit() {
     this.sushis=this.menuService.getSushis();
+    
   }
 
 }

@@ -9,6 +9,15 @@ export class MenuService {
   getSushis(){
     return this.Sushis;
   }
+  getByType(type){
+    let aux:Array<any>
+    for(var i=0;i<this.Sushis.length;i++){
+       if(this.Sushis[i].type===type.toString()){
+         aux[i]=this.Sushis[i]
+       }
+    } 
+    return aux
+  }
 
 
   Sushis=[

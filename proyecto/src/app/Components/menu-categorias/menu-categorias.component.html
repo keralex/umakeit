@@ -1,28 +1,12 @@
 <ul class="nav flex-column">
-
         <li class="nav-item">
-                <a class="nav-link" href="#">Novedades</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link  dropdown-toggle" data-toggle="collapse" href="#item-1">Sushi</a>
+          <button class="nav-link btn btn-dark  dropdown-toggle" data-toggle="collapse" href="#item-1" (click)="goToMenu(foodType1)">Sushi</button>
           <div id="item-1" class="collapse">
             <ul class="nav flex-column ml-3">
-              <li class="nav-item">
-                <a class="nav-link" href="#">Maki & Futomaki</a>
+              <li class="nav-item" *ngFor='let sushitype of sushisTypes'>
+                <button class="nav-link btn btn-dark" (click)="goToMenu(sushitype.type)">{{sushitype.typeTittle}}</button>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Sashimi & Tartar</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Nigiri</a>
-              </li>
-              <li class="nav-item">
-                    <a class="nav-link" href="#">Uramaki</a>
-             </li>
-             <li class="nav-item">
-                    <a class="nav-link" href="#">Temaki</a>
-            </li>
+             
             </ul>
           </div>
         </li>
