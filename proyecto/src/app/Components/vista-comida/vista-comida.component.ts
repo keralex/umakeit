@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuService } from 'src/app/menu.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-vista-comida',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VistaComidaComponent implements OnInit {
 
-  constructor() { }
+  constructor(public menuService:MenuService , public router:Router,  private route:ActivatedRoute) { }
 
   ngOnInit() {
+      
   }
 
 }

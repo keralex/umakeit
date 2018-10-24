@@ -18,7 +18,8 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     let aux=this.route.snapshot.paramMap.get('type');
     this.sushis=this.menuService.getByType(aux);
-    console.log(aux,this.sushis);
   }
-
+  goToFood(id){
+    this.router.navigate([`/shopping/menu/:type/${id}`]);
+  }
 }

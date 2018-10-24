@@ -39,7 +39,7 @@ export class MenuCategoriasComponent implements OnInit {
 },
 {
   "typeTittle":"Tartar",
-  "type":"Fartar"
+  "type":"Tartar"
 },
 {
   "typeTittle":"Nigiri",
