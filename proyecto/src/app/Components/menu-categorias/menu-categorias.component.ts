@@ -18,9 +18,9 @@ export class MenuCategoriasComponent implements OnInit {
   foodType2="Bandejas";
   foodType3="Entrantes";
   foodType4="Postres";
-  
-  goToMenu(type){
-    this.router.navigate([`/shopping/menu/${type}`]);
+  // provisional
+  goToMenu(type,id){
+    this.router.navigate([`/shopping/yt3gKneRyRkBguoIVTw3/menu/${type}`]);
   }
 
 

@@ -1,4 +1,10 @@
 import { Component, AfterViewChecked } from '@angular/core';
+import { OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FirestoreService } from 'src/app/firestore.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Usuario } from 'src/app/models/usuario'
+
 
 declare let paypal: any;
 
@@ -8,6 +14,14 @@ declare let paypal: any;
   styleUrls: ['./shopping-car.component.css']
 })
 export class ShoppingCarComponent implements AfterViewChecked {
+
+  usuario;
+  constructor(private firestoreService: FirestoreService, private route:ActivatedRoute) { }
+
+  ngOnInit() {
+    this.usuario=this.firestoreService.getbyid(this.route.snapshot.paramMap.get('id'))
+  }
+
   title = 'paypal';
   addScript: boolean = false;
   paypalLoad: boolean = true;

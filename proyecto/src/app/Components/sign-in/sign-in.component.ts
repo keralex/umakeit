@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from 'src/app/firestore.service';
 import { Usuario } from 'src/app/models/usuario';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MenuService } from 'src/app/menu.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -14,7 +16,7 @@ export class SignInComponent implements OnInit {
   usering;
   confirmar;
   
-  constructor(private firestoreService: FirestoreService,) {
+  constructor(private firestoreService: FirestoreService, private router: Router) {
     this.confirmar = false;
     this.firestoreService.getUsers().subscribe(usuarios => {
       this.usuarios = usuarios;
@@ -27,17 +29,22 @@ export class SignInComponent implements OnInit {
  autentificar(){
    for(var i=0; i<this.usuarios.length; i++){
      if(this.usuarios[i].email == this.users.email && this.usuarios[i].password == this.users.password){
-       this.usuarios[i]==this.usering;
+       
        this.users = {} as Usuario;
        this.confirmar = true;
+       this.gotoDetail(this.usuarios[i].id);
      }
    }
-   if(this.confirmar==false){
-     this.alerts();
-   }
+   //if(this.confirmar==false){
+     //this.alerts();
+   //}
  }
- alerts(){
-  alert("email y contrasena no coinciden");
+ //alerts(){
+  //alert("email y contrasena no coinciden");
+//}
+
+gotoDetail(id){
+ this.router.navigate([`/shopping/${id}/menu`]);
 }
 
  ngOnInit() {

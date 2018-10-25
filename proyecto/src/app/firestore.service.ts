@@ -32,4 +32,14 @@ export class FirestoreService {
   addUsers(usuario: Usuario){
     this.usuariosCollection.add(usuario);
   }
+
+  getbyid(id){
+    let aux: any;
+    for(let i=0; i<this.usuariosCollection.get.length;i++){
+      if(this.usuariosCollection[i].id===id.toString()){
+        aux=this.usuariosCollection[i]
+      }
+    }
+    return aux;
+  }
 }

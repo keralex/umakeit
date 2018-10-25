@@ -25,7 +25,8 @@ const routes: Routes = [
       {path: 'home',component:HomeComponent}
     ], component: NavigationComponent
 
-  },
+  }
+  ,
   {
     path: 'login',
     children:[
@@ -37,7 +38,7 @@ const routes: Routes = [
   }
   ,
   {
-    path: 'shopping',
+    path: 'shopping/:id',
     children:[
       {path: '',  component:MenuComponent},
       {path: 'menu/:type',  component:MenuComponent},
