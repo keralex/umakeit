@@ -30,7 +30,6 @@ export class MenuService {
         }
         this.aux = this.Sushis.filter(sushi=>{
           if(sushi.type.toLowerCase() == type.toLowerCase()){
-            console.log("--> entre")
             return sushi;
           }
           
@@ -40,6 +39,8 @@ export class MenuService {
   }
 
   getById(id,type){
+    console.log(type.toString());
+    console.log(id.toString());
    this.aux=this.getByType(type);
    let comida
    for(var i=0;i<this.aux.length;i++){

@@ -41,7 +41,7 @@ const routes: Routes = [
     children:[
       {path: '',component:MenuComponent},
       {path: 'menu/:type',  component:MenuComponent},
-      {path: 'Comida',component:VistaComidaComponent}
+      {path: 'menu/:type/:id',component:VistaComidaComponent}
        ], component: NavigationMenuComponent
 
   }

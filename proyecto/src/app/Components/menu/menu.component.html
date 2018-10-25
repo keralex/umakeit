@@ -13,7 +13,7 @@
 <div class="container-fluid menu">
     <div class="container">
         <div class="row">
-            <div class="card col-sm-4" *ngFor="let sushi of sushis">
+            <div class="card col-sm-4" *ngFor="let sushi of sushis" (click)="goToFood(sushi.id,sushi.type)">
                 <img class="card-img-top" src="{{sushi.img_url}}" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">{{sushi.name}}</h5>

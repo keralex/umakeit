@@ -22,6 +22,8 @@ import { PedidosTablaComponent } from './Components/pedidos-tabla/pedidos-tabla.
 import { NavBarAdminComponent } from './Components/nav-bar-admin/nav-bar-admin.component';
 import { PedidosModificarComponent } from './Components/pedidos-modificar/pedidos-modificar.component';
 import { MenuCategoriasComponent } from './components/menu-categorias/menu-categorias.component';
+import {ShoppingcartService} from './shoppingcart.service';
+import {MenuService} from './menu.service';
 
 
 
@@ -53,7 +55,7 @@ import { MenuCategoriasComponent } from './components/menu-categorias/menu-categ
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ShoppingcartService,MenuService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

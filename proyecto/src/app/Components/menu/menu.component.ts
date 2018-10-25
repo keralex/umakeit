@@ -19,7 +19,7 @@ export class MenuComponent implements OnInit {
     let aux=this.route.snapshot.paramMap.get('type');
     this.sushis=this.menuService.getByType(aux);
   }
-  goToFood(id){
-    this.router.navigate([`/shopping/menu/:type/${id}`]);
+  goToFood(id,type){
+    this.router.navigate([`/shopping/menu/${type}/${id}`]);
   }
 }

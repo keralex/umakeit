@@ -1,13 +1,31 @@
 import { Component, AfterViewChecked } from '@angular/core';
+import { MenuService } from 'src/app/menu.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ShoppingcartService } from 'src/app/shoppingcart.service';
 
 declare let paypal: any;
 
 @Component({
   selector: 'app-shopping-car',
   templateUrl: './shopping-car.component.html',
-  styleUrls: ['./shopping-car.component.css']
+  styleUrls: ['./shopping-car.component.css'],
+  providers: [MenuService,ShoppingcartService]
+  
 })
+
+
 export class ShoppingCarComponent implements AfterViewChecked {
+  products:Array<any>;
+ constructor(public menuService:MenuService , public router:Router,  private route:ActivatedRoute,public shoppingcartService:ShoppingcartService) { }
+ ngOnInit() {
+   
+  this.products=this.shoppingcartService.FoodCart; 
+  }
+  
+  
+
+
+  //Paypal
   title = 'paypal';
   addScript: boolean = false;
   paypalLoad: boolean = true;
