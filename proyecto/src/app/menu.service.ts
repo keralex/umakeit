@@ -50,6 +50,17 @@ export class MenuService {
    } 
    return comida
   }    
+// solo buscar sushi por ahora
+  getByName(name: string){
+    console.log(name);
+   let sushi
+   for(var i=0;i<this.aux.length;i++){
+      if(this.Sushis[i].name===name){
+        sushi=this.Sushis[i];
+      }
+   } 
+   return sushi;
+  }
           
   
 

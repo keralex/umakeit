@@ -18,14 +18,13 @@
   </ul>
 </div>
 <div class="Usuario">
-    <div class="dropdown">
-        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          NombreUsuario
-        </button>
-        <div class="dropdown-menu" aria-labelledby="Nombre de Usuario">
-          <a class="dropdown-item" href="#">Modificar</a>
-        </div>
-      </div>
+        <a class="btn btn-dark" href="#" role="button" [routerLink]="['/login/signin']"> 
+          Sign in
+        </a>
+        <a class="btn btn-dark" href="#" role="button" [routerLink]="['/login/signup']"> 
+          Sign up
+        </a>
+        
 
 </div>
 </nav>

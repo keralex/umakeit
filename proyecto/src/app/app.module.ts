@@ -24,6 +24,8 @@ import { PedidosModificarComponent } from './Components/pedidos-modificar/pedido
 import { MenuCategoriasComponent } from './components/menu-categorias/menu-categorias.component';
 import {ShoppingcartService} from './shoppingcart.service';
 import {MenuService} from './menu.service';
+import { SushisearchComponent } from './components/sushisearch/sushisearch.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 
@@ -49,7 +51,9 @@ import {MenuService} from './menu.service';
     PedidosTablaComponent,
     NavBarAdminComponent,
     PedidosModificarComponent,
-    MenuCategoriasComponent
+    MenuCategoriasComponent,
+    SushisearchComponent,
+    ProfileComponent
     ],
   imports: [
     BrowserModule,
