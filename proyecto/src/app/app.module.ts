@@ -19,13 +19,14 @@ import { NavigationAdminComponent } from './navigation/navigation-admin/navigati
 import { DisponibilidadTablaComponent } from './Components/disponibilidad-tabla/disponibilidad-tabla.component';
 import { DisponibilidadModificarComponent } from './Components/disponibilidad-modificar/disponibilidad-modificar.component';
 import { PedidosTablaComponent } from './Components/pedidos-tabla/pedidos-tabla.component';
-import { NavBarAdminComponent } from './Components/nav-bar-admin/nav-bar-admin.component';
+import { NavBarAdminComponent } from './Components/nav-bar-admin/nav-bar-admin.component'; 
 import { PedidosModificarComponent } from './Components/pedidos-modificar/pedidos-modificar.component';
 import { MenuCategoriasComponent } from './components/menu-categorias/menu-categorias.component';
 import {ShoppingcartService} from './shoppingcart.service';
 import {MenuService} from './menu.service';
 import { SushisearchComponent } from './components/sushisearch/sushisearch.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { PerfilusuarioComponent } from './components/perfilusuario/perfilusuario.component';
+
 
 
 
@@ -53,7 +54,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     PedidosModificarComponent,
     MenuCategoriasComponent,
     SushisearchComponent,
-    ProfileComponent
+    PerfilusuarioComponent,
     ],
   imports: [
     BrowserModule,
