@@ -3,9 +3,6 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/models/usuario';
 import { map } from 'rxjs/operators';
-import { AngularFireAuth } from 'angularfire2/auth'
-import * as firebase from 'firebase/app';
-
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +11,7 @@ export class FirestoreService {
 
   
   usuariosCollection: AngularFirestoreCollection;
-  usuarios: Observable<Usuario[]>;
+  usuarios: Observable <Usuario[]>;
   usuariosDoc;
 
   constructor(public db: AngularFirestore) {
@@ -26,8 +23,6 @@ export class FirestoreService {
       return data;
    });
  }));
-
- 
 }
 
   getUsers(){
@@ -37,5 +32,4 @@ export class FirestoreService {
   addUsers(usuario: Usuario){
     this.usuariosCollection.add(usuario);
   }
-
 }

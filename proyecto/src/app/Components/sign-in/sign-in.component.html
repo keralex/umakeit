@@ -1,18 +1,18 @@
-
-  <div class="box-black">
+<div class="box-black">
       <p class="titulo">Inicia Sesion</p>
       
-      <div class="form-group ">
+      <form class="form-group" (ngSubmit)="autentificar()">
           <p class="simple">Correo Electronico:</p>
-          <input type="text" class="form-control" placeholder="Correo Electronico" name="text1">
+          <input type="text" class="form-control" placeholder="Correo Electronico" name="email" [(ngModel)]="users.email">
           <p class="simple">contraseña:</p>
-          <input type="text" class="form-control" placeholder="contraseña" name="text1">
+          <input type="text" class="form-control" placeholder="contraseña" name="password" [(ngModel)]="users.password">
           <div class="checkbox">
           <input class="form-check-input" type="checkbox"> Remember me</div>
-        </div>
+        
         <div class="botones">
-            <button type="button" class="btn btn-light" >Ingresar</button>
+            <button type="submit" class="btn btn-light" >Ingresar</button>
             <button type="button" class="btn btn-light"  [routerLink]="['/login']">Regresar</button>
         </div> 
         
+      </form>
   </div>

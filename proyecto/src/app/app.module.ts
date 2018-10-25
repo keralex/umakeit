@@ -23,7 +23,12 @@ import { NavBarAdminComponent } from './Components/nav-bar-admin/nav-bar-admin.c
 import { PedidosModificarComponent } from './Components/pedidos-modificar/pedidos-modificar.component';
 import { MenuCategoriasComponent } from './components/menu-categorias/menu-categorias.component';
 
+// firebase
 
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { FormsModule } from '@angular/forms';
+import { AngularFirestoreModule} from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -51,7 +56,10 @@ import { MenuCategoriasComponent } from './components/menu-categorias/menu-categ
     ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
