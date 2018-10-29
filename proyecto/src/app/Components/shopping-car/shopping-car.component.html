@@ -1,8 +1,10 @@
 <div class="container-fluid box">
+  <!-- titulo -->
  <div class="container-flui box-titulo">
       <img src="../../../assets/IMG/icon-ecommerce-grey.png" alt="shoppingcart" height="50px" width="50px">
       <p>My Shopping Cart</p>
  </div>
+ <!-- tablas -->
   <div class="box-tablas">
     <div class="Tabla-Carro table-responsive">
         <table class="table table-sm table-hover table-dark">
@@ -14,39 +16,33 @@
              
             </tr>
           </thead>
-            <tr>
-              <td>Roll sushi</td>
+            <tr *ngFor='let product of products'>
+              <td>{{product.name}}</td>
               <td class="cant">
                   <button class="btn less" type="submit">-</button>
                   1
                   <button class="btn pluss" type="submit">+</button>
               </td>
-              <td>50</td>
+              <td>{{product.price_unit}}</td>
             </tr>
-            <tr>
-              <td>Ramen</td>
-              <td class="cant">
-                <button class="btn less" type="submit">-</button>
-                1
-                <button class="btn pluss" type="submit">+</button>
-              </td>
-              <td>94</td>
-            </tr>
+           
             <tr >
                 <th class="iva" scope="col">IVA</th>
                 <th class="iva"></th>
-                <th class="iva" scope="col">50</th>
+                <th class="iva" scope="col"></th>
             </tr>
             <tr>
                 <th scope="col">Total </th>
                 <th></th>
-                <th scope="col">195</th>
+                <th scope="col"></th>
             </tr>
           </table>
     </div>
  
     
 </div>  
+
+<!-- boton de paypal -->
   <div class="botonpaypal">
     <div id="paypal-button">
         <h2 *ngIf="paypalLoad">Paypal button is loading</h2>
@@ -56,3 +52,4 @@
   </div>
   
 </div>
+

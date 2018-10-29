@@ -13,7 +13,9 @@ export class MenuService {
   aux:Array<any>; 
 
   getByType(type): any[] {
-    
+        if(type===null){
+          return this.Sushis;
+        }
         if(type.toString()===this.foodType1){
           return this.Sushis;
         }
@@ -28,14 +30,39 @@ export class MenuService {
         }
         this.aux = this.Sushis.filter(sushi=>{
           if(sushi.type.toLowerCase() == type.toLowerCase()){
-            console.log("--> entre")
             return sushi;
           }
           
         })
         
           return this.aux;
-        }
+  }
+
+  getById(id,type){
+    console.log(type.toString());
+    console.log(id.toString());
+   this.aux=this.getByType(type);
+   let comida
+   for(var i=0;i<this.aux.length;i++){
+      if(this.aux[i].id===id.toString()){
+        comida=this.aux[i];
+      }
+   } 
+   return comida
+  }    
+// solo buscar sushi por ahora
+  getByName(name: string){
+    console.log(name);
+   let sushi
+   for(var i=0;i<this.aux.length;i++){
+      if(this.Sushis[i].name===name){
+        sushi=this.Sushis[i];
+      }
+   } 
+   return sushi;
+  }
+          
+  
 
 
   Sushis=[
@@ -464,27 +491,27 @@ export class MenuService {
       "img_url":"../../../assets/IMG/sushi/nigiri/det2x_nigiri_salmon_ahumado.png"
     },
     {
-      "name":"Guankan de atun",
+      "name":"Gunkan de atun",
       "id":"32",
-      "type":"maki",
+      "type":"Gunkan",
       "price_unit":"5",
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
       "available":"si",
       "img_url":"../../../assets/IMG/sushi/gunkan/det2x_gunkan_atun_spicy.png"
     },
     {
-      "name":"Guankan de huevas",
+      "name":"Gunkan de huevas",
       "id":"33",
-      "type":"maki",
+      "type":"Gunkan",
       "price_unit":"5",
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
       "available":"si",
       "img_url":"../../../assets/IMG/sushi/gunkan/det2x_gunkan_huevas.png"
     },
     {
-      "name":"Guankan de salmon",
+      "name":"Gunkan de salmon",
       "id":"34",
-      "type":"maki",
+      "type":"Gunkan",
       "price_unit":"5",
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque,porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
       "available":"si",
@@ -493,7 +520,7 @@ export class MenuService {
     {
       "name":"Chirashi de salmon",
       "id":"35",
-      "type":"maki",
+      "type":"Chirashi",
       "price_unit":"5",
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
       "available":"si",
@@ -502,7 +529,7 @@ export class MenuService {
     {
       "name":"Chirashi de atun",
       "id":"36",
-      "type":"maki",
+      "type":"Chirashi",
       "price_unit":"5",
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque,  porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
       "available":"si",
@@ -511,7 +538,7 @@ export class MenuService {
     {
       "name":"Chirashi variado",
       "id":"37",
-      "type":"maki",
+      "type":"Chirashi",
       "price_unit":"5",
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
       "available":"si",
@@ -520,7 +547,7 @@ export class MenuService {
     {
       "name":"Sashimi de atun y salmon",
       "id":"38",
-      "type":"maki",
+      "type":"Sashimi",
       "price_unit":"5",
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
       "available":"si",
@@ -529,7 +556,7 @@ export class MenuService {
     {
       "name":"Sashimi de pescado blanco",
       "id":"39",
-      "type":"maki",
+      "type":"Sashimi",
       "price_unit":"5",
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque,porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
       "available":"si",
@@ -538,7 +565,7 @@ export class MenuService {
     {
       "name":"Sashimi de salmon",
       "id":"40",
-      "type":"maki",
+      "type":"Sashimi",
       "price_unit":"5",
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
       "available":"si",
@@ -547,7 +574,7 @@ export class MenuService {
     {
       "name":"Sashimi de atun",
       "id":"41",
-      "type":"maki",
+      "type":"Sashimi",
       "price_unit":"5",
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque,porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
       "available":"si",
@@ -556,7 +583,7 @@ export class MenuService {
     {
       "name":"Tartar de salmon",
       "id":"42",
-      "type":"maki",
+      "type":"Tartar",
       "price_unit":"5",
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
       "available":"si",
@@ -565,7 +592,7 @@ export class MenuService {
     {
       "name":"Tartar de atun",
       "id":"43",
-      "type":"maki",
+      "type":"Tartar",
       "price_unit":"5",
       "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
       "available":"si",
@@ -573,7 +600,78 @@ export class MenuService {
     }
     ]
   Entrantes=[
-
+    {
+      "name":"Entrante de pollo",
+      "id":"1",
+      "type":"maki",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/entrantes/det1x_yakisoba-pollo.png"
+    },
+    {
+      "name":"Entrante de arroz blanco",
+      "id":"2",
+      "type":"maki",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/entrantes/det2x_arroz_blanco.png"
+    },
+    {
+      "name":"Entrante de ensalada de algas",
+      "id":"3",
+      "type":"maki",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/entrantes/det2x_ensalada_algas.png"
+    },
+    {
+      "name":"Entrante de tataki de atun",
+      "id":"4",
+      "type":"maki",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/entrantes/det2x_tataki-atun.png"
+    },
+    {
+      "name":"Entrante de torikatsu",
+      "id":"5",
+      "type":"maki",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/entrantes/det2x_torikatsu.png"
+    },
+    {
+      "name":"Entrante yakimeshi",
+      "id":"6",
+      "type":"maki",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/entrantes/det2x_yakimeshi.png"
+    },
+    {
+      "name":"Entrante yakisoba temera",
+      "id":"7",
+      "type":"maki",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque,porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/entrantes/det2x_yakisoba-ternera.png"
+    },
+    {
+      "name":"Entrante de gyozas",
+      "id":"8",
+      "type":"maki",
+      "price_unit":"5",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque,  porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
+      "available":"si",
+      "img_url":"../../../assets/IMG/sushi/entrantes/det2x_gyozas.png"
+    }
   ]
   Bandejas=[
 

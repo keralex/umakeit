@@ -1,0 +1,27 @@
+.inicio{
+    height:500px;
+    background-repeat: no-repeat;    
+    width: 100%;
+    background-image: url("img/fondo.jpg");
+    background-size: cover;
+    /* background-attachment: fixed; */
+    background-position: center center;    
+    text-align: center;
+}
+
+.box-black{
+    background-color: rgba(6, 5, 4, 0.7);
+    height:600px;
+    width: 100%; 
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    /* background-image: url("../../../assets/IMG/Fondos/bordetitulo2blanco.svg"); */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 500px 800px;
+}
+
+.texto{
+    color:white;
+}

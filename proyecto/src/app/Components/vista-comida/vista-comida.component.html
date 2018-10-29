@@ -4,12 +4,12 @@
     <div class="col-sm-12">
         <div class="row">
             <div class="col-sm-5 center-box">
-                    <img class="img-fluid" src="../../../assets/IMG/sushi/maki/det2x_maki-ahumado-queso.png" alt="sushi">
+                    <img class="img-fluid" src="{{food.img_url}}" alt="sushi">
             </div>
             <div class="col-sm-7 center-box">
                 <div class="box-principal">
-                    <h1>Roll California</h1>
-                     <p>Price: 5$ | 1 piece | <span class="available">Available</span> </p>                    
+                    <h1>{{food.name}}</h1>
+                     <p>Price: {{food.price_unit}}$ | 1 piece | <span class="available">Diponible: {{food.available}}</span> </p>                    
 
                 </div>
                  
@@ -23,9 +23,9 @@
             <div class="col-sm-8">
                     <div class="descripcion"> 
                             <h3>Description</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non scelerisque lorem. Vestibulum purus orci, blandit id commodo sit amet, convallis vel justo. Nunc accumsan scelerisque consectetur</p>
+                            <p>{{food.description}}</p>
                             <div class="AgregarCarrito">
-                                <button type="button" class="btn btn-dark">Agregar Al Carro</button>
+                                <button type="button" class="btn btn-dark" (click)="addToCart()">Agregar Al Carro</button>
                               
                             </div>
                             <div class="AgregarDeseos">

@@ -44,7 +44,7 @@ export class SignInComponent implements OnInit {
 //}
 
 gotoDetail(id){
- this.router.navigate([`/shopping/${id}/menu`]);
+ this.router.navigate([`/shopping/menu/Sushi`]);
 }
 
  ngOnInit() {

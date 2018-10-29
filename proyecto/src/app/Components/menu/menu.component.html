@@ -1,19 +1,11 @@
 <div class="container-fluid">
 
-<div class="box-imput">
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="search for your favorite sushi here..." aria-label="Recipient's username" aria-describedby="button-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-dark" type="button" id="button-addon2">search</button>
-        </div>
-      </div>
-  </div>
-
+    <app-sushisearch></app-sushisearch>
 
 <div class="container-fluid menu">
     <div class="container">
         <div class="row">
-            <div class="card col-sm-4" *ngFor="let sushi of sushis">
+            <div class="card col-sm-4" *ngFor="let sushi of sushis" (click)="goToFood(sushi.id,sushi.type)">
                 <img class="card-img-top" src="{{sushi.img_url}}" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">{{sushi.name}}</h5>

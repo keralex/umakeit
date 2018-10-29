@@ -1,20 +1,21 @@
-    
-    <h2>Disponibilidad</h2>
-    <div class="Tabla-Carro table-responsive">
-        <table class="table table-sm table-hover">
-            <tr>
-              <th scope="col">Plato</th>
-              <th scope="col">Disponible</th>
-            </tr>
-            <tr>
-              <td>Roll sushi</td>
-              <td>si</td>
-            </tr>
-            <tr>
-              <td>Ramen</td>
-              <td>si</td>
-            </tr>
-          </table>
-    </div>
-    <a class="btn btn-dark" [routerLink]="['/Admin/ModificarDisponibilidad']" role="button">Cambiar Disponibilidad</a>
+<div class="inicio">
+  <div class="box-black">
+  <form class="form-inline">
+  <label class="my-1 mr-2" for="inlineFormCustomSelectPref"><h3 class="texto">Menu:</h3></label>
+  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+    <option selected> Choose...</option>
+    <option value="1">sushi</option>
+    <option value="2">sushi</option>
+    <option value="3">sushi</option>
+  </select>
+  <label class="my-1 mr-2" for="inlineFormCustomSelectPref"><h3 class="texto">Disponibilidad:</h3></label>
+  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+      <option selected>Choose...</option>
+      <option value="1">si</option>
+      <option value="2">no</option>
+    </select>
 
+  <button type="submit" class="btn btn-dark my-1"><h5 class="texto">Submit</h5></button>
+  </form>
+  </div>
+</div>

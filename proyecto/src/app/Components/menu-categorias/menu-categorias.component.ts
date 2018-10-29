@@ -19,8 +19,8 @@ export class MenuCategoriasComponent implements OnInit {
   foodType3="Entrantes";
   foodType4="Postres";
   // provisional
-  goToMenu(type,id){
-    this.router.navigate([`/shopping/yt3gKneRyRkBguoIVTw3/menu/${type}`]);
+  goToMenu(type){
+    this.router.navigate([`/shopping/menu/${type}`]);
   }
 
 
@@ -39,7 +39,7 @@ export class MenuCategoriasComponent implements OnInit {
 },
 {
   "typeTittle":"Tartar",
-  "type":"Fartar"
+  "type":"Tartar"
 },
 {
   "typeTittle":"Nigiri",

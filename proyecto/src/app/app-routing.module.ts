@@ -15,6 +15,7 @@ import { DisponibilidadModificarComponent } from './Components/disponibilidad-mo
 import { PedidosTablaComponent } from './Components/pedidos-tabla/pedidos-tabla.component';
 import { NavigationAdminComponent } from './navigation/navigation-admin/navigation-admin.component';
 import { PedidosModificarComponent } from './Components/pedidos-modificar/pedidos-modificar.component';
+import { PerfilusuarioComponent } from './components/perfilusuario/perfilusuario.component';
 
 
 const routes: Routes = [
@@ -38,11 +39,14 @@ const routes: Routes = [
   }
   ,
   {
-    path: 'shopping/:id',
+    path: 'shopping',
     children:[
-      {path: '',  component:MenuComponent},
+      {path: '',component:MenuComponent},
       {path: 'menu/:type',  component:MenuComponent},
-      {path: 'Comida',component:VistaComidaComponent}
+      {path: 'menu/:type/:id',component:VistaComidaComponent},
+      {path: 'User',component:PerfilusuarioComponent  }
+
+
        ], component: NavigationMenuComponent
 
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from 'src/app/firestore.service';
 import { Usuario } from 'src/app/models/usuario';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class SignUpComponent implements OnInit {
  listo = false;
 
 
-  constructor(private firestoreService: FirestoreService,) { 
+  constructor(private firestoreService: FirestoreService, public router:Router) { 
     this.users.admin = false;
     this.firestoreService.getUsers().subscribe(usuarios => {
       this.usuarios = usuarios;
@@ -41,9 +42,13 @@ addUser(){
   //if(this.users.name != null && this.users.email != null && this.users.password != null && this.users.password == this.users.passwordc) {
     this.firestoreService.addUsers(this.users);
     this.users = {} as Usuario;
+    this.gotoDetail();
   //}
  // this.alerts();
 }
+gotoDetail(){
+  this.router.navigate([`/shopping/menu/Sushi`]);
+ }
 
 
 }

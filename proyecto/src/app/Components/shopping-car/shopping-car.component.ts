@@ -3,7 +3,11 @@ import { OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from 'src/app/firestore.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Usuario } from 'src/app/models/usuario'
+import { Usuario } from 'src/app/models/usuario';
+import { MenuService } from 'src/app/menu.service';
+import { Router} from '@angular/router';
+import { ShoppingcartService } from 'src/app/shoppingcart.service';
+
 
 
 declare let paypal: any;
@@ -11,16 +15,25 @@ declare let paypal: any;
 @Component({
   selector: 'app-shopping-car',
   templateUrl: './shopping-car.component.html',
-  styleUrls: ['./shopping-car.component.css']
+  styleUrls: ['./shopping-car.component.css'],
+  providers: [MenuService,ShoppingcartService]
+  
 })
+
+
 export class ShoppingCarComponent implements AfterViewChecked {
 
   usuario;
-  constructor(private firestoreService: FirestoreService, private route:ActivatedRoute) { }
+  products:Array<any>;
+  constructor(private firestoreService: FirestoreService, private route:ActivatedRoute,public menuService:MenuService,public router:Router,public shoppingcartService:ShoppingcartService) { }
 
   ngOnInit() {
     this.usuario=this.firestoreService.getbyid(this.route.snapshot.paramMap.get('id'))
+    this.products=this.shoppingcartService.FoodCart; 
+
+
   }
+
 
   title = 'paypal';
   addScript: boolean = false;
