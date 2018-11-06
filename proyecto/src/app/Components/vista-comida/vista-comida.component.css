@@ -1,21 +1,84 @@
-
-
-
+.col-sm-12{
+    color: #f8f9fa;
+}
 .center-box{
     display: flex;
     align-items: center;
     margin: 0 auto; 
      color: #f8f9fa;
 }
+.box-black{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(6, 5, 4, 0.4);
+}
+.box1{
+    background-image: url("../../../assets/IMG/Fondos/fondonegrosushi.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+a {
+    color: #f8f9fa;
+   
+}
+.box2 .row{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color:   #0e0e0e;
+}
+.descripcion{
+    height: 300px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #0e0e0e;
 
-
-.col-sm-8{
-text-align: justify;
-color: #f8f9fa;
+}
+.col-sm-8 p{
+    margin-top: 15px;
 }
 .col-sm-4{
-    color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.select{
-    margin-top: 10px;
+.btn.btn-outline-light{
+   border-radius: 0;
+   border-color: #f8f9fa;
+
+    color: #f8f9fa;     
+
+}
+.btn.btn-outline-light:hover{
+    border-radius: 0;
+    border-color: #272727;
+    background-color: #272727;
+    color: #f8f9fa;
+ 
+ }
+ .nav-tabs {
+    border-bottom: 1px none #272727;
+}
+.nav-link.active {
+    color: #f8f9fa;
+    background-color: #0e0e0e;
+    border-color: #0e0e0e;
+}
+.btn.cart{
+    background-image: url("../../../assets/IMG/icon-ecommerce-grey.png");
+    height: 50px;
+    width: 50px;
+    background-size: contain;
+    background-position: center;
+}
+.btn.wish{
+    background-image: url("../../../assets/IMG/1005px-Star_empty.svg.png");
+    height: 50px;
+    width: 50px;
+    background-size: contain;
+    background-position: center;
+}
+.box2{
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
