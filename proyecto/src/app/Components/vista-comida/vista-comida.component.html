@@ -10,6 +10,8 @@
                 <div class="box-principal">
                     <h1>{{food.name}}</h1>
                      <p>Price: {{food.price_unit}}$ | 1 piece | <span class="available">Diponible: {{food.available}}</span> </p>                    
+                     <button type="button" class="btn  btn-outline-dark cart"></button>
+                     <button type="button" class="btn btn-outline-dark wish"></button>
 
                 </div>
                  
@@ -28,8 +30,7 @@
 
               <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        <div class="descripcion"> 
-                                <h3>Description</h3>
+                        <div class="descripcion center-box"> 
                                 <p>{{food.description}}</p>
                       </div>
                 </div>

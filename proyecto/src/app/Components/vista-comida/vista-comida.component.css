@@ -7,6 +7,8 @@
     margin: 0 auto; 
      color: #f8f9fa;
 }
+
+/* primera parte  */
 .box-black{
     width: 100%;
     height: 100%;
@@ -22,16 +24,20 @@ a {
     color: #f8f9fa;
    
 }
+
+/* segunda parte */
 .box2 .row{
     padding-top: 40px;
     padding-bottom: 40px;
     background-color:   #0e0e0e;
 }
 .descripcion{
-    height: 300px;
-    padding-top: 40px;
-    padding-bottom: 40px;
     background-color: #0e0e0e;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    
 
 }
 .col-sm-8 p{
@@ -42,9 +48,13 @@ a {
     justify-content: center;
     align-items: center;
 }
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+    border-color:#0e0e0e;
+}
+/* botones */
 .btn.btn-outline-light{
    border-radius: 0;
-   border-color: #f8f9fa;
+   border-color: #272727;
 
     color: #f8f9fa;     
 
@@ -66,19 +76,43 @@ a {
 }
 .btn.cart{
     background-image: url("../../../assets/IMG/icon-ecommerce-grey.png");
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
     background-size: contain;
     background-position: center;
+    background-color: none;
 }
 .btn.wish{
     background-image: url("../../../assets/IMG/1005px-Star_empty.svg.png");
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
     background-size: contain;
     background-position: center;
+    background-color: none;
+
 }
 .box2{
     margin-top: 50px;
     margin-bottom: 50px;
+}
+
+/* imputs */
+.form-control {
+    background-color: #272727;
+    border: #272727;
+    color: #f8f9fa;
+}
+.form-control:focus {
+    border-color:  #060504;
+    box-shadow: 0 0 0 0.2rem rgba(6, 5, 4, 0.4);
+}
+option:active{
+background-color: #0e0e0e;
+}
+option {
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
 }
