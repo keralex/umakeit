@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from 'src/app/menu.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {Observable, iif} from 'rxjs';
 
 
 
@@ -13,18 +14,25 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 
 export class MenuComponent implements OnInit {
-  sushis=[];
+  platos:Observable<any[]>
 
   constructor(public menuService:MenuService, public router:Router,  private route:ActivatedRoute) { 
     
   }
 
   ngOnInit() {
-    this.menuService.getSushis().subscribe(sushis => {
-
-      this.sushis=sushis;
+    let aux:string;
+    aux=this.route.snapshot.paramMap.get('type');
+    
+    this.menuService.getByType(aux).subscribe(platos=>{
+      console.log(aux);
+      this.platos=platos;
+      console.log(this.platos)
     });
-    // let aux=this.route.snapshot.paramMap.get('type');
+
+  
+  
+    
 
 
   }

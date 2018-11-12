@@ -3,10 +3,10 @@ import {sushi} from './models/Sushi';
 import {Postre} from './models/Postre';
 import {Entrante} from './models/Entrante';
 import {Bandeja} from './models/Bandeja';
-import { map } from 'rxjs/operators';
+import { map, throwIfEmpty } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 
-import {Observable} from 'rxjs';
+import {Observable, iif, observable} from 'rxjs';
 import { Action } from 'rxjs/internal/scheduler/Action';
 
 
@@ -19,18 +19,21 @@ export class MenuService {
   sushisCollection:AngularFirestoreCollection<sushi>;
   sushisDoc:AngularFirestoreDocument<sushi>;
   //postres
-  postres:Observable<Postre[]>;
+  postres: Observable<Postre[]>;
   postresCollection:AngularFirestoreCollection<Postre>;
   postresDoc:AngularFirestoreDocument<Postre>;
   //bandejas
-  bandejas:Observable<Bandeja[]>;
+  bandejas: Observable<Bandeja[]>;
   bandejasCollection:AngularFirestoreCollection<Bandeja>;
   bandejasDoc:AngularFirestoreDocument<Bandeja>;
   //entrantes
-  entrantes:Observable<Entrante[]>;
+  entrantes: Observable<Entrante[]>;
   entrantesCollection:AngularFirestoreCollection<Entrante>;
   entrantesDoc:AngularFirestoreDocument<Entrante>;
-
+  //tipos de sushi
+  sushisTypes;
+  sushisTypesCollection:AngularFirestoreCollection<sushi>;
+  sushisTypesDoc:AngularFirestoreDocument<sushi>;
   constructor( public db:AngularFirestore) {
 
           //sushi
@@ -73,7 +76,38 @@ export class MenuService {
 
   }
 
-  getSushis(){
+  
+  getByType(type:string):any{
+    console.log(type);
+    if(type==="Postres"){
+      return this.postres;
+    }
+    else if(type==="Bandejas"){
+      return this.bandejas;
+    }
+    else if(type==="Entrantes"){
+      return this.entrantes;
+    }
+    else if(type=="Sushi"){
+      return this.sushis;
+    }
+    else{
+      this.sushisTypesCollection=this.db.collection('Sushi',ref =>{
+        return ref.where('sushiType','==',type)
+      });
+      this.sushisTypes=this.sushisTypesCollection.snapshotChanges().pipe(map(actions =>{
+        return actions.map(a=>{
+          const data=a.payload.doc.data() as sushi;
+          data.id=a.payload.doc.id;
+        });
+      }));
+      console.log(this.sushisTypes);
+    }
+    
+    
+
+  }
+   getSushis(){
     return this.sushis;
   }
   getPostres(){
@@ -88,10 +122,7 @@ export class MenuService {
   getById(id,Type){
 
   }
-  getByeName(){
-
-  }
-  
+ 
 
 
 

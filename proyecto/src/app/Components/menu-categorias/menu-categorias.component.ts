@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MenuService } from 'src/app/menu.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-menu-categorias',
   templateUrl: './menu-categorias.component.html',
@@ -13,12 +14,14 @@ export class MenuCategoriasComponent implements OnInit {
   constructor(public menuService:MenuService, public router:Router) { }
 
   ngOnInit() {
+        
   }
   foodType1="Sushi";
   foodType2="Bandejas";
   foodType3="Entrantes";
   foodType4="Postres";
   // provisional
+  
   goToMenu(type){
     this.router.navigate([`/shopping/menu/${type}`]);
   }
