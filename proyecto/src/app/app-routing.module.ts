@@ -63,7 +63,7 @@ const routes: Routes = [
   {
     path: 'Admin',
     children:[
-      {path: '',  component:DisponibilidadTablaComponent},
+      {path: '', component:DisponibilidadTablaComponent},
       {path: 'Pedidos',component:PedidosTablaComponent},
        ], component: NavigationAdminComponent
 

@@ -1,43 +1,105 @@
-    <h1 class="texto">Pedidos</h1>
-    <div class="Tabla-Carro table-responsive">
-        <table class="table table-sm table-hover">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col"> <h4 class= "texto"> Usuario </h4> </th>
-              <th scope="col"><h4 class= "texto"> Pedido </h4></th>
-              <th scope="col"><h4 class= "texto"> Estado </h4></th>
-            </tr>
-            <tr>
-                <td> <h5 class= "texto"> 1 </h5> </td>
-                <td> <h5 class= "texto"> Arturo </h5> </td>
-                <td> <h5 class= "texto"> Roll Sushi </h5> </td>
-                <td> <h5 class= "texto"> Realizado </h5> </td>
-            </tr>
-            <tr>
-                <td> <h5 class= "texto"> 2 </h5> </td>
-                <td> <h5 class= "texto"> Kerlis </h5> </td>
-                <td> <h5 class= "texto"> Ramen </h5> </td>
-                <td> <h5 class= "texto"> Falta </h5> </td>
-            </tr>
-          </table>
-    </div>
-    <a class="btn btn-dark" [routerLink]="['/Admin/ModificarPedidos']" role="button"> <h5 class= "texto"> Modificar Estado </h5></a>
+<div class="container-fluid">
+        <div class="container-fluid box1">
+            <div class="box-principal">
+                <div class="welcome">
+                    <div class="box-black">
+                      <h1>Pedidos</h1>
+                    </div>
+                   </div>
+        </div>    
+        </div>
+    
+        <div class="row container-fluid">
+        
+          <div class="col-sm-3">
+              <div class="box">
+          
+                  <div class="modificar">
+                      <div class="form-group">
+                          <label for="exampleFormControlSelect1">Numero de Pedido</label>
+                          <select class="form-control" id="exampleFormControlSelect1">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
+    
+                          <label for="exampleFormControlSelect1">Estado</label>
+                          <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Realizado</option>
+                            <option>Por realizar</option>
+                        
+                          </select>
+                        </div>
+    
+                        <button type="button" class="btn btn-dark">Modificar</button>
     
     
-    <form class="form-inline">
-        <label class="my-1 mr-2" for="inlineFormCustomSelectPref"> <h3 class="texto">Numero de Pedido:</h3> </label>
-        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-          <option selected>Choose...</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
+                  </div>
+    
+              </div>
+          </div>
+        
+          <div class="col-sm-9">
+              <div class="titulo">
+                </div>
+                <div class="tablaComida">
+                   
+                         
+    
+        <table class="table  table-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col"> Usuario </th>
+                  <th scope="col"> Pedido</th>
+                  <th scope="col">Estado </th>
+                </tr>
+                <tr>
+                    <td>  1 </td>
+                    <td>  Arturo  </td>
+                    <td>  Roll Sushi </td>
+                    <td>  Realizado </td>
+                </tr>
+                <tr>
+                    <td>  2  </td>
+                    <td>  Kerlis  </td>
+                    <td>  Ramen  </td>
+                    <td>  Falta </td>
+                </tr>
+              </table>
+
+
+                </div>
+              
+                
+          </div>
+        
+        </div>
       
-        </select>
-        <label class="my-1 mr-2" for="inlineFormCustomSelectPref"><h3 class="texto">Estado:</h3></label>
-        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-            <option selected>Choose...</option>
-            <option value="1">Realizado</option>
-            <option value="2">Falta</option>
-          </select>
+    
+    
       
-        <button type="submit" class="btn btn-dark my-1">Submit</button>
-        </form>
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
