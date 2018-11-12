@@ -36,7 +36,8 @@ export class MenuComponent implements OnInit {
 
 
   }
-  goToFood(id,type){
-    this.router.navigate([`/shopping/menu/${type}/${id}`]);
+  goToFood(id){
+    let aux=this.route.snapshot.paramMap.get('type');
+    this.router.navigate([`/shopping/menu/${aux}/${id}`]);
   }
 }

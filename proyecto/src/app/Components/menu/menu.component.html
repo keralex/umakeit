@@ -5,7 +5,7 @@
 <div class="container-fluid menu">
     <div class="container">
         <div class="row">
-            <div class="card col-sm-4" *ngFor="let plato of platos" (click)="goToFood(sushi.id,sushi.type)">
+            <div class="card col-sm-4" *ngFor="let plato of platos" (click)="goToFood(plato.id)">
               <div class="box-black">
                 <img class="card-img-top" src="{{plato.url_img}}" alt="Card image cap">
                 <div class="card-body">

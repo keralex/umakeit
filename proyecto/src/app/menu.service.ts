@@ -3,11 +3,10 @@ import {sushi} from './models/Sushi';
 import {Postre} from './models/Postre';
 import {Entrante} from './models/Entrante';
 import {Bandeja} from './models/Bandeja';
-import { map, throwIfEmpty } from 'rxjs/operators';
+import { map, throwIfEmpty, switchMap } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 
-import {Observable, iif, observable} from 'rxjs';
-import { Action } from 'rxjs/internal/scheduler/Action';
+import {Observable, Subject, BehaviorSubject, observable, iif} from 'rxjs';
 
 
 @Injectable({
@@ -31,9 +30,9 @@ export class MenuService {
   entrantesCollection:AngularFirestoreCollection<Entrante>;
   entrantesDoc:AngularFirestoreDocument<Entrante>;
   //tipos de sushi
-  sushisTypes;
-  sushisTypesCollection:AngularFirestoreCollection<sushi>;
-  sushisTypesDoc:AngularFirestoreDocument<sushi>;
+  sushiTypes$:Observable<any[]>;
+  sushiTypesFilter$:BehaviorSubject<string|null>;
+
   constructor( public db:AngularFirestore) {
 
           //sushi
@@ -74,6 +73,20 @@ export class MenuService {
         });
         }));
 
+        //sushiTypes
+        this.sushiTypesFilter$=new BehaviorSubject(null);
+        this.sushiTypes$ =
+          this.sushiTypesFilter$
+          .pipe(
+          switchMap(sushiType => 
+            db.collection('Sushi', ref => {
+              let query : firebase.firestore.CollectionReference | firebase.firestore.Query = ref;
+              if (sushiType) { query = query.where('sushiType', '==', sushiType) };
+              return query;
+            }).valueChanges()
+          )
+        );
+
   }
 
   
@@ -92,16 +105,11 @@ export class MenuService {
       return this.sushis;
     }
     else{
-      this.sushisTypesCollection=this.db.collection('Sushi',ref =>{
-        return ref.where('sushiType','==',type)
-      });
-      this.sushisTypes=this.sushisTypesCollection.snapshotChanges().pipe(map(actions =>{
-        return actions.map(a=>{
-          const data=a.payload.doc.data() as sushi;
-          data.id=a.payload.doc.id;
-        });
-      }));
-      console.log(this.sushisTypes);
+      console.log("entre al else");
+        
+      console.log("sali de la conversion");
+      this.sushiTypesFilter$.next(type);
+      return this.sushiTypes$;
     }
     
     
