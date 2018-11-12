@@ -3,21 +3,30 @@ import { MenuService } from 'src/app/menu.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
   providers: [MenuService]
 })
+
+
 export class MenuComponent implements OnInit {
-  sushis : Array<any>;
+  sushis=[];
+
   constructor(public menuService:MenuService, public router:Router,  private route:ActivatedRoute) { 
     
   }
 
   ngOnInit() {
-    let aux=this.route.snapshot.paramMap.get('type');
-    this.sushis=this.menuService.getByType(aux);
+    this.menuService.getSushis().subscribe(sushis => {
+
+      this.sushis=sushis;
+    });
+    // let aux=this.route.snapshot.paramMap.get('type');
+
+
   }
   goToFood(id,type){
     this.router.navigate([`/shopping/menu/${type}/${id}`]);
