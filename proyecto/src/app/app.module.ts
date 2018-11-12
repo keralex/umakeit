@@ -17,10 +17,8 @@ import { MenuComponent } from './Components/menu/menu.component';
 import { VistaComidaComponent } from './Components/vista-comida/vista-comida.component';
 import { NavigationAdminComponent } from './navigation/navigation-admin/navigation-admin.component';
 import { DisponibilidadTablaComponent } from './Components/disponibilidad-tabla/disponibilidad-tabla.component';
-import { DisponibilidadModificarComponent } from './Components/disponibilidad-modificar/disponibilidad-modificar.component';
 import { PedidosTablaComponent } from './Components/pedidos-tabla/pedidos-tabla.component';
 import { NavBarAdminComponent } from './Components/nav-bar-admin/nav-bar-admin.component'; 
-import { PedidosModificarComponent } from './Components/pedidos-modificar/pedidos-modificar.component';
 import { MenuCategoriasComponent } from './components/menu-categorias/menu-categorias.component';
 import {ShoppingcartService} from './shoppingcart.service';
 import {MenuService} from './menu.service';
@@ -34,6 +32,8 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
 import { AngularFirestoreModule} from '@angular/fire/firestore';
+import { NavigationUsuarioComponent } from './navigation/navigation-usuario/navigation-usuario.component';
+import { PedidosAnterioresUsuarioComponent } from './components/pedidos-anteriores-usuario/pedidos-anteriores-usuario.component';
 
 @NgModule({
   declarations: [
@@ -53,13 +53,13 @@ import { AngularFirestoreModule} from '@angular/fire/firestore';
     VistaComidaComponent,
     NavigationAdminComponent,
     DisponibilidadTablaComponent,
-    DisponibilidadModificarComponent,
     PedidosTablaComponent,
     NavBarAdminComponent,
-    PedidosModificarComponent,
     MenuCategoriasComponent,
     SushisearchComponent,
     PerfilusuarioComponent,
+    NavigationUsuarioComponent,
+    PedidosAnterioresUsuarioComponent,
     ],
   imports: [
     BrowserModule,

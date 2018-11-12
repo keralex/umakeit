@@ -1,12 +1,22 @@
-h3{
+.container{
     color: #f8f9fa;
-}
+    width: 80%;
 
-.list-group-item{
-    background-color:  #060504 ;
-    color: #f8f9fa;
 }
-.table{
-    color: #f8f9fa;
+.container p{
+    margin-top: 10px;
+}
+.titulo{
+    text-align: center;
+}
+.btn{
+    width: 150px;
+    margin: 20px;
+    background-color: #272727;
 
+}
+.center-box{
+    display: flex;
+    align-content: center;
+    justify-content: center;        
 }

@@ -1,0 +1,22 @@
+
+.list-group-item{
+    background-color:  #060504 ;
+    color: #f8f9fa;
+}
+.table{
+    color: #f8f9fa;
+
+}
+.box{
+    text-align: center;
+    color: #f8f9fa;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 30px;
+    margin-bottom: 70px;
+
+}
+.box h3{
+    margin-top: 10px;
+    margin-bottom: 10px;    
+}
