@@ -36,20 +36,14 @@
                 <th></th>
                 <th scope="col"></th>
             </tr>
+            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
           </table>
     </div>
  
     
 </div>  
 
-<!-- boton de paypal -->
-  <div class="botonpaypal">
-    <div id="paypal-button">
-        <h2 *ngIf="paypalLoad">Paypal button is loading</h2>
-        <div id="paypal-checkout-btn"></div>
 
-    </div>
-  </div>
   
 </div>
 

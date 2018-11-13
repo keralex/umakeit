@@ -26,6 +26,8 @@ import {ShoppingcartService} from './shoppingcart.service';
 import {MenuService} from './menu.service';
 import { SushisearchComponent } from './components/sushisearch/sushisearch.component';
 import { PerfilusuarioComponent } from './components/perfilusuario/perfilusuario.component';
+import { NgxPayPalModule } from 'ngx-paypal';
+
 
 
 // firebase
@@ -66,7 +68,8 @@ import { AngularFirestoreModule} from '@angular/fire/firestore';
     AppRoutingModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    NgxPayPalModule,
   ],
   providers: [ShoppingcartService,MenuService],
   bootstrap: [AppComponent]
