@@ -15,14 +15,16 @@ import {Observable, iif} from 'rxjs';
 
 export class MenuComponent implements OnInit {
   platos:Observable<any[]>
+  type;
 
   constructor(public menuService:MenuService, public router:Router,  private route:ActivatedRoute) { 
     
   }
 
   ngOnInit() {
-    let aux:string;
+    let aux;
     aux=this.route.snapshot.paramMap.get('type');
+    
     
     this.menuService.getByType(aux).subscribe(platos=>{
       console.log(aux);

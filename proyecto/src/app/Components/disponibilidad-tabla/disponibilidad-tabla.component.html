@@ -54,19 +54,12 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
+                      <tr *ngFor="let sushi of sushis">
+                        <th scope="row">{{sushi.key}}</th>
+                        <td>{{sushi.name}}</td>
+                        <td>{{sushi.availabe}}</td>
                       </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
+                        
                     </tbody>
                   </table>
             </div>
