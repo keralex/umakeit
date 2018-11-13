@@ -33,9 +33,9 @@ export class ShoppingCarComponent{
     //this.usuario=this.firestoreService.getbyid(this.route.snapshot.paramMap.get('id'))
     //this.products=this.shoppingcartService.FoodCart; 
     this.initConfig();
-  }
+}
 
-  public payPalConfig?: PayPalConfig;
+public payPalConfig?: PayPalConfig;
 
   private initConfig(): void {
     this.payPalConfig = new PayPalConfig(PayPalIntegrationType.ClientSideREST, PayPalEnvironment.Sandbox, {
@@ -64,5 +64,4 @@ export class ShoppingCarComponent{
     });
     
   }
-  
 }
