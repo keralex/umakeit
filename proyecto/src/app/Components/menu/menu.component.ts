@@ -27,6 +27,7 @@ export class MenuComponent implements OnInit {
     this.menuService.getByType(aux).subscribe(platos=>{
       console.log(aux);
       this.platos=platos;
+      
       console.log(this.platos)
     });
 
@@ -36,8 +37,9 @@ export class MenuComponent implements OnInit {
 
 
   }
-  goToFood(id){
+  goToFood(key: string){
     let aux=this.route.snapshot.paramMap.get('type');
-    this.router.navigate([`/shopping/menu/${aux}/${id}`]);
+    console.log(key);
+    this.router.navigate([`/shopping/menu/${aux}/${key}`]);
   }
 }

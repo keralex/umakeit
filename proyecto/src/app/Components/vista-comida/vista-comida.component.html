@@ -1,15 +1,15 @@
 <div class="comida container'fluid">
-  <div class="container-fluid row">
+  <div class="container-fluid row" *ngFor="let plate of plates">
 
     <div class="col-sm-12 box1">
         <div class="row box-black">
             <div class="col-sm-5 center-box">
-                    <img class="img-fluid" src="{{food.img_url}}" alt="sushi">
+                    <img class="img-fluid" src="{{plate.url_img}}" alt="sushi">
             </div>
             <div class="col-sm-7 center-box">
                 <div class="box-principal">
-                    <h1>{{food.name}}</h1>
-                     <p>Price: {{food.price_unit}}$ | 1 piece | <span class="available">Diponible: {{food.available}}</span> </p>                    
+                    <h1>{{plate.name}}</h1>
+                     <p>Price: {{plate.price}}$ | 1 piece | <span class="available">Diponible: {{plate.available}}</span> </p>                    
                      <button type="button" class="btn  btn-outline-dark cart"></button>
                      <button type="button" class="btn btn-outline-dark wish"></button>
 
@@ -31,7 +31,7 @@
               <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                         <div class="descripcion center-box"> 
-                                <p>{{food.description}}</p>
+                                <p>{{plate.description}}</p>
                       </div>
                 </div>
 

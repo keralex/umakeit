@@ -7,6 +7,7 @@ import { map, throwIfEmpty, switchMap } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 import {Observable, Subject, BehaviorSubject, observable, iif} from 'rxjs';
+import { Key } from 'protractor';
 
 
 @Injectable({
@@ -32,6 +33,17 @@ export class MenuService {
   //tipos de sushi
   sushiTypes$:Observable<any[]>;
   sushiTypesFilter$:BehaviorSubject<string|null>;
+  //obtener por id
+  SushiName$:Observable<any[]>;
+  PostreName$:Observable<any[]>;
+  EntrantesName$:Observable<any[]>;
+  BandejasName$:Observable<any[]>;
+
+  SushiNameFilter$:BehaviorSubject<string|null>;
+  PostreNameFilter$:BehaviorSubject<string|null>;
+  EntrantesNameFilter$:BehaviorSubject<string|null>;
+  BandejasNameFilter$:BehaviorSubject<string|null>;
+
 
   constructor( public db:AngularFirestore) {
 
@@ -86,6 +98,64 @@ export class MenuService {
             }).valueChanges()
           )
         );
+        
+        
+
+        //****Busqueda por key */
+        //sushi
+        this.SushiNameFilter$=new BehaviorSubject(null);
+        this.SushiName$ =
+          this.SushiNameFilter$
+          .pipe(
+          switchMap(Key=> 
+            db.collection('Sushi', ref => {
+              let query : firebase.firestore.CollectionReference | firebase.firestore.Query = ref;
+              if (Key) { query = query.where('key'.trim(), '==', Key) };
+              return query;
+            }).valueChanges()
+          )
+        );
+
+        //postres
+        this.PostreNameFilter$=new BehaviorSubject(null);
+        this.PostreName$ =
+          this.PostreNameFilter$
+          .pipe(
+          switchMap(name=> 
+            db.collection('Postres', ref => {
+              let query : firebase.firestore.CollectionReference | firebase.firestore.Query = ref;
+              if (name) { query = query.where('key'.trim(), '==',name) };
+              return query;
+            }).valueChanges()
+          )
+        );
+        //Entrantes
+        this.EntrantesNameFilter$=new BehaviorSubject(null);
+        this.EntrantesName$ =
+          this.EntrantesNameFilter$
+          .pipe(
+          switchMap(name => 
+            db.collection('Entrantes', ref => {
+              let query : firebase.firestore.CollectionReference | firebase.firestore.Query = ref;
+              if (name) { query = query.where('key'.trim(), '==', name) };
+              return query;
+            }).valueChanges()
+          )
+        );
+        //Bandejas
+        this.BandejasNameFilter$=new BehaviorSubject(null);
+        this.BandejasName$ =
+          this.BandejasNameFilter$
+          .pipe(
+          switchMap(name => 
+            db.collection('Bandejas', ref => {
+              let query : firebase.firestore.CollectionReference | firebase.firestore.Query = ref;
+              if (name) { query = query.where('key'.trim(), '==', name) };
+              return query;
+            }).valueChanges()
+          )
+        );
+
 
   }
 
@@ -101,7 +171,7 @@ export class MenuService {
     else if(type==="Entrantes"){
       return this.entrantes;
     }
-    else if(type=="Sushi"){
+    else if(type=="Sushi" || type==null){
       return this.sushis;
     }
     else{
@@ -115,6 +185,32 @@ export class MenuService {
     
 
   }
+  getByName(name,type){
+    console.log(type);
+    if(type==="Postres"){
+      this.PostreNameFilter$.next(name);
+      return this.PostreName$;
+    }
+    else if(type==="Bandejas"){
+      this.BandejasNameFilter$.next(name);
+      return this.BandejasName$;
+    }
+    else if(type==="Entrantes"){
+      this.EntrantesNameFilter$.next(name);
+      return this.EntrantesName$;
+    }
+    else{
+      
+      console.log("entre al else de key");
+      this.SushiNameFilter$.next(name);
+      console.log(name);
+      console.log(this.SushiName$);
+      return this.SushiName$;
+      
+    }
+
+  }
+ 
    getSushis(){
     return this.sushis;
   }
@@ -127,10 +223,7 @@ export class MenuService {
   getEntrantes(){
     return this.entrantes;
   }
-  getById(id,Type){
-
-  }
- 
+  
 
 
 

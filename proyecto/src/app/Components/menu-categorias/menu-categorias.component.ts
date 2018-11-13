@@ -23,6 +23,7 @@ export class MenuCategoriasComponent implements OnInit {
   // provisional
   
   goToMenu(type){
+
     this.router.navigate([`/shopping/menu/${type}`]);
   }
 

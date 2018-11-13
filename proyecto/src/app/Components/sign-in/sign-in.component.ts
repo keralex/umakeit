@@ -3,7 +3,7 @@ import { FirestoreService } from 'src/app/firestore.service';
 import { Usuario } from 'src/app/models/usuario';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuService } from 'src/app/menu.service';
-import { AuthService} from 'src/app/auth-service.service';
+import { AuthService } from 'src/app/auth-service.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -26,8 +26,14 @@ export class SignInComponent implements OnInit {
  
 
  autentificar(){
-  this.useractv.login(this.users.name,this.users.password);
-  this.gotoDetail();
+  this.useractv.login(this.users.email,this.users.password) .then( () => {
+    this.gotoDetail();
+  }
+)
+.catch( err => {
+  console.log( "Error:" , err.message );
+  this.alerts();
+})
  }
  alerts(){
   alert("email y contrasena no coinciden");

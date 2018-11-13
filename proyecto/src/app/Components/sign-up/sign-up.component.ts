@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from 'src/app/firestore.service';
-import { AuthService} from 'src/app/auth-service.service';
+import { AuthService  } from 'src/app/auth-service.service';
 import { Usuario } from 'src/app/models/usuario';
 import { Router } from '@angular/router';
+//import { UsuariosService } from 'src/app/usuarios.service';
 
 
 @Component({
@@ -40,21 +41,40 @@ alerts(){
   }
 }
 addUser(){
- /* if(this.users.name != null && this.users.email != null && this.users.password != null && this.users.password == this.users.passwordc) {
-   this.firestoreService.addUsers(this.users);
-   this.users = {} as Usuario;
-    this.gotoDetail();
-  }
- this.alerts();*/
- if(this.users.name != null && this.users.email != null && this.users.password != null && this.users.password == this.users.passwordc){
-  this.AuthService.register(this.users.email,this.users.password);
-  this.users = {} as Usuario;
-  this.gotoDetail();
- }
- 
+  console.log(this.users)
+ if(this.users.password == this.users.passwordc){
+  this.AuthService.register(this.users.email,this.users.password)
+  .then( data => {
+    let userID = data.user.uid;
+    let user = {
+      name: this.users.name,
+      email: this.users.email,
+      password:this.users.password,
+      admin: false,
+    }
+    
 
- 
+    this.firestoreService.addUser( user , userID )
+    .then( () => {
+        this.users = {} as Usuario;
+        this.gotoDetail() 
+      }
+    )
+    .catch( err => {
+      console.log( "No se pudo crear el usuario en la bd. Error:" , err.message )
+    })
+  })
+  .catch( err => {
+    console.log(err.message);
+    alert("Error");
+  })
+ }else{
+   this.alerts();
+ }
 }
+
+
+
 gotoDetail(){
   this.router.navigate([`/shopping/menu/Sushi`]);
  }

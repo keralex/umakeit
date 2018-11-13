@@ -5,4 +5,5 @@ export interface sushi{
     description: string;
     sushiType:string;
     url_img?:string;
+    key?:string;
 }

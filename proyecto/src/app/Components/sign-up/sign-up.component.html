@@ -1,5 +1,4 @@
-
-      <p class="titulo">Registrate</p>
+<p class="titulo">Registrate</p>
       
       <form class="form-group " (ngSubmit)="addUser()">
           <p class="simple">Correo Electronico:</p>
@@ -7,9 +6,9 @@
           <p class="simple">Nombre y Apellido:</p>
           <input submit="text" class="form-control" placeholder="Nombre y Apellido" name="name" [(ngModel)]="users.name">
             <p class="simple">contraseña:</p>
-            <input submit="text" class="form-control" placeholder="contraseña" name="password" [(ngModel)]="users.password">
+            <input type="password" submit="text" class="form-control" placeholder="contraseña" name="password" [(ngModel)]="users.password">
             <p class="simple">Repita la contraseña :</p>
-            <input submit="text" class="form-control" placeholder="contraseña" name="password" [(ngModel)]="users.passwordc">
+            <input type="password" submit="text" class="form-control" placeholder="contraseña" name="password" [(ngModel)]="users.passwordc">
           <div class="checkbox">
           <input class="form-check-input" type="checkbox"> <a target="_blank" href="https://www.youtube.com/watch?v=pa8Z8-e0CPc">Acepto los terminos y condiciones</a></div>
         

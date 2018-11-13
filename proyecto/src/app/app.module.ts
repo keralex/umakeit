@@ -20,11 +20,10 @@ import { DisponibilidadTablaComponent } from './Components/disponibilidad-tabla/
 import { PedidosTablaComponent } from './Components/pedidos-tabla/pedidos-tabla.component';
 import { NavBarAdminComponent } from './Components/nav-bar-admin/nav-bar-admin.component'; 
 import { MenuCategoriasComponent } from './components/menu-categorias/menu-categorias.component';
-import {ShoppingcartService} from './shoppingcart.service';
 import {MenuService} from './menu.service';
 import { SushisearchComponent } from './components/sushisearch/sushisearch.component';
 import { PerfilusuarioComponent } from './components/perfilusuario/perfilusuario.component';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 
 // firebase
@@ -38,7 +37,6 @@ import { PedidosAnterioresUsuarioComponent } from './components/pedidos-anterior
 
 @NgModule({
   declarations: [
-    AngularFireAuth,
     AppComponent,
     FooterComponent,
     NavbarComponent,
@@ -60,17 +58,19 @@ import { PedidosAnterioresUsuarioComponent } from './components/pedidos-anterior
     MenuCategoriasComponent,
     SushisearchComponent,
     PerfilusuarioComponent,
-    NavigationUsuarioComponent,
     PedidosAnterioresUsuarioComponent,
+    NavigationUsuarioComponent,
+    
     ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
-  providers: [ShoppingcartService,MenuService],
+  providers: [MenuService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

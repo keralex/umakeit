@@ -3,6 +3,9 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/models/usuario';
 import { map } from 'rxjs/operators';
+import { AuthService } from './auth-service.service';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +17,7 @@ export class FirestoreService {
   usuarios: Observable <Usuario[]>;
   usuariosDoc;
 
-  constructor(public db: AngularFirestore) {
+  constructor(public db: AngularFirestore, private AuthService:AuthService) {
     this.usuariosCollection = this.db.collection('usuarios');
     this.usuarios = this.usuariosCollection.snapshotChanges().pipe(map(actions => {
       return actions.map(a => { 
@@ -29,9 +32,13 @@ export class FirestoreService {
     return this.usuarios;
   }
 
-  addUsers(usuario: Usuario){
-    this.usuariosCollection.add(usuario);
+  addUser(usuario: any , id: any){
+    return this.db.collection('/usuarios').doc(id).set(
+      {...usuario},
+      {merge:true }
+    );
   }
+
 
   getbyid(id){
     let aux: any;

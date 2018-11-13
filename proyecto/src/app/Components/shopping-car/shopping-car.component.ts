@@ -6,7 +6,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario';
 import { MenuService } from 'src/app/menu.service';
 import { Router} from '@angular/router';
-import { ShoppingcartService } from 'src/app/shoppingcart.service';
+//import { ShoppingcartService } from 'src/app/shoppingcart.service';
+import { PayPalConfig, PayPalEnvironment, PayPalIntegrationType } from 'ngx-paypal';
+
 
 
 
@@ -16,70 +18,52 @@ declare let paypal: any;
   selector: 'app-shopping-car',
   templateUrl: './shopping-car.component.html',
   styleUrls: ['./shopping-car.component.css'],
-  providers: [MenuService,ShoppingcartService]
+  providers: [MenuService]
   
 })
 
 
-export class ShoppingCarComponent implements AfterViewChecked {
+export class ShoppingCarComponent{
 
   usuario;
   products:Array<any>;
-  constructor(private firestoreService: FirestoreService, private route:ActivatedRoute,public menuService:MenuService,public router:Router,public shoppingcartService:ShoppingcartService) { }
+  constructor(private firestoreService: FirestoreService, private route:ActivatedRoute,public menuService:MenuService,public router:Router) { }
 
   ngOnInit() {
-    this.usuario=this.firestoreService.getbyid(this.route.snapshot.paramMap.get('id'))
-    this.products=this.shoppingcartService.FoodCart; 
-
-
+    //this.usuario=this.firestoreService.getbyid(this.route.snapshot.paramMap.get('id'))
+    //this.products=this.shoppingcartService.FoodCart; 
+    this.initConfig();
   }
 
 
-  title = 'paypal';
-  addScript: boolean = false;
-  paypalLoad: boolean = true;
-  
-  finalAmount: number = 1;
- 
-  paypalConfig = {
-    env: 'sandbox',
-    client: {
-      sandbox: '<AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R>',
-      production: '<your-production-key here>'
-    },
-    commit: true,
-    payment: (data, actions) => {
-      return actions.payment.create({
-        payment: {
-          transactions: [
-            { amount: { total: this.finalAmount, currency: 'USD' } }
-          ]
+  public payPalConfig?: PayPalConfig;
+
+  private initConfig(): void {
+    this.payPalConfig = new PayPalConfig(PayPalIntegrationType.ClientSideREST, PayPalEnvironment.Sandbox, {
+      commit: true,
+      client: {
+        sandbox: 'AZ6Sea3wSIMQPfy_rcBusYwzlLHWrNr625L1uknWcQx8L016G1NMcqo1nMsL8xmnIY2WtsOza-RESSoC'
+      },
+      button: {
+        label: 'paypal',
+      },
+      onPaymentComplete: (data, actions) => {
+        console.log('OnPaymentComplete');
+      },
+      onCancel: (data, actions) => {
+        console.log('OnCancel');
+      },
+      onError: (err) => {
+        console.log('OnError');
+      },
+      transactions: [{
+        amount: {
+          currency: 'USD',
+          total: 25,
         }
-      });
-    },
-    onAuthorize: (data, actions) => {
-      return actions.payment.execute().then((payment) => {
-        //Do something when payment is successful.
-      })
-    }
-  };
-  ngAfterViewChecked(): void {
-    if (!this.addScript) {
-      this.addPaypalScript().then(() => {
-        paypal.Button.render(this.paypalConfig, '#paypal-checkout-btn');
-        this.paypalLoad = false;
-      })
-    }
+      }]
+    });
+    
   }
   
-  addPaypalScript() {
-    this.addScript = true;
-    return new Promise((resolve, reject) => {
-      let scripttagElement = document.createElement('script');    
-      scripttagElement.src = 'https://www.paypalobjects.com/api/checkout.js';
-      scripttagElement.onload = resolve;
-      document.body.appendChild(scripttagElement);
-    })
-  }
- 
 }
