@@ -6,7 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario';
 import { MenuService } from 'src/app/menu.service';
 import { Router} from '@angular/router';
-//import { ShoppingcartService } from 'src/app/shoppingcart.service';
+// import { ShoppingcartService } from 'src/app/shoppingcart.service';
 import { PayPalConfig, PayPalEnvironment, PayPalIntegrationType } from 'ngx-paypal';
 
 
@@ -34,7 +34,6 @@ export class ShoppingCarComponent{
     //this.products=this.shoppingcartService.FoodCart; 
     this.initConfig();
   }
-
 
   public payPalConfig?: PayPalConfig;
 

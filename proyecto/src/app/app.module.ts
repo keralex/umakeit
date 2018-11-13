@@ -24,6 +24,9 @@ import {MenuService} from './menu.service';
 import { SushisearchComponent } from './components/sushisearch/sushisearch.component';
 import { PerfilusuarioComponent } from './components/perfilusuario/perfilusuario.component';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { NgxPayPalModule } from 'ngx-paypal';
+
+import { AngularFireAuth } from 'angularfire2/auth';
 
 
 // firebase
@@ -69,6 +72,7 @@ import { PedidosAnterioresUsuarioComponent } from './components/pedidos-anterior
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    NgxPayPalModule,
   ],
   providers: [MenuService],
   bootstrap: [AppComponent]
