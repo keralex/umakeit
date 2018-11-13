@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from 'src/app/firestore.service';
+import { AuthService} from 'src/app/auth-service.service';
 import { Usuario } from 'src/app/models/usuario';
 import { Router } from '@angular/router';
 
@@ -17,7 +18,7 @@ export class SignUpComponent implements OnInit {
  listo = false;
 
 
-  constructor(private firestoreService: FirestoreService, public router:Router) { 
+  constructor(private firestoreService: FirestoreService, public router:Router, private AuthService: AuthService) { 
     this.users.admin = false;
     this.firestoreService.getUsers().subscribe(usuarios => {
       this.usuarios = usuarios;
@@ -39,12 +40,20 @@ alerts(){
   }
 }
 addUser(){
-  //if(this.users.name != null && this.users.email != null && this.users.password != null && this.users.password == this.users.passwordc) {
-    this.firestoreService.addUsers(this.users);
-    this.users = {} as Usuario;
+ /* if(this.users.name != null && this.users.email != null && this.users.password != null && this.users.password == this.users.passwordc) {
+   this.firestoreService.addUsers(this.users);
+   this.users = {} as Usuario;
     this.gotoDetail();
-  //}
- // this.alerts();
+  }
+ this.alerts();*/
+ if(this.users.name != null && this.users.email != null && this.users.password != null && this.users.password == this.users.passwordc){
+  this.AuthService.register(this.users.email,this.users.password);
+  this.users = {} as Usuario;
+  this.gotoDetail();
+ }
+ 
+
+ 
 }
 gotoDetail(){
   this.router.navigate([`/shopping/menu/Sushi`]);

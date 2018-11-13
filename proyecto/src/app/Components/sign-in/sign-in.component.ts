@@ -3,6 +3,7 @@ import { FirestoreService } from 'src/app/firestore.service';
 import { Usuario } from 'src/app/models/usuario';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuService } from 'src/app/menu.service';
+import { AuthService} from 'src/app/auth-service.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,35 +16,24 @@ export class SignInComponent implements OnInit {
   users = {} as Usuario;
   usering;
   confirmar;
+  usuarioid;
+  useractv;
   
-  constructor(private firestoreService: FirestoreService, private router: Router) {
-    this.confirmar = false;
-    this.firestoreService.getUsers().subscribe(usuarios => {
-      this.usuarios = usuarios;
-      console.log(this.usuarios);
-    });
+  constructor(private auth:AuthService, private router: Router) {
+    this.useractv=this.auth;
    }
 
  
 
  autentificar(){
-   for(var i=0; i<this.usuarios.length; i++){
-     if(this.usuarios[i].email == this.users.email && this.usuarios[i].password == this.users.password){
-       
-       this.users = {} as Usuario;
-       this.confirmar = true;
-       this.gotoDetail(this.usuarios[i].id);
-     }
-   }
-   //if(this.confirmar==false){
-     //this.alerts();
-   //}
+  this.useractv.login(this.users.name,this.users.password);
+  this.gotoDetail();
  }
- //alerts(){
-  //alert("email y contrasena no coinciden");
-//}
+ alerts(){
+  alert("email y contrasena no coinciden");
+}
 
-gotoDetail(id){
+gotoDetail(){
  this.router.navigate([`/shopping/menu/Sushi`]);
 }
 

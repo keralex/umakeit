@@ -24,6 +24,7 @@ import {ShoppingcartService} from './shoppingcart.service';
 import {MenuService} from './menu.service';
 import { SushisearchComponent } from './components/sushisearch/sushisearch.component';
 import { PerfilusuarioComponent } from './components/perfilusuario/perfilusuario.component';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 
 // firebase
@@ -37,6 +38,7 @@ import { PedidosAnterioresUsuarioComponent } from './components/pedidos-anterior
 
 @NgModule({
   declarations: [
+    AngularFireAuth,
     AppComponent,
     FooterComponent,
     NavbarComponent,
