@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from 'src/app/menu.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {Observable, iif} from 'rxjs';
+
 
 
 @Component({
@@ -9,17 +11,33 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./menu.component.css'],
   providers: [MenuService]
 })
+
+
 export class MenuComponent implements OnInit {
-  sushis : Array<any>;
+  platos:Observable<any[]>
+
   constructor(public menuService:MenuService, public router:Router,  private route:ActivatedRoute) { 
     
   }
 
   ngOnInit() {
-    let aux=this.route.snapshot.paramMap.get('type');
-    this.sushis=this.menuService.getByType(aux);
+    let aux:string;
+    aux=this.route.snapshot.paramMap.get('type');
+    
+    this.menuService.getByType(aux).subscribe(platos=>{
+      console.log(aux);
+      this.platos=platos;
+      console.log(this.platos)
+    });
+
+  
+  
+    
+
+
   }
-  goToFood(id,type){
-    this.router.navigate([`/shopping/menu/${type}/${id}`]);
+  goToFood(id){
+    let aux=this.route.snapshot.paramMap.get('type');
+    this.router.navigate([`/shopping/menu/${aux}/${id}`]);
   }
 }

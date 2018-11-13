@@ -5,18 +5,27 @@
 <div class="container-fluid menu">
     <div class="container">
         <div class="row">
-            <div class="card col-sm-4" *ngFor="let sushi of sushis" (click)="goToFood(sushi.id,sushi.type)">
-                <img class="card-img-top" src="{{sushi.img_url}}" alt="Card image cap">
+            <div class="card col-sm-4" *ngFor="let plato of platos" (click)="goToFood(plato.id)">
+              <div class="box-black">
+                <img class="card-img-top" src="{{plato.url_img}}" alt="Card image cap">
                 <div class="card-body">
-                  <h5 class="card-title">{{sushi.name}}</h5>
-                  <p class="precio">Price: {{sushi.price_unit}}.00$</p>
+
+                  <h5 class="card-title">{{plato.name}}</h5>
+
+                  <div class="box-center">
+                    <p class="precio">Price: {{plato.price}}$</p> 
+                    <img class="car" src="../../../assets/IMG/icon-ecommerce-grey.png"  height="40px" width="40px">
+                    <img  class="wish" src="../../../assets/IMG/1005px-Star_empty.svg.png"  height="30px" width="30px">
+                  </div>
+                
                 </div>
+              </div>
           </div>
         </div>
       </div>
 
 
         
-        
+
       </div>
 </div>

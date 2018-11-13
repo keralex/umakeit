@@ -8,7 +8,7 @@
     margin: 0 auto;
 }
 .col-sm-4{
-    color: #f8f9fa;
+    color: #cdcecf;
     text-align: center;
     padding: 10px;
     height: 150px;
@@ -16,7 +16,7 @@
 }
 
 .letras{
-    text-align: center;
+    text-align: center; 
     font-size: 12px;
     font-family: 'Noto Sans KR', sans-serif;
 }

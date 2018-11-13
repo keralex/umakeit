@@ -1,8 +1,8 @@
 <div class="comida container'fluid">
   <div class="container-fluid row">
 
-    <div class="col-sm-12">
-        <div class="row">
+    <div class="col-sm-12 box1">
+        <div class="row box-black">
             <div class="col-sm-5 center-box">
                     <img class="img-fluid" src="{{food.img_url}}" alt="sushi">
             </div>
@@ -10,65 +10,67 @@
                 <div class="box-principal">
                     <h1>{{food.name}}</h1>
                      <p>Price: {{food.price_unit}}$ | 1 piece | <span class="available">Diponible: {{food.available}}</span> </p>                    
+                     <button type="button" class="btn  btn-outline-dark cart"></button>
+                     <button type="button" class="btn btn-outline-dark wish"></button>
 
                 </div>
                  
             </div>
         </div>
     </div>
+      
     
-    
-<div class="col-sm-12">
-    <div class="row">
-            <div class="col-sm-8">
-                    <div class="descripcion"> 
-                            <h3>Description</h3>
-                            <p>{{food.description}}</p>
-                            <div class="AgregarCarrito">
-                                <button type="button" class="btn btn-dark" (click)="addToCart()">Agregar Al Carro</button>
-                              
-                            </div>
-                            <div class="AgregarDeseos">
-                                <button type="button" class="btn btn-dark">Añadir a Deseos</button>
-                              </div>
+<div class="col-sm-12 box2">
+        <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Description</a>
+                  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Modify your meal</a>
+                </div>
+              </nav>
+
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div class="descripcion center-box"> 
+                                <p>{{food.description}}</p>
+                      </div>
+                </div>
+
+
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <div class="row">
+
+                        <div class="col-sm-8">
+                                <p>Tipo de arroz</p>
+                                <select class="form-control">
+                                        <option>Precocido</option>
+                                        <option>Vaporizado</option>
+                                 </select>
+                                 <p>Tamaño de arroz</p>
+                                 <select class="form-control">
+                                         <option>Grano corto</option>
+                                         <option>Grano medio</option>
+                                         <option>Grano largo</option>
+                                  </select>
+                                  <p>Salsa Acompañante</p>
+                                  <select class="form-control">
+                                          <option>Ponzu</option>
+                                          <option>Tsume</option>
+                                          <option>Salsa de Anguila</option>
+                                          <option>Ume Warishita</option>
+                                          <option>Ninguna</option>
+                                   </select>
                         </div>
-            </div>
-            <div class="col-sm-4">
-                    <div class="select">
-                      <p>Tamaño de arroz:</p>
-                      <select class="form-control">
-                              <option>Grano Largo</option>
-                              <option>Grano Medio</option>
-                              <option>Grano Corto</option>
-                      </select>
-                    </div>
-                    <div class="select">
-                        <p>Tipo de arroz:</p>
-                        <select class="form-control">
-                              <option>Vaporizado</option>
-                              <option>Precocido</option>
 
-                        </select>
-                    </div>
-                    <div class="select">
-                        <p>Salsa Extra:</p>
-                        <select class="form-control">
-                              <option>Soya</option> 
-                              <option>Salsa x</option>
+                        <div class="col-sm-4">
+                                <button type="button" class="btn btn-outline-light">Agregar al Carrito</button>
 
-                          </select>
-                    </div>
-                   
-                    <div class="Tabla-Precio table-responsive">
-                        <table class="table table-sm table-hover">
-                            <tr>
-                              <th scope="col">Precio</th>
-                              <th scope="col">50</th>
-                            </tr>
-                            </table>
-                    </div>
-                  </div>
-    </div>
+
+                        </div>
+                    </div>  
+                    
+                         
+                </div>
+              </div>
     
 </div>
 

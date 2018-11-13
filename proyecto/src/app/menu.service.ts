@@ -1,727 +1,142 @@
 import { Injectable } from '@angular/core';
+import {sushi} from './models/Sushi';
+import {Postre} from './models/Postre';
+import {Entrante} from './models/Entrante';
+import {Bandeja} from './models/Bandeja';
+import { map, throwIfEmpty, switchMap } from 'rxjs/operators';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
+
+import {Observable, Subject, BehaviorSubject, observable, iif} from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenuService {
+  //sushis
+  sushis: Observable<sushi[]>;
+  sushisCollection:AngularFirestoreCollection<sushi>;
+  sushisDoc:AngularFirestoreDocument<sushi>;
+  //postres
+  postres: Observable<Postre[]>;
+  postresCollection:AngularFirestoreCollection<Postre>;
+  postresDoc:AngularFirestoreDocument<Postre>;
+  //bandejas
+  bandejas: Observable<Bandeja[]>;
+  bandejasCollection:AngularFirestoreCollection<Bandeja>;
+  bandejasDoc:AngularFirestoreDocument<Bandeja>;
+  //entrantes
+  entrantes: Observable<Entrante[]>;
+  entrantesCollection:AngularFirestoreCollection<Entrante>;
+  entrantesDoc:AngularFirestoreDocument<Entrante>;
+  //tipos de sushi
+  sushiTypes$:Observable<any[]>;
+  sushiTypesFilter$:BehaviorSubject<string|null>;
 
-  constructor() { }
-  foodType1="Sushi";
-  foodType2="Bandejas";
-  foodType3="Entrantes";
-  foodType4="Postres"; 
-  aux:Array<any>; 
+  constructor( public db:AngularFirestore) {
 
-  getByType(type): any[] {
-        if(type===null){
-          return this.Sushis;
-        }
-        if(type.toString()===this.foodType1){
-          return this.Sushis;
-        }
-        if(type.toString()===this.foodType2){
-          return this.Bandejas;
-        }
-        if(type.toString()===this.foodType4){
-          return this.postres;
-        }
-        if(type.toString()===this.foodType3){
-          return this.Entrantes;
-        }
-        this.aux = this.Sushis.filter(sushi=>{
-          if(sushi.type.toLowerCase() == type.toLowerCase()){
-            return sushi;
-          }
-          
-        })
-        
-          return this.aux;
+          //sushi
+          this.sushisCollection=this.db.collection('Sushi');
+          this.sushis=this.sushisCollection.snapshotChanges().pipe(map(actions => {
+            return actions.map(a => { 
+            const data = a.payload.doc.data() as sushi; 
+            data.id = a.payload.doc.id;
+            return data;
+        });
+      }));
+        //postres
+        this.postresCollection=this.db.collection('Postres');
+        this.postres=this.postresCollection.snapshotChanges().pipe(map(actions => {
+          return actions.map(a => { 
+          const data = a.payload.doc.data() as Postre; 
+          data.id = a.payload.doc.id;
+          return data;
+      });
+        }));
+        //entrantes
+        this.entrantesCollection=this.db.collection('Entrantes');
+        this.entrantes=this.entrantesCollection.snapshotChanges().pipe(map(actions => {
+          return actions.map(a => { 
+          const data = a.payload.doc.data() as Entrante; 
+          data.id = a.payload.doc.id;
+          return data;
+        });
+        }));
+
+        //bandejas
+        this.bandejasCollection=this.db.collection('Bandejas');
+        this.bandejas=this.bandejasCollection.snapshotChanges().pipe(map(actions => {
+          return actions.map(a => { 
+          const data = a.payload.doc.data() as Bandeja; 
+          data.id = a.payload.doc.id;
+          return data;
+        });
+        }));
+
+        //sushiTypes
+        this.sushiTypesFilter$=new BehaviorSubject(null);
+        this.sushiTypes$ =
+          this.sushiTypesFilter$
+          .pipe(
+          switchMap(sushiType => 
+            db.collection('Sushi', ref => {
+              let query : firebase.firestore.CollectionReference | firebase.firestore.Query = ref;
+              if (sushiType) { query = query.where('sushiType', '==', sushiType) };
+              return query;
+            }).valueChanges()
+          )
+        );
+
   }
 
-  getById(id,type){
-    console.log(type.toString());
-    console.log(id.toString());
-   this.aux=this.getByType(type);
-   let comida
-   for(var i=0;i<this.aux.length;i++){
-      if(this.aux[i].id===id.toString()){
-        comida=this.aux[i];
-      }
-   } 
-   return comida
-  }    
-// solo buscar sushi por ahora
-  getByName(name: string){
-    console.log(name);
-   let sushi
-   for(var i=0;i<this.aux.length;i++){
-      if(this.Sushis[i].name===name){
-        sushi=this.Sushis[i];
-      }
-   } 
-   return sushi;
-  }
-          
   
-
-
-  Sushis=[
-    {
-      "name":"Maki Ahumado de Queso",
-      "id":"1",
-      "type":"maki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque,porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/maki/det2x_maki_ahumado_queso.png"
-    },
-    {
-      "name":"Maki de salmon",
-      "id":"2",
-      "type":"maki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/maki/det2x_maki-salmon-aguacate.png"
-    },
-    {
-      "name":"Maki de anguila",
-      "id":"3",
-      "type":"maki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/maki/det2x_maki-anguila.png"
-    },
-    {
-      "name":"Maki de atun",
-      "id":"4",
-      "type":"maki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/maki/det2x_maki-atun-spicy.png"
-    },
-    {
-      "name":"Maki de surimi",
-      "id":"5",
-      "type":"maki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/maki/det2x_maki-surimi.png"
-    },
-    {
-      "name":"Maki de vegetales",
-      "id":"6",
-      "type":"maki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/maki/det2x_maki-vegetal-sesamo.png"
-    },
-    {
-      "name":"Maki de pepino",
-      "id":"7",
-      "type":"maki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/maki/det2x_maki-pepino.png"
-    },
-    {
-      "name":"Maki crujiente",
-      "id":"8",
-      "type":"maki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque,     porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/maki/det2x_maki-crujiente.png"
-    },
-    {
-      "name":"Maki pepino y queso",
-      "id":"801",
-      "type":"maki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque,     porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/maki/det2x_maki-pepino-queso.png"
-    },  
-    {
-      "name":"Maki queso y cebolleta",
-      "id":"802",
-      "type":"maki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque,     porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/maki/det2x_maki-queso-cebolleta.png"
-    }, 
-    {
-      "name":"Futomaki tempura de langostino",
-      "id":"9",
-      "type":"Futomaki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/futomaki/det1x_futomaki-de-tempura-de-langostino.png"
-    },
-    {
-      "name":"Futomaki crujiente tempurizado",
-      "id":"901",
-      "type":"Futomaki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/futomaki/det2x_futomaki-crujiente-tempurizado.png"
-    },
-    {
-      "name":"Futomaki de atun spicy tempurizado",
-      "id":"1001",
-      "type":"Futomaki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/futomaki/det2x_futomaki-de-atun-spicy-tempurizado.png"
-    },
-    {
-      "name":"Futomaki de atun crujiente",
-      "id":"10",
-      "type":"Futomaki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/futomaki/det2x_futomaki-de-atun-crujiente.png"
-    },
-
-    {
-      "name":"Futomaki de cangrejo",
-      "id":"11",
-      "type":"Futomaki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/futomaki/det2x_futomaki-de-cangrejo.png"
-    },
-    {
-      "name":"Futomaki de atun y aguacate",
-      "id":"1101",
-      "type":"Futomaki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/futomaki/det2x_futomaki-de-atun-y-aguacate.png"
-    },
-    {
-      "name":"Futomaki de pollo teriyaki",
-      "id":"12",
-      "type":"Futomaki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/futomaki/det2x_futomaki-de-pollo-teriyaki.png"
-    },
-    {
-      "name":"Futomaki de salmon tempurizado",
-      "id":"13",
-      "type":"Futomaki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, orttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/futomaki/det2x_futomaki-salmon-tempurizado.png"
-    },
-    {
-      "name":"Futomaki de salmon con queso",
-      "id":"1301",
-      "type":"Futomaki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, orttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/futomaki/det2x_futomaki-salmon-con-queso.png"
-    },
-    {
-      "name":"Futomaki de vegetales",
-      "id":"14",
-      "type":"Futomaki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/futomaki/det2x_futomaki-vegetal.png"
-    },
-    {
-      "name":"Urami roll de atun",
-      "id":"15",
-      "type":"Urami",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/urami/det2x_roll_tartar_atun.png"
-    },
-    {
-      "name":"Urami roll especial ahumado",
-      "id":"16",
-      "type":"Urami",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/urami/det2x_roll-especial-ahumado.png"
-    },
-    {
-      "name":"Urami roll salmon tataki",
-      "id":"1601",
-      "type":"Urami",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/urami/det2x_roll-salmon-tataki.png"
-    },
-    {
-      "name":"Urami roll surimi",
-      "id":"1602",
-      "type":"Urami",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/urami/det2x_roll-surimi.png"
-    },
-    {
-      "name":"Urami roll de langostino",
-      "id":"17",
-      "type":"Urami",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/urami/det2x_roll-langostino-tempura-jamon.png"
-    },
-    {
-      "name":"Urami roll tempura atun spicy",
-      "id":"1701",
-      "type":"Urami",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/urami/det2x_roll-tempura-atun-spicy.png"
-    },
-    {
-      "name":"Urami roll tataki caramelizado",
-      "id":"18",
-      "type":"Urami",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/urami/det2x_roll-tataki-caramelizado.png"
-    },
-    {
-      "name":"Urami roll de vegetales",
-      "id":"19",
-      "type":"Urami",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/urami/det2x_roll-vegetal.png"
-    },
-    {
-      "name":"Urami roll de vegetales y queso",
-      "id":"1901",
-      "type":"Urami",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/urami/det2x_roll-vegetal-queso.png"
-    },
-    {
-      "name":"Urami roll gouda",
-      "id":"20",
-      "type":"Urami",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/urami/det2x_uramaki-gouda.png"
-    },
-    {
-      "name":"Urami roll spicy aguacate",
-      "id":"2001",
-      "type":"Urami",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/urami/det2x_uramaki-spicy-aguacate.png"
-    },
-    {
-      "name":"Temaki de atun",
-      "id":"21",
-      "type":"Temaki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/temaki/det2x_temaki_atun_aguacate.png"
-    },
-    {
-      "name":"Temaki de atun spicy",
-      "id":"2101",
-      "type":"Temaki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/temaki/det2x_temaki_atun_spicy.png"
-    },
-    {
-      "name":"Temaki de gamba",
-      "id":"22",
-      "type":"Temaki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/temaki/det2x_temaki_gamba.png"
-    },
-    {
-      "name":"Temaki de salmon",
-      "id":"2301",
-      "type":"Temaki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/temaki/det2x_temaki_salmon.png"
-    },
-    {
-      "name":"Temaki de salmon y aguacate",
-      "id":"23",
-      "type":"Temaki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/temaki/det2x_temaki_salmon_aguacate.png"
-    },
-    {
-      "name":"Temaki de surimi",
-      "id":"24",
-      "type":"Temaki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/temaki/det2x_temaki_surimi.png"
-    },
-    {
-      "name":"Temaki de vegetales",
-      "id":"25",
-      "type":"Temaki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/temaki/det2x_temaki_vegetal.png"
-    },
-    {
-      "name":"Nigiri de aguacate",
-      "id":"26",
-      "type":"Nigiri",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/nigiri/det2x_nigiri_aguacate.png"
-    },
-    {
-      "name":"Nigiri de atun",
-      "id":"27",
-      "type":"Nigiri",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/nigiri/det2x_nigiri_atun.png"
-    },
-    {
-      "name":"Nigiri de gamba",
-      "id":"28",
-      "type":"Nigiri",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/nigiri/det2x_nigiri_gamba.png"
-    },
-    {
-      "name":"Nigiri de pescado blanco",
-      "id":"29",
-      "type":"Nigiri",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/nigiri/det2x_nigiri_pescado_blanco.png"
-    },
-    {
-      "name":"Nigiri de salmon",
-      "id":"30",
-      "type":"Nigiri",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/nigiri/det2x_nigiri_salmon.png"
-    },
-    {
-      "name":"Nigiri de salmon y aguacate",
-      "id":"3001",
-      "type":"Nigiri",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/nigiri/det2x_nigiri_salmon_aguacate.png"
-    },
-    {
-      "name":"Nigiri de salmon flameado",
-      "id":"3002",
-      "type":"Nigiri",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/nigiri/det2x_nigiri-de-salmon-flambeado.png"
-    },
-    {
-      "name":"Nigiri de salmon teriyaki",
-      "id":"3003",
-      "type":"Nigiri",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/nigiri/det2x_Nigiri-Salmon-teriyaki.png"
-    },
-    {
-      "name":"Nigiri de salmon Ahumado",
-      "id":"31",
-      "type":"Nigiri",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/nigiri/det2x_nigiri_salmon_ahumado.png"
-    },
-    {
-      "name":"Gunkan de atun",
-      "id":"32",
-      "type":"Gunkan",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/gunkan/det2x_gunkan_atun_spicy.png"
-    },
-    {
-      "name":"Gunkan de huevas",
-      "id":"33",
-      "type":"Gunkan",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/gunkan/det2x_gunkan_huevas.png"
-    },
-    {
-      "name":"Gunkan de salmon",
-      "id":"34",
-      "type":"Gunkan",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque,porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/gunkan/det2x_gunkan_salmon_spicy.png"
-    },
-    {
-      "name":"Chirashi de salmon",
-      "id":"35",
-      "type":"Chirashi",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/chirashi/det2x_chirashi-salmon-aguacate.png"
-    },
-    {
-      "name":"Chirashi de atun",
-      "id":"36",
-      "type":"Chirashi",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque,  porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/chirashi/det2x_chirashi-tartar-de-atun.png"
-    },
-    {
-      "name":"Chirashi variado",
-      "id":"37",
-      "type":"Chirashi",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/chirashi/det2x_chirashi-variado.png"
-    },
-    {
-      "name":"Sashimi de atun y salmon",
-      "id":"38",
-      "type":"Sashimi",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/sashimi/det2x_sashimi-atun-y-salmon.png"
-    },
-    {
-      "name":"Sashimi de pescado blanco",
-      "id":"39",
-      "type":"Sashimi",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque,porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/sashimi/det2x_sashimi-de-pescado-blanco.png"
-    },
-    {
-      "name":"Sashimi de salmon",
-      "id":"40",
-      "type":"Sashimi",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/sashimi/det2x_sashimi-de-salmon.png"
-    },
-    {
-      "name":"Sashimi de atun",
-      "id":"41",
-      "type":"Sashimi",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque,porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/sashimi/sashimi atun.png"
-    },
-    {
-      "name":"Tartar de salmon",
-      "id":"42",
-      "type":"Tartar",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/tartar/det2x_tartar-de-salmon.png"
-    },
-    {
-      "name":"Tartar de atun",
-      "id":"43",
-      "type":"Tartar",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/tartar/tartar de atun.png"
+  getByType(type:string):any{
+    console.log(type);
+    if(type==="Postres"){
+      return this.postres;
     }
-    ]
-  Entrantes=[
-    {
-      "name":"Entrante de pollo",
-      "id":"1",
-      "type":"maki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/entrantes/det1x_yakisoba-pollo.png"
-    },
-    {
-      "name":"Entrante de arroz blanco",
-      "id":"2",
-      "type":"maki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/entrantes/det2x_arroz_blanco.png"
-    },
-    {
-      "name":"Entrante de ensalada de algas",
-      "id":"3",
-      "type":"maki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/entrantes/det2x_ensalada_algas.png"
-    },
-    {
-      "name":"Entrante de tataki de atun",
-      "id":"4",
-      "type":"maki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/entrantes/det2x_tataki-atun.png"
-    },
-    {
-      "name":"Entrante de torikatsu",
-      "id":"5",
-      "type":"maki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/entrantes/det2x_torikatsu.png"
-    },
-    {
-      "name":"Entrante yakimeshi",
-      "id":"6",
-      "type":"maki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/entrantes/det2x_yakimeshi.png"
-    },
-    {
-      "name":"Entrante yakisoba temera",
-      "id":"7",
-      "type":"maki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque,porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/entrantes/det2x_yakisoba-ternera.png"
-    },
-    {
-      "name":"Entrante de gyozas",
-      "id":"8",
-      "type":"maki",
-      "price_unit":"5",
-      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque,  porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-      "available":"si",
-      "img_url":"../../../assets/IMG/sushi/entrantes/det2x_gyozas.png"
+    else if(type==="Bandejas"){
+      return this.bandejas;
     }
-  ]
-  Bandejas=[
+    else if(type==="Entrantes"){
+      return this.entrantes;
+    }
+    else if(type=="Sushi"){
+      return this.sushis;
+    }
+    else{
+      console.log("entre al else");
+        
+      console.log("sali de la conversion");
+      this.sushiTypesFilter$.next(type);
+      return this.sushiTypes$;
+    }
+    
+    
 
-  ]
+  }
+   getSushis(){
+    return this.sushis;
+  }
+  getPostres(){
+    return this.postres;
+  }
+  getBandejas(){
+    return this.bandejas;
+  }
+  getEntrantes(){
+    return this.entrantes;
+  }
+  getById(id,Type){
 
-  postres=[ 
-      {
-        "name":"Cheese Cake",
-        "id":"1",
-        "type":"postres",
-        "price_unit":"5",
-        "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-        "available":"si",
-        "img_url":"../../../assets/IMG/sushi/postres/cheese-cake-png-5.png"
-      },
-      {
-        "name":"Brownie de Chocolate",
-        "id":"2",
-        "type":"postres",
-        "price_unit":"5",
-        "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-        "available":"si",
-        "img_url":"../../../assets/IMG/sushi/postres/Chocolate-Brownie-750x570.png"
-      },
-      {
-        "name":"Mochi de Chocolate",
-        "id":"3",
-        "type":"postres",
-        "price_unit":"5",
-        "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-        "available":"si",
-        "img_url":"../../../assets/IMG/sushi/postres/det2x_mochi_chocolate.png"
-      },
-      {
-        "name":"Mochi de Cheese Cake",
-        "id":"4",
-        "type":"postres",
-        "price_unit":"5",
-        "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-        "available":"si",
-        "img_url":"../../../assets/IMG/sushi/postres/det2x_mochi-cheesecake.png"
-      },
-      {
-        "name":"Mochi de Chocolate blanco",
-        "id":"5",
-        "type":"postres",
-        "price_unit":"5",
-        "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada, tellus quis congue finibus, arcu ex bibendum neque, porttitor semper tellus enim at ipsum. Aliquam sed malesuada mi.",
-        "available":"si",
-        "img_url":"../../../assets/IMG/sushi/postres/det2x_mochi-chocoblanco.png"
-      }
-      ]
-}
+  }
+ 
+
+
+
+ 
+
+ 
+
+
+    }

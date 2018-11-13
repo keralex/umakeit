@@ -11,11 +11,11 @@ import { MenuComponent } from './Components/menu/menu.component';
 import { NavigationMenuComponent } from './navigation/navigation-menu/navigation-menu.component';
 import { VistaComidaComponent } from './Components/vista-comida/vista-comida.component';
 import { DisponibilidadTablaComponent } from './Components/disponibilidad-tabla/disponibilidad-tabla.component';
-import { DisponibilidadModificarComponent } from './Components/disponibilidad-modificar/disponibilidad-modificar.component';
 import { PedidosTablaComponent } from './Components/pedidos-tabla/pedidos-tabla.component';
 import { NavigationAdminComponent } from './navigation/navigation-admin/navigation-admin.component';
-import { PedidosModificarComponent } from './Components/pedidos-modificar/pedidos-modificar.component';
 import { PerfilusuarioComponent } from './components/perfilusuario/perfilusuario.component';
+import { NavigationUsuarioComponent } from './navigation/navigation-usuario/navigation-usuario.component';
+import { PedidosAnterioresUsuarioComponent } from './components/pedidos-anteriores-usuario/pedidos-anteriores-usuario.component';
 
 
 const routes: Routes = [
@@ -49,15 +49,22 @@ const routes: Routes = [
 
        ], component: NavigationMenuComponent
 
+  },
+  {
+    path: 'user',
+    children:[
+      {path: '',component:PedidosAnterioresUsuarioComponent},
+
+      {path: 'editar',component:PerfilusuarioComponent}
+       ], component: NavigationUsuarioComponent
+
   }
   ,
   {
     path: 'Admin',
     children:[
-      {path: '',  component:DisponibilidadTablaComponent},
-      {path: 'ModificarDisponibilidad',component:DisponibilidadModificarComponent},
+      {path: '', component:DisponibilidadTablaComponent},
       {path: 'Pedidos',component:PedidosTablaComponent},
-      {path: 'ModificarPedidos',component:PedidosModificarComponent}
        ], component: NavigationAdminComponent
 
   }

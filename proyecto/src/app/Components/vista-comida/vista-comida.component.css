@@ -1,6 +1,6 @@
-
-
-
+.col-sm-12{
+    color: #f8f9fa;
+}
 .center-box{
     display: flex;
     align-items: center;
@@ -8,14 +8,111 @@
      color: #f8f9fa;
 }
 
+/* primera parte  */
+.box-black{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(6, 5, 4, 0.4);
+}
+.box1{
+    background-image: url("../../../assets/IMG/Fondos/fondonegrosushi.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+a {
+    color: #f8f9fa;
+   
+}
 
-.col-sm-8{
-text-align: justify;
-color: #f8f9fa;
+/* segunda parte */
+.box2 .row{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color:   #0e0e0e;
+}
+.descripcion{
+    background-color: #0e0e0e;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    
+
+}
+.col-sm-8 p{
+    margin-top: 15px;
 }
 .col-sm-4{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+    border-color:#0e0e0e;
+}
+/* botones */
+.btn.btn-outline-light{
+   border-radius: 0;
+   border-color: #272727;
+
+    color: #f8f9fa;     
+
+}
+.btn.btn-outline-light:hover{
+    border-radius: 0;
+    border-color: #272727;
+    background-color: #272727;
+    color: #f8f9fa;
+ 
+ }
+ .nav-tabs {
+    border-bottom: 1px none #272727;
+}
+.nav-link.active {
+    color: #f8f9fa;
+    background-color: #0e0e0e;
+    border-color: #0e0e0e;
+}
+.btn.cart{
+    background-image: url("../../../assets/IMG/icon-ecommerce-grey.png");
+    height: 30px;
+    width: 30px;
+    background-size: contain;
+    background-position: center;
+    background-color: none;
+}
+.btn.wish{
+    background-image: url("../../../assets/IMG/1005px-Star_empty.svg.png");
+    height: 30px;
+    width: 30px;
+    background-size: contain;
+    background-position: center;
+    background-color: none;
+
+}
+.box2{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+/* imputs */
+.form-control {
+    background-color: #272727;
+    border: #272727;
     color: #f8f9fa;
 }
-.select{
-    margin-top: 10px;
+.form-control:focus {
+    border-color:  #060504;
+    box-shadow: 0 0 0 0.2rem rgba(6, 5, 4, 0.4);
+}
+option:active{
+background-color: #0e0e0e;
+}
+option {
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
 }
