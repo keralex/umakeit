@@ -14,7 +14,7 @@ export class VistaComidaComponent implements OnInit {
   plates;
 
   ngOnInit() {
-      let name=this.route.snapshot.paramMap.get('name');
+      let name=this.route.snapshot.paramMap.get('key');
       console.log("entre al ts de comida")
       console.log(name);
       

@@ -33,6 +33,7 @@ export class MenuService {
   //tipos de sushi
   sushiTypes$:Observable<any[]>;
   sushiTypesFilter$:BehaviorSubject<string|null>;
+
   //obtener por id
   SushiName$:Observable<any[]>;
   PostreName$:Observable<any[]>;
@@ -43,6 +44,7 @@ export class MenuService {
   PostreNameFilter$:BehaviorSubject<string|null>;
   EntrantesNameFilter$:BehaviorSubject<string|null>;
   BandejasNameFilter$:BehaviorSubject<string|null>;
+
 
 
   constructor( public db:AngularFirestore) {
@@ -101,8 +103,8 @@ export class MenuService {
         
         
 
-        //****Busqueda por key */
-        //sushi
+        // ****Busqueda por key */
+        // sushi
         this.SushiNameFilter$=new BehaviorSubject(null);
         this.SushiName$ =
           this.SushiNameFilter$
@@ -210,6 +212,7 @@ export class MenuService {
     }
 
   }
+
  
    getSushis(){
     return this.sushis;
