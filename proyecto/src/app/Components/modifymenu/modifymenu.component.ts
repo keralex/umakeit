@@ -38,7 +38,7 @@ export class ModifymenuComponent implements OnInit {
   }
   //metodos
   deletePlate($event,id,type){
-    this.menuService.deletePlate(id,type);
+    this.menuService.deletePlate(id,type);  
   }
    
   onTypeSelected(val:any){
