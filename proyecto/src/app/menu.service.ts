@@ -7,13 +7,13 @@ import { map, throwIfEmpty, switchMap } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 import {Observable, Subject, BehaviorSubject, observable, iif} from 'rxjs';
-import { Key } from 'protractor';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenuService {
+
   //sushis
   sushis: Observable<sushi[]>;
   sushisCollection:AngularFirestoreCollection<sushi>;
@@ -161,28 +161,77 @@ export class MenuService {
 
   }
 
+ //metodos
+
+ deletePlate(id,type){
+  if(type==="Postres"){
+    this.postresDoc=this.db.doc(`Postres/${id}`);
+    this.postresDoc.delete();
+  }
+  if(type==="Bandejas"){
+    this.bandejasDoc=this.db.doc(`Bandejas/${id}`);
+    this.bandejasDoc.delete();
+    }
+  if(type==="Entrantes"){
+      this.entrantesDoc=this.db.doc(`Entrantes/${id}`);
+      this.entrantesDoc.delete();
+  }
+  if(type==="Sushi"){
+    this.sushisDoc=this.db.doc(`Sushi/${id}`);
+    this.sushisDoc.delete();
+  }
   
+ }
+  AddPlate(nameaux,priceaux:number,typeaux,descriptionaux,typeplate){
+    var plate={
+      name:nameaux,
+      price:priceaux,
+      type:typeaux,
+      description:descriptionaux,
+      available:true
+    }
+    var setPlate=this.db.collection('typeplate').add(plate).then(ref=>{
+      console.log('Added document with ID: ', ref.id);
+    });
+  }
+
+  addPlate(nameaux,priceaux,descriptionaux,typeplate){
+    var plate={
+      name:nameaux,
+      price:priceaux,
+      description:descriptionaux,
+      available:true
+    }
+    var setPlate=this.db.collection('typeplate').add(plate).then(ref=>{
+      console.log('Added document with ID: ', ref.id);
+    });
+  }
   getByType(type:string):any{
-    console.log(type);
+    var platos;
     if(type==="Postres"){
-      return this.postres;
+      console.log(type);
+      platos=this.postres;
     }
-    else if(type==="Bandejas"){
-      return this.bandejas;
+    if(type==="Bandejas"){
+      console.log(type);
+      platos= this.bandejas;
     }
-    else if(type==="Entrantes"){
-      return this.entrantes;
+    if(type==="Entrantes"){
+      console.log(type);
+      platos=this.entrantes;
     }
-    else if(type=="Sushi" || type==null){
-      return this.sushis;
+    if(type==="Sushi" || type==null){
+      console.log(type);
+      platos=this.sushis;
     }
-    else{
+    if(type!="Sushi" && type!="Postres" && type!="Bandejas" && type!="Entrantes" && type!="null"){
+     
       console.log("entre al else");
         
-      console.log("sali de la conversion");
       this.sushiTypesFilter$.next(type);
-      return this.sushiTypes$;
+      platos= this.sushiTypes$;
     }
+    return platos;  
     
     
 
@@ -213,9 +262,7 @@ export class MenuService {
 
   }
 
-  getPlatos(){
-
-  }
+ 
    getSushis(){
     return this.sushis;
   }
