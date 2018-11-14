@@ -38,6 +38,23 @@ const routes: Routes = [
 
   }
   ,
+
+  {
+    path: 'home',
+    children:[
+      {path: '',  component:HomeComponent},
+    ], component: NavigationComponent
+
+  }
+  ,
+  {
+    path: 'perfil',
+    children:[
+      {path: '',  component:PerfilusuarioComponent},
+    ], component: NavigationComponent
+
+  }
+  ,
   {
     path: 'shopping',
     children:[

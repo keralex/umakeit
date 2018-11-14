@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-light">
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" [routerLink]="['/home']">
       <img src="../../assets/IMG/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
       uMakeIt!
     </a>
@@ -20,9 +20,8 @@
           Iniciar sesion
         </button>
         <div class="dropdown-menu" aria-labelledby="Iniciar sesion">
-          <a class="dropdown-item" href='/login/signin'>Login</a>
-          <a class="dropdown-item" href='/login/signup'>SignUp</a>
-          <a class="dropdown-item" (click)="fireout.logout()" href='/home'>Logout</a>
+          <a class="dropdown-item" [routerLink]="['/perfil']">Ver Perfil</a>
+          <a class="dropdown-item" (click)="fireout.logout()" [routerLink]="['/login']">Logout</a>
         </div>
       </div>
 
