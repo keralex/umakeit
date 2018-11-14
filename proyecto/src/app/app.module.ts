@@ -37,6 +37,7 @@ import { FormsModule } from '@angular/forms';
 import { AngularFirestoreModule} from '@angular/fire/firestore';
 import { NavigationUsuarioComponent } from './navigation/navigation-usuario/navigation-usuario.component';
 import { PedidosAnterioresUsuarioComponent } from './components/pedidos-anteriores-usuario/pedidos-anteriores-usuario.component';
+import { ModifymenuComponent } from './components/modifymenu/modifymenu.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { PedidosAnterioresUsuarioComponent } from './components/pedidos-anterior
     PerfilusuarioComponent,
     PedidosAnterioresUsuarioComponent,
     NavigationUsuarioComponent,
+    ModifymenuComponent,
     
     ],
   imports: [

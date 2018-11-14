@@ -18,16 +18,12 @@
                   <div class="form-group">
                       <label for="exampleFormControlSelect1">Numero de Plato</label>
                       <select class="form-control" id="exampleFormControlSelect1">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <option *ngFor="let sushi of sushis">{{sushi.key}}</option>
                       </select>
 
                       <label for="exampleFormControlSelect1">Disponibilidad</label>
                       <select class="form-control" id="exampleFormControlSelect1">
-                        <option>si</option>
+                        <option>si</option> 
                         <option>no</option>
                     
                       </select>
