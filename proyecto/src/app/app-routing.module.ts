@@ -23,9 +23,9 @@ const routes: Routes = [
   {
     path: '',
     children:[
-      { path: '', redirectTo:'/home' , pathMatch: 'full'},
-      {path: 'home',component:HomeComponent}
-    ], component: NavigationComponent
+      { path: '', redirectTo:'/login' , pathMatch: 'full'},
+      {path: 'login',component:LoginComponent}
+    ], component: NavigationRegistroComponent
 
   }
   ,
@@ -44,20 +44,11 @@ const routes: Routes = [
     children:[
       {path: '',component:MenuComponent},
       {path: 'menu/:type',  component:MenuComponent},
-      {path: 'menu/:type/:key',component:VistaComidaComponent},
+      {path: 'menu/:type/:id',component:VistaComidaComponent},
       {path: 'User',component:PerfilusuarioComponent  }
 
 
        ], component: NavigationMenuComponent
-
-  },
-  {
-    path: 'user',
-    children:[
-      {path: '',component:PedidosAnterioresUsuarioComponent},
-
-      {path: 'editar',component:PerfilusuarioComponent}
-       ], component: NavigationUsuarioComponent
 
   }
   ,
@@ -68,6 +59,17 @@ const routes: Routes = [
       {path: 'disponibilidad',component:DisponibilidadTablaComponent},
       {path: 'modificar',component:ModifymenuComponent}
        ], component: NavigationAdminComponent
+
+  }
+  ,
+  {
+    path: 'user',
+    children:[
+      {path: '',component:PerfilusuarioComponent},
+      {path: 'User',component:PerfilusuarioComponent  }
+
+
+       ], component: NavigationMenuComponent
 
   }
   
