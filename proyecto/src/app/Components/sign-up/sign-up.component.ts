@@ -3,7 +3,7 @@ import { FirestoreService } from 'src/app/firestore.service';
 import { AuthService  } from 'src/app/auth-service.service';
 import { Usuario } from 'src/app/models/usuario';
 import { Router } from '@angular/router';
-//import { UsuariosService } from 'src/app/usuarios.service';
+import { defineBase } from '@angular/core/src/render3';
 
 
 @Component({
@@ -51,12 +51,15 @@ addUser(){
       email: this.users.email,
       password:this.users.password,
       admin: false,
+      cart:[],
+      PreOrders:[]
     }
     
 
     this.firestoreService.addUser( user , userID )
     .then( () => {
         this.users = {} as Usuario;
+      
         this.gotoDetail() 
       }
     )
@@ -71,6 +74,7 @@ addUser(){
  }else{
    this.alerts();
  }
+ 
 }
 
 

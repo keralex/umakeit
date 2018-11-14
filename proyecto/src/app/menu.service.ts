@@ -213,7 +213,9 @@ export class MenuService {
 
   }
 
- 
+  getPlatos(){
+
+  }
    getSushis(){
     return this.sushis;
   }
