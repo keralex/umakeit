@@ -16,6 +16,7 @@ import { NavigationAdminComponent } from './navigation/navigation-admin/navigati
 import { PerfilusuarioComponent } from './components/perfilusuario/perfilusuario.component';
 import { NavigationUsuarioComponent } from './navigation/navigation-usuario/navigation-usuario.component';
 import { PedidosAnterioresUsuarioComponent } from './components/pedidos-anteriores-usuario/pedidos-anteriores-usuario.component';
+import { ModifymenuComponent } from './components/modifymenu/modifymenu.component';
 
 
 const routes: Routes = [
@@ -63,8 +64,9 @@ const routes: Routes = [
   {
     path: 'Admin',
     children:[
-      {path: '', component:DisponibilidadTablaComponent},
-      {path: 'Pedidos',component:PedidosTablaComponent},
+      {path: '', component:PedidosTablaComponent},
+      {path: 'disponibilidad',component:DisponibilidadTablaComponent},
+      {path: 'modificar',component:ModifymenuComponent}
        ], component: NavigationAdminComponent
 
   }
