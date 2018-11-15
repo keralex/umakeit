@@ -80,7 +80,7 @@ addUser(){
 
 
 gotoDetail(){
-  this.router.navigate([`/shopping/menu/Sushi`]);
+  this.router.navigate([`/home`]);
  }
 
 
