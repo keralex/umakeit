@@ -14,16 +14,36 @@ import {Observable, iif, observable} from 'rxjs';
 export class DisponibilidadTablaComponent implements OnInit {
   platos:Observable<Array<any>>;
   sushis;
+  tipoSelected:string;
+  tipos;  
 
   constructor(public menuService:MenuService, public router:Router,  private route:ActivatedRoute) { }
 
   ngOnInit() {
-    //agregar sushis
-    this.sushis=this.menuService.getSushis().subscribe(platos=>{
-      this.sushis=platos;
-      
-      console.log(this.sushis);
-    });
+    this.tipoSelected='Sushi';
+    this.tipos=[
+      {Type:'Sushi'},
+      {Type:'Entrantes'},
+      {Type:'Postres'},
+      {Type:'Bandejas'},
+  
+    ];
     
+    this.menuService.getByType(this.tipoSelected).subscribe(platos=>{
+      this.platos=platos;
+      console.log("he retornado");
+      console.log(this.platos);
+    });
+  }
+
+  //metodos
+  onTypeSelected(val:any){
+    
+    this.menuService.getByType(val).subscribe(platos=>{
+      
+      this.platos=platos;
+      console.log("he retornado");
+      console.log(this.platos)
+    });
   }
 }

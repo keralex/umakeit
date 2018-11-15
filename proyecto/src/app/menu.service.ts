@@ -162,7 +162,46 @@ export class MenuService {
   }
 
  //metodos
+  editSushi(id,nameaux,priceaux:number,typeaux,descriptionaux){
+    var plate={
+      name:nameaux,
+      price:priceaux,
+      type:typeaux,
+      description:descriptionaux
+    }
 
+      this.sushisDoc=this.db.doc(`Sushi/${id}`);
+      this.sushisDoc.update(plate);
+      console.log("id modificado es");
+      console.log(id);
+  }
+  editPlate(id,type,nameaux,priceaux:number,descriptionaux){
+    var plate={
+      name:nameaux,
+      price:priceaux,
+      description:descriptionaux
+    }
+    if(type==="Postres"){
+      this.postresDoc=this.db.doc(`Postres/${id}`);
+      this.postresDoc.update(plate);
+      console.log("id modificado es");
+      console.log(id);
+        }
+    if(type==="Bandejas"){
+      this.bandejasDoc=this.db.doc(`Bandejas/${id}`);
+      this.bandejasDoc.update(plate);
+      console.log("id modificado es");
+      console.log(id);
+      }
+    if(type==="Entrantes"){
+        this.entrantesDoc=this.db.doc(`Entrantes/${id}`);
+        this.entrantesDoc.update(plate);
+        console.log("id modificado es");
+        console.log(id);
+     }
+    
+
+  }
  deletePlate(id,type){
   if(type==="Postres"){
     this.postresDoc=this.db.doc(`Postres/${id}`);
@@ -182,27 +221,30 @@ export class MenuService {
   }
   
  }
-  AddPlate(nameaux,priceaux:number,typeaux,descriptionaux,typeplate){
+  addSushi(nameaux,priceaux:number,typeaux,descriptionaux,keyaux){
     var plate={
       name:nameaux,
       price:priceaux,
       type:typeaux,
       description:descriptionaux,
-      available:true
+      available:true,
+      key:keyaux
     }
-    var setPlate=this.db.collection('typeplate').add(plate).then(ref=>{
+    var setPlate=this.db.collection('Sushi').add(plate).then(ref=>{
       console.log('Added document with ID: ', ref.id);
     });
+    
   }
 
-  addPlate(nameaux,priceaux,descriptionaux,typeplate){
+  addPlate(nameaux,priceaux,descriptionaux,keyaux,typeplate){
     var plate={
       name:nameaux,
       price:priceaux,
       description:descriptionaux,
-      available:true
-    }
-    var setPlate=this.db.collection('typeplate').add(plate).then(ref=>{
+      available:true,
+      key:keyaux
+    };
+    var setPlate=this.db.collection(typeplate).add(plate).then(ref=>{
       console.log('Added document with ID: ', ref.id);
     });
   }
