@@ -16,7 +16,7 @@ export class AuthService {
 
 
   login(email:string, contraseña:string){
-    return this.firebaseAuth.auth.signInWithEmailAndPassword(email,contraseña);
+      return this.firebaseAuth.auth.signInWithEmailAndPassword(email,contraseña);
   }
 
   register(email: string, contraseña:string){
@@ -30,6 +30,14 @@ export class AuthService {
 
   getuser(){
     return this.usuario;
+  }
+
+  getU(){
+    var user = this.firebaseAuth.auth.currentUser;
+
+    if(user!=null){
+      return user.uid;
+    }
   }
 
   

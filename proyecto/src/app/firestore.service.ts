@@ -15,18 +15,30 @@ export class FirestoreService {
   
   usuariosCollection: AngularFirestoreCollection;
   usuarios: Observable <Usuario[]>;
-  usuariosDoc;
+  au=[];
 
   constructor(public db: AngularFirestore, private AuthService:AuthService) {
+    
+    this.getu().subscribe(data =>{
+      data.forEach(element =>{
+        this.au.push(element.payload.doc.data());
+      })
+    })
     this.usuariosCollection = this.db.collection('usuarios');
     this.usuarios = this.usuariosCollection.snapshotChanges().pipe(map(actions => {
-      return actions.map(a => { 
-      const data = a.payload.doc.data() as Usuario; 
-      data.id = a.payload.doc.id;
-      return data;
-   });
- }));
+        return actions.map(a => { 
+        const data = a.payload.doc.data() as Usuario; 
+        data.id= a.payload.doc.id;
+        return data;
+        });
+      }));
+
 }
+
+
+  getu(){
+    return this.db.collection('usuarios').snapshotChanges();
+  }
 
   getUsers(){
     return this.usuarios;
@@ -38,7 +50,6 @@ export class FirestoreService {
       {merge:true }
     );
   }
-
 
   getbyid(id){
     let aux: any;
