@@ -16,12 +16,15 @@ name:string;
   constructor(private Fireout: AuthService, private firestoreservice:FirestoreService) {
     this.usuarioiout=Fireout.getU();
     this.uss=firestoreservice.au;
+    
     this.name=this.getname();
    }
    
    getname(){
+    console.log(this.uss)
      for(var i=0;i<this.uss.length;i++){
-       if(this.uss[i].id==this.usuarioiout){
+       if(this.uss[i].email==this.usuarioiout){
+         
          return this.uss[i].name;
        }
      }

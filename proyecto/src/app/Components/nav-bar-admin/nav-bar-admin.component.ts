@@ -21,7 +21,7 @@ export class NavBarAdminComponent implements OnInit {
    
   getname(){
     for(var i=0;i<this.uss.length;i++){
-      if(this.uss[i].id==this.usuarioiout){
+      if(this.uss[i].email==this.usuarioiout){
         return this.uss[i].name;
       }
     }
