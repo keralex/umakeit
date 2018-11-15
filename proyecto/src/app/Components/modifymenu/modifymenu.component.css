@@ -65,3 +65,7 @@ option {
 .btn{
     background-color: #272727;  
 }
+.edit{
+    position: sticky;
+    top:0;  
+}

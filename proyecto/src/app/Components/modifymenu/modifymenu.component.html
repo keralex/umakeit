@@ -25,26 +25,26 @@
                   </div>
                   {{tipoSelected}}
                   <br>
-                  <form>
+                  <form (ngSubmit)="addPlate()">
                     <div class="form-group">
                       <label for="nombre">nombre</label>
-                      <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Introduzca el nombre">
+                      <input type="text" [(ngModel)]="platoName" name="name" class="form-control" id="name" aria-describedby="name" placeholder="Introduzca el nombre">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Precio</label>
-                      <input type="number" class="form-control" id="Precio" placeholder="Precio">
+                      <input type="number" [(ngModel)]="platoPrice" name="price" class="form-control" id="price" placeholder="Precio">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Descripcion</label>
-                      <input type="text" class="form-control" id="Descripcion" placeholder="Descripcion">
+                      <input type="text" [(ngModel)]="platoDescription" name="description" class="form-control" id="description" placeholder="Descripcion">
                     </div>
                     <div class="form-group" *ngIf="tipoSelected=='Sushi'">
                       <label for="exampleFormControlSelect1">Tipo:</label>
-                      <select class="form-control" id="exampleFormControlSelect1" >
-                        <option></option>
+                      <select  [(ngModel)]="platoType" name="type" class="form-control" id="type" [(ngModel)]="platoType" >
+                        <option *ngFor="let sushi of sushisTypes" [ngValue]="sushi.type" >{{sushi.type}}</option>
                       </select>
-                    </div>
-                    <button type="button" class="btn btn-dark">Agregar</button>
+                    </div>  
+                    <button type="submit" class="btn btn-dark">Agregar</button>
 
                   </form>
 
@@ -54,7 +54,7 @@
         </div>
     </div>
   
-    <div class="col-sm-9">
+    <div class="col-sm-7">
         <div class="titulo">
           </div>
           <div class="tablaComida">
@@ -63,16 +63,18 @@
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">Plato</th>
-                      <th scope="col"></th>
+                      <th scope="col">Modificar</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let plato of platos">
                       <th scope="row">{{plato.key}}</th>
                       <td>{{plato.name}}</td>
-                      <td><button type="button" class="btn btn-dark">Editar</button>
+                      <td><button type="button" class="btn btn-dark" (click)="editPlate($event,plato.id)">Editar</button>
                         <button type="button" (click)="deletePlate($event,plato.id,tipoSelected)" class="btn btn-dark">Eliminar</button>
+                      
                       </td>
+                      
                     </tr>
                       
                   </tbody>
@@ -80,6 +82,33 @@
           </div>
         
           
+    </div>
+    <div class="col-sm-2">
+         
+      <div *ngIf="editing" class="edit">
+        <form (ngSubmit)="actualizarPlate()">
+          <div class="form-group">
+            <label for="nombre">nombre</label>
+            <input type="text" [(ngModel)]="editplatoName" name="name" class="form-control" id="name" aria-describedby="name" placeholder="Introduzca el nombre">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Precio</label>
+            <input type="number" [(ngModel)]="editplatoPrice" name="price" class="form-control" id="price" placeholder="Precio">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Descripcion</label>
+            <input type="text" [(ngModel)]="editplatoDescription" name="description" class="form-control" id="description" placeholder="Descripcion">
+          </div>
+          <div class="form-group" *ngIf="tipoSelected=='Sushi'">
+            <label for="exampleFormControlSelect1">Tipo:</label>
+            <select  [(ngModel)]="editplatoType" name="type" class="form-control" id="type" [(ngModel)]="platoType" >
+              <option *ngFor="let sushi of sushisTypes" [ngValue]="sushi.type" >{{sushi.type}}</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-dark" (click)="actualizarPlate() ">Editar</button>
+
+        </form>
+      </div>
     </div>
   
   </div>

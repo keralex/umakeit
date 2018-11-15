@@ -16,9 +16,17 @@
       
               <div class="modificar">
                   <div class="form-group">
+                      <label for="exampleFormControlSelect1">Seleccione el tipo de Plato</label>
+                      <select [(ngModel)]="tipoSelected" (ngModelChange)='onTypeSelected($event)' (change)='onTypeSelected($event)' class="form-control" id="exampleFormControlSelect1" >
+                        <option *ngFor="let tipo of tipos" [ngValue]="tipo.Type">{{tipo.Type}}</option>
+                      </select>
+  
+                      
+                    </div>
+                  <div class="form-group">
                       <label for="exampleFormControlSelect1">Numero de Plato</label>
                       <select class="form-control" id="exampleFormControlSelect1">
-                        <option *ngFor="let sushi of sushis">{{sushi.key}}</option>
+                        <option *ngFor="let plato of platos">{{plato.key}}</option>
                       </select>
 
                       <label for="exampleFormControlSelect1">Disponibilidad</label>
@@ -50,10 +58,10 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let sushi of sushis">
-                        <th scope="row">{{sushi.key}}</th>
-                        <td>{{sushi.name}}</td>
-                        <td>{{sushi.availabe}}</td>
+                      <tr *ngFor="let plato of platos">
+                        <th scope="row">{{plato.key}}</th>
+                        <td>{{plato.name}}</td>
+                        <td>{{plato.availabe}}</td>
                       </tr>
                         
                     </tbody>
