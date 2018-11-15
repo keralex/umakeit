@@ -1,3 +1,89 @@
-<p>
-  modifymenu works!
-</p>
+<div class="container-fluid">
+  <div class="container-fluid box1">
+      <div class="box-principal">
+          <div class="welcome">
+              <div class="box-black">
+                <h1>Modifica el Menu</h1>
+              </div>
+             </div>
+  </div>    
+  </div>
+
+  <div class="row container-fluid">
+  
+    <div class="col-sm-3">
+        <div class="box">
+    
+            <div class="modificar">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Seleccione el tipo de Plato</label>
+                    <select [(ngModel)]="tipoSelected" (ngModelChange)='onTypeSelected($event)' (change)='onTypeSelected($event)' class="form-control" id="exampleFormControlSelect1" >
+                      <option *ngFor="let tipo of tipos" [ngValue]="tipo.Type">{{tipo.Type}}</option>
+                    </select>
+
+                    
+                  </div>
+                  {{tipoSelected}}
+                  <br>
+                  <form>
+                    <div class="form-group">
+                      <label for="nombre">nombre</label>
+                      <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Introduzca el nombre">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Precio</label>
+                      <input type="number" class="form-control" id="Precio" placeholder="Precio">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Descripcion</label>
+                      <input type="text" class="form-control" id="Descripcion" placeholder="Descripcion">
+                    </div>
+                    <div class="form-group" *ngIf="tipoSelected=='Sushi'">
+                      <label for="exampleFormControlSelect1">Tipo:</label>
+                      <select class="form-control" id="exampleFormControlSelect1" >
+                        <option></option>
+                      </select>
+                    </div>
+                    <button type="button" class="btn btn-dark">Agregar</button>
+
+                  </form>
+
+
+            </div>
+
+        </div>
+    </div>
+  
+    <div class="col-sm-9">
+        <div class="titulo">
+          </div>
+          <div class="tablaComida">
+              <table class="table table-dark">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Plato</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let plato of platos">
+                      <th scope="row">{{plato.key}}</th>
+                      <td>{{plato.name}}</td>
+                      <td><button type="button" class="btn btn-dark">Editar</button>
+                        <button type="button" (click)="deletePlate($event,plato.id,tipoSelected)" class="btn btn-dark">Eliminar</button>
+                      </td>
+                    </tr>
+                      
+                  </tbody>
+                </table>
+          </div>
+        
+          
+    </div>
+  
+  </div>
+
+
+
+

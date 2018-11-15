@@ -18,7 +18,6 @@ export class DisponibilidadTablaComponent implements OnInit {
   constructor(public menuService:MenuService, public router:Router,  private route:ActivatedRoute) { }
 
   ngOnInit() {
-    this.platos=new Observable();
     //agregar sushis
     this.sushis=this.menuService.getSushis().subscribe(platos=>{
       this.sushis=platos;
