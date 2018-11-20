@@ -27,6 +27,7 @@
     "firebase": "^5.5.6",
     "firestore": "^1.1.6",
     "jquery": "^3.3.1",
+    "ng-shopping-cart": "^1.0.0",
     "ngx-bootstrap": "^3.0.1",
     "ngx-paypal": "^4.0.0",
     "popper.js": "^1.14.4",

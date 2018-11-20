@@ -6,8 +6,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario';
 import { MenuService } from 'src/app/menu.service';
 import { Router} from '@angular/router';
-// import { ShoppingcartService } from 'src/app/shoppingcart.service';
+import { ShoppingCartService } from 'src/app/shopping-cart.service';
 import { PayPalConfig, PayPalEnvironment, PayPalIntegrationType } from 'ngx-paypal';
+import { sushi } from 'src/app/models/Sushi';
+
 
 
 
@@ -19,6 +21,8 @@ declare let paypal: any;
   templateUrl: './shopping-car.component.html',
   styleUrls: ['./shopping-car.component.css'],
   providers: [MenuService]
+
+  
   
 })
 

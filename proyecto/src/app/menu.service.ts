@@ -15,19 +15,15 @@ import {Observable, Subject, BehaviorSubject, observable, iif} from 'rxjs';
 export class MenuService {
 
   //sushis
-  sushis: Observable<sushi[]>;
   sushisCollection:AngularFirestoreCollection<sushi>;
   sushisDoc:AngularFirestoreDocument<sushi>;
   //postres
-  postres: Observable<Postre[]>;
   postresCollection:AngularFirestoreCollection<Postre>;
   postresDoc:AngularFirestoreDocument<Postre>;
   //bandejas
-  bandejas: Observable<Bandeja[]>;
   bandejasCollection:AngularFirestoreCollection<Bandeja>;
   bandejasDoc:AngularFirestoreDocument<Bandeja>;
   //entrantes
-  entrantes: Observable<Entrante[]>;
   entrantesCollection:AngularFirestoreCollection<Entrante>;
   entrantesDoc:AngularFirestoreDocument<Entrante>;
   //tipos de sushi
@@ -50,42 +46,14 @@ export class MenuService {
   constructor( public db:AngularFirestore) {
 
           //sushi
-          this.sushisCollection=this.db.collection('Sushi');
-          this.sushis=this.sushisCollection.snapshotChanges().pipe(map(actions => {
-            return actions.map(a => { 
-            const data = a.payload.doc.data() as sushi; 
-            data.id = a.payload.doc.id;
-            return data;
-        });
-      }));
+         
         //postres
-        this.postresCollection=this.db.collection('Postres');
-        this.postres=this.postresCollection.snapshotChanges().pipe(map(actions => {
-          return actions.map(a => { 
-          const data = a.payload.doc.data() as Postre; 
-          data.id = a.payload.doc.id;
-          return data;
-      });
-        }));
+      
         //entrantes
-        this.entrantesCollection=this.db.collection('Entrantes');
-        this.entrantes=this.entrantesCollection.snapshotChanges().pipe(map(actions => {
-          return actions.map(a => { 
-          const data = a.payload.doc.data() as Entrante; 
-          data.id = a.payload.doc.id;
-          return data;
-        });
-        }));
+   
 
         //bandejas
-        this.bandejasCollection=this.db.collection('Bandejas');
-        this.bandejas=this.bandejasCollection.snapshotChanges().pipe(map(actions => {
-          return actions.map(a => { 
-          const data = a.payload.doc.data() as Bandeja; 
-          data.id = a.payload.doc.id;
-          return data;
-        });
-        }));
+  
 
         //sushiTypes
         this.sushiTypesFilter$=new BehaviorSubject(null);
@@ -162,7 +130,46 @@ export class MenuService {
   }
 
  //metodos
+  editSushi(id,nameaux,priceaux:number,typeaux,descriptionaux){
+    var plate={
+      name:nameaux,
+      price:priceaux,
+      type:typeaux,
+      description:descriptionaux
+    }
 
+      this.sushisDoc=this.db.doc(`Sushi/${id}`);
+      this.sushisDoc.update(plate);
+      console.log("id modificado es");
+      console.log(id);
+  }
+  editPlate(id,type,nameaux,priceaux:number,descriptionaux){
+    var plate={
+      name:nameaux,
+      price:priceaux,
+      description:descriptionaux
+    }
+    if(type==="Postres"){
+      this.postresDoc=this.db.doc(`Postres/${id}`);
+      this.postresDoc.update(plate);
+      console.log("id modificado es");
+      console.log(id);
+        }
+    if(type==="Bandejas"){
+      this.bandejasDoc=this.db.doc(`Bandejas/${id}`);
+      this.bandejasDoc.update(plate);
+      console.log("id modificado es");
+      console.log(id);
+      }
+    if(type==="Entrantes"){
+        this.entrantesDoc=this.db.doc(`Entrantes/${id}`);
+        this.entrantesDoc.update(plate);
+        console.log("id modificado es");
+        console.log(id);
+     }
+    
+
+  }
  deletePlate(id,type){
   if(type==="Postres"){
     this.postresDoc=this.db.doc(`Postres/${id}`);
@@ -182,27 +189,30 @@ export class MenuService {
   }
   
  }
-  AddPlate(nameaux,priceaux:number,typeaux,descriptionaux,typeplate){
+  addSushi(nameaux,priceaux:number,typeaux,descriptionaux,keyaux){
     var plate={
       name:nameaux,
       price:priceaux,
       type:typeaux,
       description:descriptionaux,
-      available:true
+      available:true,
+      key:keyaux
     }
-    var setPlate=this.db.collection('typeplate').add(plate).then(ref=>{
+    var setPlate=this.db.collection('Sushi').add(plate).then(ref=>{
       console.log('Added document with ID: ', ref.id);
     });
+    
   }
 
-  addPlate(nameaux,priceaux,descriptionaux,typeplate){
+  addPlate(nameaux,priceaux,descriptionaux,keyaux,typeplate){
     var plate={
       name:nameaux,
       price:priceaux,
       description:descriptionaux,
-      available:true
-    }
-    var setPlate=this.db.collection('typeplate').add(plate).then(ref=>{
+      available:true,
+      key:keyaux
+    };
+    var setPlate=this.db.collection(typeplate).add(plate).then(ref=>{
       console.log('Added document with ID: ', ref.id);
     });
   }
@@ -210,19 +220,19 @@ export class MenuService {
     var platos;
     if(type==="Postres"){
       console.log(type);
-      platos=this.postres;
+      platos=this.getPostres();
     }
     if(type==="Bandejas"){
       console.log(type);
-      platos= this.bandejas;
+      platos= this.getBandejas();
     }
     if(type==="Entrantes"){
       console.log(type);
-      platos=this.entrantes;
+      platos=this.getEntrantes();
     }
     if(type==="Sushi" || type==null){
       console.log(type);
-      platos=this.sushis;
+      platos=this.getSushis();
     }
     if(type!="Sushi" && type!="Postres" && type!="Bandejas" && type!="Entrantes" && type!="null"){
      
@@ -264,16 +274,24 @@ export class MenuService {
 
  
    getSushis(){
-    return this.sushis;
+    this.sushisCollection=this.db.collection('Sushi');
+     var sushis=this.sushisCollection.valueChanges();
+    return sushis;
   }
   getPostres(){
-    return this.postres;
+    this.postresCollection=this.db.collection('Postres');
+     var postres=this.postresCollection.valueChanges();
+    return postres;
   }
   getBandejas(){
-    return this.bandejas;
+    this.bandejasCollection=this.db.collection('Bandejas');
+    var bandejas=this.bandejasCollection.valueChanges();
+    return bandejas;
   }
   getEntrantes(){
-    return this.entrantes;
+    this.entrantesCollection=this.db.collection('Entrantes');
+    var entrantes=this.entrantesCollection.valueChanges();
+    return entrantes;
   }
   
 

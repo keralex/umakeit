@@ -36,8 +36,11 @@ export class AuthService {
   getU(){
     var user = this.firebaseAuth.auth.currentUser;
 
+
+
     if(user!=null){
-      return user.uid;
+      console.log(user.uid);
+      return user.email;
     }
   }
 
