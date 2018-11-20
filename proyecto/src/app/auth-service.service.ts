@@ -23,6 +23,7 @@ export class AuthService {
     return this.firebaseAuth.auth.createUserWithEmailAndPassword(email,contraseña);
   }
 
+  
   logout(){
     this.router.navigate(['/login']);
     return this.firebaseAuth.auth.signOut();
