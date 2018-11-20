@@ -61,7 +61,7 @@ const routes: Routes = [
     children:[
       {path: '',component:MenuComponent},
       {path: 'menu/:type',  component:MenuComponent},
-      {path: 'menu/:type/:key',component:VistaComidaComponent},
+      {path: 'menu/:type/:id',component:VistaComidaComponent},
       {path: 'User',component:PerfilusuarioComponent  }
 
 
