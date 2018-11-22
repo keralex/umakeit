@@ -1,3 +1,5 @@
+//guard implementar***
+
 import { Component, AfterViewChecked } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -10,10 +12,6 @@ import { ShoppingCartService } from 'src/app/shopping-cart.service';
 import { PayPalConfig, PayPalEnvironment, PayPalIntegrationType } from 'ngx-paypal';
 import { sushi } from 'src/app/models/Sushi';
 
-
-
-
-
 declare let paypal: any;
 
 @Component({
@@ -21,21 +19,19 @@ declare let paypal: any;
   templateUrl: './shopping-car.component.html',
   styleUrls: ['./shopping-car.component.css'],
   providers: [MenuService]
-
-  
-  
 })
 
 
 export class ShoppingCarComponent{
 
   usuario;
+  total:number=25;
   products:Array<any>;
+
   constructor(private firestoreService: FirestoreService, private route:ActivatedRoute,public menuService:MenuService,public router:Router) { }
 
   ngOnInit() {
-    //this.usuario=this.firestoreService.getbyid(this.route.snapshot.paramMap.get('id'))
-    //this.products=this.shoppingcartService.FoodCart; 
+    
     this.initConfig();
 }
 
@@ -62,10 +58,10 @@ public payPalConfig?: PayPalConfig;
       transactions: [{
         amount: {
           currency: 'USD',
-          total: 25,
+          total: this.total,
         }
       }]
     });
     
-  }
+  }z
 }
