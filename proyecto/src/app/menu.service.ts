@@ -15,19 +15,15 @@ import {Observable, Subject, BehaviorSubject, observable, iif} from 'rxjs';
 export class MenuService {
 
   //sushis
-  sushis: Observable<sushi[]>;
   sushisCollection:AngularFirestoreCollection<sushi>;
   sushisDoc:AngularFirestoreDocument<sushi>;
   //postres
-  postres: Observable<Postre[]>;
   postresCollection:AngularFirestoreCollection<Postre>;
   postresDoc:AngularFirestoreDocument<Postre>;
   //bandejas
-  bandejas: Observable<Bandeja[]>;
   bandejasCollection:AngularFirestoreCollection<Bandeja>;
   bandejasDoc:AngularFirestoreDocument<Bandeja>;
   //entrantes
-  entrantes: Observable<Entrante[]>;
   entrantesCollection:AngularFirestoreCollection<Entrante>;
   entrantesDoc:AngularFirestoreDocument<Entrante>;
   //tipos de sushi
@@ -50,42 +46,14 @@ export class MenuService {
   constructor( public db:AngularFirestore) {
 
           //sushi
-          this.sushisCollection=this.db.collection('Sushi');
-          this.sushis=this.sushisCollection.snapshotChanges().pipe(map(actions => {
-            return actions.map(a => { 
-            const data = a.payload.doc.data() as sushi; 
-            data.id = a.payload.doc.id;
-            return data;
-        });
-      }));
+         
         //postres
-        this.postresCollection=this.db.collection('Postres');
-        this.postres=this.postresCollection.snapshotChanges().pipe(map(actions => {
-          return actions.map(a => { 
-          const data = a.payload.doc.data() as Postre; 
-          data.id = a.payload.doc.id;
-          return data;
-      });
-        }));
+      
         //entrantes
-        this.entrantesCollection=this.db.collection('Entrantes');
-        this.entrantes=this.entrantesCollection.snapshotChanges().pipe(map(actions => {
-          return actions.map(a => { 
-          const data = a.payload.doc.data() as Entrante; 
-          data.id = a.payload.doc.id;
-          return data;
-        });
-        }));
+   
 
         //bandejas
-        this.bandejasCollection=this.db.collection('Bandejas');
-        this.bandejas=this.bandejasCollection.snapshotChanges().pipe(map(actions => {
-          return actions.map(a => { 
-          const data = a.payload.doc.data() as Bandeja; 
-          data.id = a.payload.doc.id;
-          return data;
-        });
-        }));
+  
 
         //sushiTypes
         this.sushiTypesFilter$=new BehaviorSubject(null);
@@ -252,19 +220,19 @@ export class MenuService {
     var platos;
     if(type==="Postres"){
       console.log(type);
-      platos=this.postres;
+      platos=this.getPostres();
     }
     if(type==="Bandejas"){
       console.log(type);
-      platos= this.bandejas;
+      platos= this.getBandejas();
     }
     if(type==="Entrantes"){
       console.log(type);
-      platos=this.entrantes;
+      platos=this.getEntrantes();
     }
     if(type==="Sushi" || type==null){
       console.log(type);
-      platos=this.sushis;
+      platos=this.getSushis();
     }
     if(type!="Sushi" && type!="Postres" && type!="Bandejas" && type!="Entrantes" && type!="null"){
      
@@ -306,16 +274,24 @@ export class MenuService {
 
  
    getSushis(){
-    return this.sushis;
+    this.sushisCollection=this.db.collection('Sushi');
+     var sushis=this.sushisCollection.valueChanges();
+    return sushis;
   }
   getPostres(){
-    return this.postres;
+    this.postresCollection=this.db.collection('Postres');
+     var postres=this.postresCollection.valueChanges();
+    return postres;
   }
   getBandejas(){
-    return this.bandejas;
+    this.bandejasCollection=this.db.collection('Bandejas');
+    var bandejas=this.bandejasCollection.valueChanges();
+    return bandejas;
   }
   getEntrantes(){
-    return this.entrantes;
+    this.entrantesCollection=this.db.collection('Entrantes');
+    var entrantes=this.entrantesCollection.valueChanges();
+    return entrantes;
   }
   
 
