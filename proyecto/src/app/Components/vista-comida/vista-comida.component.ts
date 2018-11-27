@@ -6,12 +6,16 @@ import {  ReplaySubject, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AngularFirestoreDocument } from '@angular/fire/firestore';
 import {sushi} from '../../models/Sushi';
+import {ShoppingCartService} from '../../shopping-cart.service'
+
 
 
 @Component({
   selector: 'app-vista-comida',
   templateUrl: './vista-comida.component.html',
-  styleUrls: ['./vista-comida.component.css']
+  styleUrls: ['./vista-comida.component.css'],
+  providers: [MenuService,ShoppingCartService]
+  
 })
 export class VistaComidaComponent implements OnInit {  
 
@@ -23,8 +27,9 @@ export class VistaComidaComponent implements OnInit {
   searchterm:string;
   currentRoute = new Subject();
   plate;
+  auxPlate: any;
   
-  constructor(public menuService:MenuService , public router:Router,  private route:ActivatedRoute) { 
+  constructor(public menuService:MenuService , public router:Router,  private route:ActivatedRoute, public shoppingCartService:ShoppingCartService) { 
     let id=this.route.snapshot.paramMap.get('id');
 
     console.log(id);
@@ -50,7 +55,25 @@ export class VistaComidaComponent implements OnInit {
 
     }
 
-  addToCart(){
+  addToCart(id:string){
+    let aux=this.route.snapshot.paramMap.get('type');
+   
+    this.menuService.getById(id,aux).ref.get().then(doc=> {
+      if (!doc.exists) {
+        console.log('No such document!');
+      } else {
+        console.log(doc.data().price);
+        this.shoppingCartService.calcularPrecio(doc.data().price);
+        this.shoppingCartService.addToShoppingCart(doc.data());
+      }
+    }
+
+    ).catch(err => {
+      console.log('Error getting document', err);
+    });
+    console.log(this.auxPlate)
+
+  
   }
 
 

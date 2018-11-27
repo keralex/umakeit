@@ -38,6 +38,7 @@ import { AngularFirestoreModule} from '@angular/fire/firestore';
 import { NavigationUsuarioComponent } from './navigation/navigation-usuario/navigation-usuario.component';
 import { PedidosAnterioresUsuarioComponent } from './components/pedidos-anteriores-usuario/pedidos-anteriores-usuario.component';
 import { ModifymenuComponent } from './components/modifymenu/modifymenu.component';
+import { ShoppingCartService } from './shopping-cart.service';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,7 @@ import { ModifymenuComponent } from './components/modifymenu/modifymenu.componen
     AngularFireAuthModule,
     NgxPayPalModule,
   ],
-  providers: [MenuService],
+  providers: [MenuService,ShoppingCartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

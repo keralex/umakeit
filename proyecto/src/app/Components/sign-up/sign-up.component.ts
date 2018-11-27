@@ -4,6 +4,7 @@ import { AuthService  } from 'src/app/auth-service.service';
 import { Usuario } from 'src/app/models/usuario';
 import { Router } from '@angular/router';
 import { defineBase } from '@angular/core/src/render3';
+import { AngularFirestoreCollection } from '@angular/fire/firestore';
 
 
 @Component({
@@ -51,7 +52,7 @@ addUser(){
       email: this.users.email,
       password:this.users.password,
       admin: false,
-      cart:[],
+      cart:AngularFirestoreCollection,
       PreOrders:[]
     }
     

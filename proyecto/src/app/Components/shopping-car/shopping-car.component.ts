@@ -18,19 +18,42 @@ declare let paypal: any;
   selector: 'app-shopping-car',
   templateUrl: './shopping-car.component.html',
   styleUrls: ['./shopping-car.component.css'],
-  providers: [MenuService]
+  providers: [MenuService,ShoppingCartService]
 })
 
 
 export class ShoppingCarComponent{
 
   usuario;
-  total:number=25;
-  products:Array<any>;
+  priceAux:number;
+  total:number;
+  products;
 
-  constructor(private firestoreService: FirestoreService, private route:ActivatedRoute,public menuService:MenuService,public router:Router) { }
+  constructor(public shoppingCartService:ShoppingCartService, private firestoreService: FirestoreService, private route:ActivatedRoute,public menuService:MenuService,public router:Router) {
+    
+    this.shoppingCartService.getCarrito().subscribe(platos=>{
+      this.products = platos.map( snap => {
+        
+        const obj = {  
+          ...snap.payload.doc.data(),
+          id: snap.payload.doc.id,
+
+        }
+        this.priceAux=snap.payload.doc.data().price;
+        console.log(this.priceAux);
+       this.shoppingCartService.calcularPrecio(snap.payload.doc.data().price);
+        return obj
+      })
+      this.total=this.shoppingCartService.getTotal();
+      console.log(this.total);     
+      
+      console.log('tactico' , this.products);
+    }); 
+    
+   }
 
   ngOnInit() {
+  
     
     this.initConfig();
 }

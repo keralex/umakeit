@@ -4,16 +4,16 @@
 <div class="container-fluid menu">
     <div class="container">
         <div class="row">
-            <div class="card col-lg-4" *ngFor="let plato of platos" (click)="goToFood(plato.id)">
+            <div class="card col-lg-4" *ngFor="let plato of platos">
               <div class="box-black">
-                <img class="card-img-top" src="{{plato.url_img}}" alt="Card image cap">
+                <img class="card-img-top" src="{{plato.url_img}}" alt="Card image cap" (click)="goToFood(plato.id)">
                 <div class="card-body">
 
                   <h5 class="card-title">{{plato.name}}</h5>
 
                   <div class="box-center">
                     <p class="precio">Price: {{plato.price}}$</p> 
-                    <button type="button" class="btn  btn-outline-dark cart"></button>
+                    <button type="button" class="btn  btn-outline-dark cart" (click)="addToCart(plato.id)" ></button>
                   </div>
                 
                 </div>

@@ -10,12 +10,8 @@
                 <div class="box-principal">
                     <h1>{{plate.name}}</h1>
                      <p>Price: {{plate.price}}$ | 1 piece | <span class="available">Diponible: {{plate.available}}</span> </p>                    
-                     <button type="button" class="btn  btn-outline-dark cart"></button>
+                     <button type="button" class="btn  btn-outline-dark cart" (click)="addToCart(plate.id)"></button>
 
-                        
-
-
-                     <button type="button" class="btn btn-outline-dark wish"></button>
 
                 </div>
                  
@@ -66,7 +62,7 @@
                         </div>
 
                         <div class="col-sm-4">
-                                <button type="button" class="btn btn-outline-light">Agregar al Carrito</button>
+                                <button type="button" class="btn btn-outline-light" (click)="addToCart(plate.id)">Agregar al Carrito</button>
 
 
                         </div>

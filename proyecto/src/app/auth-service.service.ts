@@ -43,6 +43,12 @@ export class AuthService {
       return user.email;
     }
   }
+  getId(){
+    var user = this.firebaseAuth.auth.currentUser;
+    if(user!=null){
+      return user.uid;
+    }
+  }
 
   
 }

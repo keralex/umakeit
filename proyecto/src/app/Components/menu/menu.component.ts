@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subject, ReplaySubject, BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import {ShoppingCartService} from '../../shopping-cart.service'
   
 
 
@@ -12,7 +13,7 @@ import { map } from 'rxjs/operators';
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
-  providers: [MenuService]
+  providers: [MenuService,ShoppingCartService]
 })
 
 
@@ -25,8 +26,8 @@ export class MenuComponent implements OnInit {
   type;
   searchterm:string;
   currentRoute = new Subject
-
-  constructor(public menuService:MenuService, public router:Router,  private route:ActivatedRoute) { 
+  auxPlate;
+  constructor(public menuService:MenuService, public router:Router,  private route:ActivatedRoute,public shoppingCartService:ShoppingCartService) { 
     let aux;
     aux = this.route.snapshot.paramMap.get('type');
     this.menuService.getByType(aux).subscribe(platos=>{
@@ -66,5 +67,29 @@ export class MenuComponent implements OnInit {
   goToFood(id: string){
     let aux=this.route.snapshot.paramMap.get('type');
     this.router.navigate([`/shopping/menu/${aux}/${id}`]);
+  }
+
+
+  addToCart(id:string){
+    let aux=this.route.snapshot.paramMap.get('type');
+   
+    this.menuService.getById(id,aux).ref.get().then(doc=> {
+      if (!doc.exists) {
+        console.log('No such document!');
+      } else {
+        console.log(doc.data().price);
+        this.shoppingCartService.calcularPrecio(doc.data().price);
+        this.shoppingCartService.addToShoppingCart(doc.data());
+      }
+    }
+
+    ).catch(err => {
+      console.log('Error getting document', err);
+    });
+    console.log(this.auxPlate)
+
+  
+
+    
   }
 }
