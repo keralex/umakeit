@@ -1,11 +1,12 @@
         <div class="container">
             <div class="titulo">
+              <h1>Bienvenido {{usuario.name}}</h1>
               <h3>Edita Tu Perfil</h3>
             </div>
             <p class="simple">Correo Electronico:</p>
-            <input submit="text" class="form-control" placeholder="Correo Electronico" name="email">
+            <input submit="text" class="form-control" placeholder="{{usuario.email}}" name="email">
             <p class="simple">Nombre y Apellido:</p>
-            <input submit="text" class="form-control" placeholder="Nombre y Apellido" name="name">
+            <input submit="text" class="form-control" placeholder="{{usuario.name}}" name="name">
               <p class="simple">contraseña:</p>
               <input submit="text" class="form-control" placeholder="contraseña" name="password">
               <div class="center-box">
