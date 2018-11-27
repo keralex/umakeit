@@ -82,15 +82,7 @@ a {
     background-position: center;
     background-color: none;
 }
-.btn.wish{
-    background-image: url("../../../assets/IMG/1005px-Star_empty.svg.png");
-    height: 30px;
-    width: 30px;
-    background-size: contain;
-    background-position: center;
-    background-color: none;
 
-}
 .box2{
     margin-top: 50px;
     margin-bottom: 50px;

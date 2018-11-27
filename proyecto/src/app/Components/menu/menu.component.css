@@ -27,3 +27,12 @@
     height: 100%;
     background-color: rgba(6, 5, 4, 0.377);
 }
+.btn.cart{
+    background-image: url("../../../assets/IMG/icon-ecommerce-grey.png");
+    height: 60px;
+    width: 60px;
+    background-size: cover;
+    background-position: center;
+    background-color: none;
+    background-repeat: no-repeat;
+}

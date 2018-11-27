@@ -122,10 +122,14 @@ export class ModifymenuComponent implements OnInit {
   onTypeSelected(val:any){
     
     this.menuService.getByType(val).subscribe(platos=>{
-      
-      this.platos=platos;
-      console.log("he retornado");
-      console.log(this.platos)
+      this.platos = platos.map( snap => {
+        const obj = { 
+          ...snap.payload.doc.data(),
+          id: snap.payload.doc.id
+        }
+        return obj
+      })
+      console.log('tactico' , this.platos)
     });
   }
   editPlate(event, id){

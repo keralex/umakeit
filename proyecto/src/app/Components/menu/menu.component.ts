@@ -30,7 +30,14 @@ export class MenuComponent implements OnInit {
     let aux;
     aux = this.route.snapshot.paramMap.get('type');
     this.menuService.getByType(aux).subscribe(platos=>{
-      this.platos = platos;
+      this.platos = platos.map( snap => {
+        const obj = { 
+          ...snap.payload.doc.data(),
+          id: snap.payload.doc.id
+        }
+        return obj
+      })
+      console.log('tactico' , this.platos)
     })  
 
     this.route.paramMap.subscribe(data => {
@@ -39,26 +46,25 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.route.params.subscribe(params=>{
-    //   let route=params['type'];
-    //   this.menuService.getByType( route as any ).subscribe(platos=>{
-    //     this.platos = platos;
-    //     console.log(this.platos)
-    //   });
-    // })
+
     this.currentRoute.subscribe( data => {
       console.log(data , 'data')
       this.menuService.getByType( data as any ).subscribe(platos=>{
-        console.log(platos  )
-        this.platos = platos;
-        console.log(this.platos)
+        this.platos = platos.map( snap => {
+          const obj = { 
+            ...snap.payload.doc.data(),
+            id: snap.payload.doc.id
+          }
+          return obj
+        })
+        console.log('tactico' , this.platos)
       });
     })
      
   }
 
-  goToFood(key: string){
+  goToFood(id: string){
     let aux=this.route.snapshot.paramMap.get('type');
-    this.router.navigate([`/shopping/menu/${aux}/${key}`]);
+    this.router.navigate([`/shopping/menu/${aux}/${id}`]);
   }
 }

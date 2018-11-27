@@ -13,6 +13,17 @@ import {Observable, Subject, BehaviorSubject, observable, iif} from 'rxjs';
   providedIn: 'root'
 })
 export class MenuService {
+  //colecciones por tipo de sushi
+  sushiMakiCollection:AngularFirestoreCollection;
+  sushiFutomakiCollection:AngularFirestoreCollection;
+  sushiSashimiCollection:AngularFirestoreCollection;
+  sushiTartarCollection:AngularFirestoreCollection;
+  sushiNigiriCollection:AngularFirestoreCollection;
+  sushiUramakiCollection:AngularFirestoreCollection;
+  sushiTemakiCollection:AngularFirestoreCollection;
+  sushiGunkanCollection:AngularFirestoreCollection;
+  sushiChirashiCollection:AngularFirestoreCollection;
+
 
   //sushis
   sushisCollection:AngularFirestoreCollection<sushi>;
@@ -45,17 +56,7 @@ export class MenuService {
 
   constructor( public db:AngularFirestore) {
 
-          //sushi
-         
-        //postres
-      
-        //entrantes
    
-
-        //bandejas
-  
-
-        //sushiTypes
         this.sushiTypesFilter$=new BehaviorSubject(null);
         this.sushiTypes$ =
           this.sushiTypesFilter$
@@ -134,7 +135,7 @@ export class MenuService {
     var plate={
       name:nameaux,
       price:priceaux,
-      type:typeaux,
+      sushiType:typeaux,
       description:descriptionaux
     }
 
@@ -222,75 +223,303 @@ export class MenuService {
       console.log(type);
       platos=this.getPostres();
     }
-    if(type==="Bandejas"){
+    else if(type==="Bandejas"){
       console.log(type);
       platos= this.getBandejas();
     }
-    if(type==="Entrantes"){
+    else if(type==="Entrantes"){
       console.log(type);
       platos=this.getEntrantes();
     }
-    if(type==="Sushi" || type==null){
+    else if(type==="Sushi" || type==null){
       console.log(type);
-      platos=this.getSushis();
+      platos = this.getSushis();
     }
-    if(type!="Sushi" && type!="Postres" && type!="Bandejas" && type!="Entrantes" && type!="null"){
+    else{
+     //eliminar primer
      
-      console.log("entre al else");
+     this.sushisCollection= this.db.collection('Sushi');
+      //maki
+      if(type==='Maki'){
+        this.sushiMakiCollection=this.db.collection('maki');
         
-      this.sushiTypesFilter$.next(type);
-      platos= this.sushiTypes$;
+      this.sushisCollection.ref.where('sushiType','==',type).get().then(snapshot => {
+        snapshot.forEach(doc => {
+          if(this.sushiMakiCollection.doc(doc.id).ref.id==doc.id){
+            console.log("existe");
+          }
+          else{
+            console.log("no existe");
+            this.sushiMakiCollection.add(doc.data());
+          }
+        
+
+        });
+      })
+      .catch(err => {
+        console.log('Error getting documents', err);
+      });
+
+
+
+      platos=this.sushiMakiCollection.snapshotChanges();
     }
+    //futomaki
+
+    else if(type==='Futomaki'){
+      this.sushiFutomakiCollection=this.db.collection('futomaki');
+      this.sushisCollection.ref.where('sushiType','==',type).get().then(snapshot => {
+        snapshot.forEach(doc => {
+          if(this.sushiFutomakiCollection.doc(doc.id).ref.id==doc.id){
+            console.log("existe");
+          }
+          else{
+            console.log("no existe");
+            this.sushiFutomakiCollection.add(doc.data());
+          }
+        
+
+        });
+      })
+      .catch(err => {
+        console.log('Error getting documents', err);
+      });
+
+
+
+      platos=this.sushiFutomakiCollection.snapshotChanges();
+
+
+    }
+    //Sashimi
+    else if(type==='Sashimi'){
+      this.sushiSashimiCollection=this.db.collection('Sashimi');
+      this.sushisCollection.ref.where('sushiType','==',type).get().then(snapshot => {
+        snapshot.forEach(doc => {
+          if(this.sushiSashimiCollection.doc(doc.id).ref.id==doc.id){
+            console.log("existe");
+            
+          }
+          else{
+            console.log("no existe");
+            this.sushiSashimiCollection.add(doc.data());
+       
+            
+          }
+          
+
+        });
+      })
+      .catch(err => {
+        console.log('Error getting documents', err);
+      });
+
+
+
+      platos=this.sushiSashimiCollection.snapshotChanges();
+
+
+    }
+    //Tartar
+    else if(type==='Tartar'){
+      this.sushiTartarCollection=this.db.collection('Tartar');
+      this.sushisCollection.ref.where('sushiType','==',type).get().then(snapshot => {
+        snapshot.forEach(doc => {
+          if(this.sushiTartarCollection.doc(doc.id).ref.id==doc.id){
+            console.log("existe");
+            
+          }
+          else{
+            console.log("no existe");
+          this.sushiTartarCollection.add(doc.data());
+
+          }
+
+
+        });
+      })
+      .catch(err => {
+        console.log('Error getting documents', err);
+      });
+
+      platos=this.sushiTartarCollection.snapshotChanges();
+
+    }
+    //nigiri
+    else if(type=='Nigiri'){
+      this.sushiNigiriCollection=this.db.collection('Nigiri');
+      this.sushisCollection.ref.where('sushiType','==',type).get().then(snapshot => {
+        snapshot.forEach(doc => {
+          if(this.sushiNigiriCollection.doc(doc.id).ref.id==doc.id){
+            console.log("existe");
+            
+          }
+          else{
+            console.log("no existe");
+            this.sushiNigiriCollection.add(doc.data());
+
+          }
+
+
+        });
+      })
+      .catch(err => {
+        console.log('Error getting documents', err);
+      });
+
+      platos=this.sushiNigiriCollection.snapshotChanges();
+
+    }
+    //Uramaki
+
+    else if(type==='Uramaki'){
+      this.sushiUramakiCollection=this.db.collection('Uramaki');
+      this.sushisCollection.ref.where('sushiType'.toLowerCase(),'==',type.toLowerCase()).get().then(snapshot => {
+        snapshot.forEach(doc => {
+          if(this.sushiUramakiCollection.doc(doc.id).ref.id==doc.id){
+            console.log("existe");
+            
+          }
+          else{
+            console.log("no existe");
+           this.sushiUramakiCollection.add(doc.data());
+
+          }
+ 
+
+        });
+      })
+      .catch(err => {
+        console.log('Error getting documents', err);
+      });
+
+      platos=this.sushiUramakiCollection.snapshotChanges();
+    }
+    //temaki
+
+    else if(type==='Temaki'){
+      this.sushiTemakiCollection=this.db.collection('Temaki');
+      this.sushisCollection.ref.where('sushiType','==',type).get().then(snapshot => {
+        snapshot.forEach(doc => {
+          if(this.sushiTemakiCollection.doc(doc.id).ref.id==doc.id){
+            console.log("existe");
+            
+          }
+          else{
+            console.log("no existe");
+           this.sushiTemakiCollection.add(doc.data());
+
+          }
+ 
+
+        });
+      })
+      .catch(err => {
+        console.log('Error getting documents', err);
+      });
+
+      platos=this.sushiTemakiCollection.snapshotChanges();
+    }
+    //Gunkan
+    else if(type==='Gunkan'){
+      this.sushiGunkanCollection=this.db.collection('Gunkan');
+      this.sushisCollection.ref.where('sushiType','==',type).get().then(snapshot => {
+        snapshot.forEach(doc => {
+          if(this.sushiGunkanCollection.doc(doc.id).ref.id==doc.id){
+            console.log("existe");
+            
+          }
+          else{
+            console.log("no existe");
+           this.sushiGunkanCollection.add(doc.data());
+
+          }
+
+
+        });
+      })
+      .catch(err => {
+        console.log('Error getting documents', err);
+      });
+
+      platos=this.sushiGunkanCollection.snapshotChanges();
+    }
+    //Chirashi
+    else{
+      this.sushiChirashiCollection=this.db.collection('Chirashi');
+      this.sushisCollection.ref.where('sushiType','==',type).get().then(snapshot => {
+        snapshot.forEach(doc => {
+          if(this.sushiChirashiCollection.doc(doc.id).ref.id==doc.id){
+            console.log("existe");
+            
+          }
+          else{
+            console.log("no existe");
+      
+            this.sushiChirashiCollection.add(doc.data());
+          }
+    
+
+
+        });
+      })
+      .catch(err => {
+        console.log('Error getting documents', err);
+      });
+
+      platos=this.sushiChirashiCollection.snapshotChanges();
+    }
+      }
+     
+     
+
+
     return platos;  
     
     
 
   }
-  getByName(name,type){
+
+  getById(id,type){
     console.log(type);
     if(type==="Postres"){
-      this.PostreNameFilter$.next(name);
-      return this.PostreName$;
+      this.postresCollection=this.db.collection('Postres');
+      return this.postresCollection.doc(id);
     }
     else if(type==="Bandejas"){
-      this.BandejasNameFilter$.next(name);
-      return this.BandejasName$;
+      this.bandejasCollection=this.db.collection('Bandejas');
+      return this.bandejasCollection.doc(id);
     }
     else if(type==="Entrantes"){
-      this.EntrantesNameFilter$.next(name);
-      return this.EntrantesName$;
+      this.entrantesCollection=this.db.collection('Entrantes');
+      return this.entrantesCollection.doc(id);
     }
     else{
-      
-      console.log("entre al else de key");
-      this.SushiNameFilter$.next(name);
-      console.log(name);
-      console.log(this.SushiName$);
-      return this.SushiName$;
-      
+      this.sushisCollection=this.db.collection('Sushi');
+      return this.sushisCollection.doc(id);
     }
 
   }
+  
 
- 
    getSushis(){
-    this.sushisCollection=this.db.collection('Sushi');
-     var sushis=this.sushisCollection.valueChanges();
+    this.sushisCollection = this.db.collection('Sushi');
+      var sushis = this.sushisCollection.snapshotChanges();
     return sushis;
   }
   getPostres(){
     this.postresCollection=this.db.collection('Postres');
-     var postres=this.postresCollection.valueChanges();
+      var postres=this.postresCollection.snapshotChanges();
     return postres;
   }
   getBandejas(){
     this.bandejasCollection=this.db.collection('Bandejas');
-    var bandejas=this.bandejasCollection.valueChanges();
+      var bandejas=this.bandejasCollection.snapshotChanges()
     return bandejas;
   }
   getEntrantes(){
     this.entrantesCollection=this.db.collection('Entrantes');
-    var entrantes=this.entrantesCollection.valueChanges();
+      var entrantes=this.entrantesCollection.snapshotChanges()
     return entrantes;
   }
   
