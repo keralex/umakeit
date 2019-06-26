@@ -1,6 +1,7 @@
-# Proyecto
+# uMakeIt
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.0-rc.1.
+Una aplicacion web para una empresa de sushi que realiza deliverys, se puede realizar compras por la aplicacion a travez de paypal.
+Se utiliza Angular y Cloud Firestore como base de datos NoSQL.
 
 ## Development server
 
